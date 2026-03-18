@@ -1,0 +1,66 @@
+{
+  "meeting_title": "Discovery Call — Seaside Villas",
+  "meeting_date": "March 18, 2026",
+  "meeting_duration": "52 minutes",
+  "meeting_type": "Discovery Call",
+  "company_name": "Seaside Villas",
+  "company_domain": "seasidevillas.com",
+  "participants": [
+    {"name": "Maria Santos", "role": "Operations Director", "company": "Seaside Villas"},
+    {"name": "Tom Richards", "role": "CEO", "company": "Seaside Villas"},
+    {"name": "Idan Carmi", "role": "CGO", "company": "Boom"}
+  ],
+  "executive_summary": "We had a fantastic conversation about how Seaside Villas can consolidate their current 4-tool stack into Boom's unified platform. Maria and Tom shared the challenges of managing 85 properties across Portugal's Algarve coast, from fragmented guest communication to manual pricing adjustments. We walked through how Boom handles multi-channel distribution, automated guest messaging, and dynamic pricing — all from one dashboard. Both expressed strong interest in moving forward with a full demo next week.",
+  "discussion_points": [
+    {
+      "category": "challenges",
+      "title": "Current Challenges",
+      "items": [
+        "Managing 4 separate tools (Guesty, PriceLabs, Hospitable, spreadsheets)",
+        "No unified view of guest communications across channels",
+        "Manual pricing adjustments taking 15+ hours/week",
+        "Difficulty onboarding new team members due to tool complexity",
+        "Limited reporting — can't see portfolio performance at a glance"
+      ]
+    },
+    {
+      "category": "solutions",
+      "title": "How Boom Addresses This",
+      "items": [
+        "Single platform replacing all 4 tools — one login, one dashboard",
+        "Unified inbox for all guest messages (Airbnb, Booking.com, direct)",
+        "Built-in dynamic pricing with market data integration",
+        "Intuitive UI designed for team onboarding in days, not weeks",
+        "Real-time portfolio analytics and owner reporting"
+      ]
+    },
+    {
+      "category": "opportunities",
+      "title": "Growth Opportunities",
+      "items": [
+        "Expanding to 120 properties by Q4 — needs scalable ops",
+        "Direct booking channel launch planned for summer",
+        "Owner acquisition strategy could benefit from Boom's reporting",
+        "Potential to reduce team from 6 to 4 with automation"
+      ]
+    }
+  ],
+  "demo_highlights": [
+    {"feature": "Unified Inbox", "description": "Showed how all Airbnb, Booking.com, and direct messages flow into one timeline per guest"},
+    {"feature": "Dynamic Pricing", "description": "Demonstrated market-aware pricing engine with manual override capabilities"},
+    {"feature": "Owner Portal", "description": "Walked through the owner-facing dashboard with real-time revenue and occupancy data"},
+    {"feature": "Task Management", "description": "Showed automated cleaning and maintenance task assignment based on check-in/check-out"}
+  ],
+  "next_steps": [
+    {"action": "Send detailed proposal with pricing for 85 properties", "owner": "Boom", "timeline": "This week"},
+    {"action": "Full product demo with operations team (3 additional members)", "owner": "Both", "timeline": "Next week"},
+    {"action": "Review current Guesty contract renewal date", "owner": "Seaside Villas", "timeline": "This week"},
+    {"action": "Prepare migration timeline and data export checklist", "owner": "Boom", "timeline": "Next week"},
+    {"action": "Decision on moving forward with pilot", "owner": "Seaside Villas", "timeline": "Next week"}
+  ],
+  "resources": {
+    "recording_url": "https://fellow.link/abc123",
+    "testimonials_url": "https://www.boomnow.com/partner-testimonials",
+    "calendar_url": "https://meetings.hubspot.com/idan-carmi"
+  }
+}
