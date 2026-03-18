@@ -85,7 +85,7 @@ def r_people(parts):
         nm=p.get("name",""); ib="boom" in p.get("company","").lower()
         ii="idan" in nm.lower() and ib
         img=p.get("image")
-        if not img and ii and ph: img=f"data:image/png;base64,{ph}"
+        if not img and ii and ph: img=f"data:image/jpeg;base64,{ph}"
         if img:
             av=f'<img class="av-img" src="{e(img)}" alt="{e(nm)}"/>'
         elif ib:
@@ -278,12 +278,93 @@ body{{background:{N0};color:{N9};font-family:-apple-system,BlinkMacSystemFont,'S
 .ftr-c{{margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,.05);font-size:12px;color:rgba(255,255,255,.2)}}
 
 @media(max-width:800px){{
-  .hero-inner,.main,.ftr{{padding-left:24px!important;padding-right:24px!important}}
-  .hero h1{{font-size:28px}}.g2,.g3{{grid-template-columns:1fr}}
-  .dt .ft{{width:auto;white-space:normal}}
-  .st thead{{display:none}}.st tbody tr{{display:flex;flex-direction:column;padding:12px 0}}.st tbody td{{padding:4px 0}}
+  /* Hero */
+  .hero-inner{{padding:32px 20px 28px!important}}
+  .hero-logo{{height:28px;margin-bottom:20px}}
+  .hero-type{{font-size:11px;padding:6px 14px;margin-bottom:14px}}
+  .hero h1{{font-size:24px;line-height:1.25}}
+  .hero .sub{{font-size:14px}}
+  .hero-meta{{gap:16px;margin-top:20px}}
+  .hero-mi{{font-size:12px}}
+  .hero::before{{width:250px;height:250px;top:-60px;right:-40px}}
+  .hero::after{{width:200px;height:200px}}
+
+  /* Main */
+  .main{{padding:32px 20px 24px!important}}
+
+  /* Sections */
+  .sec{{margin-bottom:32px}}
+  .sh h2{{font-size:18px}}
+  .sdiv{{margin-bottom:32px}}
+
+  /* Participants — stack vertically */
+  .ppl{{flex-direction:column;gap:10px}}
+  .person{{padding:10px 14px 10px 10px}}
+  .av,.av-img{{width:36px;height:36px}}
+  .pn{{font-size:14px}}
+  .pr{{font-size:11px}}
+
+  /* Summary */
+  .sbox{{padding:20px;font-size:14px;line-height:1.7;border-radius:0 12px 12px 0}}
+
+  /* Cards — single column */
+  .g2,.g3{{grid-template-columns:1fr}}
+  .crd{{padding:20px;border-radius:12px}}
+  .crd-t{{font-size:15px}}
+  .crd li{{font-size:13px;padding:6px 0 6px 18px}}
+
+  /* Demo table — stack rows */
+  .dt{{border-radius:12px}}
+  .dt tr{{display:flex;flex-direction:column}}
+  .dt td{{padding:10px 16px}}
+  .dt .ft{{width:auto;white-space:normal;padding-bottom:2px}}
+  .dt td:last-child{{padding-top:2px;font-size:13px;color:{N5}}}
+
+  /* Steps table — card layout */
+  .st thead{{display:none}}
+  .st tbody tr{{display:flex;flex-direction:column;padding:14px 0;gap:6px;border-bottom:1px solid {N2}}}
+  .st tbody td{{padding:2px 0;font-size:14px}}
+  .st tbody td:first-child{{order:2}}
+  .st tbody td:nth-child(2){{order:1}}
+  .st tbody td:last-child{{order:3}}
+
+  /* Testimonials — narrower cards */
+  .testi-hdr{{flex-direction:column;align-items:flex-start;gap:10px}}
+  .testi-scroll{{gap:14px}}
+  .tc{{flex:0 0 280px;padding:20px;border-radius:14px}}
+  .tc::before{{font-size:28px;top:12px;right:16px}}
+  .tc-q{{font-size:14px;line-height:1.6;margin-bottom:16px}}
+  .tc-ft{{padding-top:12px}}
+  .tc-av{{width:32px;height:32px;font-size:11px}}
+  .tc-nm{{font-size:13px}}
+  .tc-rl{{font-size:11px}}
+
+  /* Resources — single column */
   .rg{{grid-template-columns:1fr}}
+  .rl{{padding:16px 18px;border-radius:12px}}
+  .ri{{font-size:22px}}
+  .rt{{font-size:14px}}
+  .rd{{font-size:12px}}
+  .tz{{padding:12px 16px;font-size:12px;border-radius:10px}}
+
+  /* Footer */
+  .ftr{{padding:32px 20px 28px!important}}
+  .ftr-logo{{height:28px;margin-bottom:12px}}
+  .ftr-tag{{font-size:13px;margin-bottom:16px}}
+  .ftr-lnk{{gap:8px}}
+  .ftr-a{{font-size:13px;padding:5px 10px}}
+  .ftr-c{{margin-top:20px;padding-top:16px;font-size:11px}}
 }}
+
+@media(max-width:400px){{
+  .hero-inner{{padding:24px 16px 22px!important}}
+  .main{{padding:24px 16px 20px!important}}
+  .ftr{{padding:24px 16px 22px!important}}
+  .hero h1{{font-size:20px}}
+  .tc{{flex:0 0 260px;padding:16px}}
+  .person{{padding:8px 10px 8px 8px}}
+}}
+
 @media print{{body{{padding:0;background:#fff}}.hero{{break-inside:avoid}}.rl:hover{{transform:none;box-shadow:none}}}}
 </style>
 </head>
