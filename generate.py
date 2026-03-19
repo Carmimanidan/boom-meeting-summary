@@ -118,13 +118,28 @@ def r_steps(steps):
 
 def r_testi():
     cards=[]
-    for t in TESTIMONIALS:
-        cards.append(f'<div class="tc"><div class="tc-q">{e(t["q"])}</div><div class="tc-ft"><div class="tc-av">{e(ini(t["n"]))}</div><div><div class="tc-nm">{e(t["n"])}</div><div class="tc-rl">{e(t["r"])} · {e(t["c"])}</div></div></div></div>')
-    return f'''<div class="testi-sec">
-    <div class="testi-hdr"><h2>💬 What Our Partners Say</h2><a href="https://www.boomnow.com/partner-testimonials" class="testi-more">See more stories →</a></div>
-    <div class="testi-scroll">{"".join(cards)}</div>
-  </div>
-  <div class="sdiv"></div>'''
+    stars='<div class="tc-stars">★★★★★</div>'
+    for i,t in enumerate(TESTIMONIALS):
+        cards.append(f'<div class="tc">'
+            f'<div class="tc-top"><div class="tc-quote-mark">&#8220;</div>{stars}</div>'
+            f'<div class="tc-q">{e(t["q"])}</div>'
+            f'<div class="tc-ft"><div class="tc-av">{e(ini(t["n"]))}</div>'
+            f'<div><div class="tc-nm">{e(t["n"])}</div>'
+            f'<div class="tc-rl">{e(t["r"])}</div>'
+            f'<div class="tc-co">{e(t["c"])}</div></div></div></div>')
+    return f'''<div class="testi-wrap">
+    <div class="testi-sec">
+      <div class="testi-badge">TRUSTED BY 3,000+ PROPERTIES WORLDWIDE</div>
+      <div class="testi-hdr">
+        <h2>What Our Partners Say</h2>
+        <p class="testi-sub">Hear from property managers who transformed their business with Boom</p>
+      </div>
+      <div class="testi-scroll">{"".join(cards)}</div>
+      <div class="testi-cta">
+        <a href="https://www.boomnow.com/partner-testimonials" class="testi-more">See all partner stories<span class="testi-arrow">→</span></a>
+      </div>
+    </div>
+  </div>'''
 
 def r_res(res):
     o=[]
@@ -235,25 +250,74 @@ body{{background:{N0};color:{N9};font-family:-apple-system,BlinkMacSystemFont,'S
 .pill{{display:inline-block;padding:5px 16px;border-radius:20px;font-size:12px;font-weight:700;white-space:nowrap}}
 .opill{{display:inline-block;padding:5px 16px;border-radius:20px;font-size:12px;font-weight:600;white-space:nowrap}}
 
-/* ── Testimonials ── */
-.testi-sec{{margin-bottom:48px}}
-.testi-hdr{{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}}
-.testi-hdr h2{{font-size:22px;font-weight:700;color:{N9};display:flex;align-items:center;gap:10px}}
-.testi-more{{font-size:14px;font-weight:600;color:{B};text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .2s}}
-.testi-more:hover{{color:{BD}}}
-.testi-scroll{{display:flex;gap:20px;overflow-x:auto;padding-bottom:16px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}}
+/* ── Testimonials — dark branded section ── */
+.testi-wrap{{
+  background:linear-gradient(165deg,{N9} 0%,{N8} 50%,#1a1d3a 100%);
+  position:relative;overflow:hidden;
+  margin:0 -72px;padding:72px 72px 64px;
+}}
+.testi-wrap::before{{
+  content:'';position:absolute;top:-200px;right:-100px;width:600px;height:600px;
+  background:radial-gradient(circle,rgba(77,101,255,.10) 0%,transparent 60%);border-radius:50%;
+}}
+.testi-wrap::after{{
+  content:'';position:absolute;bottom:-150px;left:-50px;width:500px;height:500px;
+  background:radial-gradient(circle,rgba(255,211,16,.06) 0%,transparent 60%);border-radius:50%;
+}}
+.testi-sec{{max-width:1320px;margin:0 auto;position:relative;z-index:1}}
+.testi-badge{{
+  display:inline-block;font-size:11px;font-weight:800;letter-spacing:2.5px;
+  color:{G};border:1.5px solid rgba(255,211,16,.3);background:rgba(255,211,16,.06);
+  padding:8px 20px;border-radius:50px;margin-bottom:24px;
+}}
+.testi-hdr{{margin-bottom:40px}}
+.testi-hdr h2{{font-size:36px;font-weight:800;color:{W};margin-bottom:10px;line-height:1.2}}
+.testi-sub{{font-size:16px;color:rgba(255,255,255,.45);max-width:500px;line-height:1.5}}
+.testi-scroll{{
+  display:flex;gap:24px;overflow-x:auto;padding-bottom:20px;
+  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+}}
 .testi-scroll::-webkit-scrollbar{{height:6px}}
-.testi-scroll::-webkit-scrollbar-track{{background:{N1};border-radius:3px}}
-.testi-scroll::-webkit-scrollbar-thumb{{background:{B30};border-radius:3px}}
+.testi-scroll::-webkit-scrollbar-track{{background:rgba(255,255,255,.06);border-radius:3px}}
+.testi-scroll::-webkit-scrollbar-thumb{{background:rgba(77,101,255,.4);border-radius:3px}}
 .testi-scroll::-webkit-scrollbar-thumb:hover{{background:{B}}}
-.tc{{flex:0 0 340px;scroll-snap-align:start;background:{W};border:1.5px solid {N2};border-radius:18px;padding:28px;display:flex;flex-direction:column;justify-content:space-between;transition:all .2s;position:relative}}
-.tc:hover{{border-color:{B20};box-shadow:0 6px 24px rgba(77,101,255,.08);transform:translateY(-2px)}}
-.tc::before{{content:'❝';position:absolute;top:16px;right:22px;font-size:36px;color:{B20};line-height:1}}
-.tc-q{{font-size:15px;line-height:1.7;color:{N7};flex:1;margin-bottom:20px;font-style:italic}}
-.tc-ft{{display:flex;align-items:center;gap:12px;border-top:1px solid {N1};padding-top:16px}}
-.tc-av{{width:38px;height:38px;border-radius:50%;background:{B};color:{W};display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}}
-.tc-nm{{font-size:14px;font-weight:600;color:{N9}}}
-.tc-rl{{font-size:12px;color:{N5}}}
+.tc{{
+  flex:0 0 360px;scroll-snap-align:start;
+  background:rgba(255,255,255,.04);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1.5px solid rgba(255,255,255,.08);border-radius:20px;
+  padding:32px;display:flex;flex-direction:column;justify-content:space-between;
+  transition:all .3s ease;position:relative;
+}}
+.tc:hover{{
+  background:rgba(255,255,255,.07);border-color:rgba(77,101,255,.3);
+  transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.3),0 0 0 1px rgba(77,101,255,.15);
+}}
+.tc-top{{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}}
+.tc-quote-mark{{font-size:56px;line-height:.8;color:{G};opacity:.7;font-family:Georgia,serif}}
+.tc-stars{{font-size:14px;color:{G};letter-spacing:2px}}
+.tc-q{{font-size:15px;line-height:1.8;color:rgba(255,255,255,.75);flex:1;margin-bottom:24px}}
+.tc-ft{{display:flex;align-items:center;gap:14px;border-top:1px solid rgba(255,255,255,.08);padding-top:20px}}
+.tc-av{{
+  width:44px;height:44px;border-radius:50%;
+  background:linear-gradient(135deg,{B},{BD});color:{W};
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:700;flex-shrink:0;
+  box-shadow:0 2px 8px rgba(77,101,255,.3);
+}}
+.tc-nm{{font-size:15px;font-weight:700;color:{W}}}
+.tc-rl{{font-size:12px;color:rgba(255,255,255,.45);margin-top:1px}}
+.tc-co{{font-size:11px;color:{G};font-weight:600;margin-top:2px;letter-spacing:.5px}}
+.testi-cta{{margin-top:36px;text-align:center}}
+.testi-more{{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:15px;font-weight:700;color:{W};text-decoration:none;
+  background:linear-gradient(135deg,{B} 0%,{BD} 100%);
+  padding:14px 36px;border-radius:50px;
+  transition:all .3s;box-shadow:0 4px 16px rgba(77,101,255,.3);
+}}
+.testi-more:hover{{transform:translateY(-2px);box-shadow:0 8px 28px rgba(77,101,255,.4)}}
+.testi-arrow{{font-size:18px;transition:transform .3s}}
+.testi-more:hover .testi-arrow{{transform:translateX(4px)}}
 
 /* ── Resources ── */
 .rg{{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}}
@@ -335,16 +399,25 @@ html,body{{overflow-x:hidden;width:100%}}
   .st tbody td:nth-child(2){{order:1;font-size:15px}}
   .st tbody td:last-child{{order:3;margin-top:4px}}
 
-  /* Testimonials — swipeable cards */
-  .testi-hdr{{flex-direction:column;align-items:flex-start;gap:10px}}
-  .testi-scroll{{gap:14px;padding-bottom:12px;scroll-padding:0 20px}}
-  .tc{{flex:0 0 280px;padding:20px;border-radius:14px}}
-  .tc::before{{font-size:28px;top:12px;right:16px}}
-  .tc-q{{font-size:14px;line-height:1.6;margin-bottom:16px}}
-  .tc-ft{{padding-top:12px}}
-  .tc-av{{width:32px;height:32px;font-size:11px}}
+  /* Testimonials — mobile */
+  .testi-wrap{{margin:0 -20px;padding:48px 20px 40px}}
+  .testi-badge{{font-size:10px;letter-spacing:2px;padding:6px 16px;margin-bottom:18px}}
+  .testi-hdr{{margin-bottom:28px}}
+  .testi-hdr h2{{font-size:26px}}
+  .testi-sub{{font-size:14px}}
+  .testi-scroll{{gap:16px;padding-bottom:14px}}
+  .tc{{flex:0 0 290px;padding:24px;border-radius:16px}}
+  .tc-top{{margin-bottom:14px}}
+  .tc-quote-mark{{font-size:40px}}
+  .tc-stars{{font-size:12px}}
+  .tc-q{{font-size:14px;line-height:1.7;margin-bottom:18px}}
+  .tc-ft{{padding-top:14px;gap:10px}}
+  .tc-av{{width:36px;height:36px;font-size:12px}}
   .tc-nm{{font-size:13px}}
   .tc-rl{{font-size:11px}}
+  .tc-co{{font-size:10px}}
+  .testi-cta{{margin-top:28px}}
+  .testi-more{{font-size:14px;padding:12px 28px}}
 
   /* Resources — single column */
   .rg{{grid-template-columns:1fr}}
@@ -372,7 +445,9 @@ html,body{{overflow-x:hidden;width:100%}}
   .hero .sub{{font-size:13px}}
   .hero-meta{{gap:8px 16px}}
   .hero-mi{{font-size:11px}}
-  .tc{{flex:0 0 250px;padding:16px}}
+  .testi-wrap{{padding:40px 14px 36px;margin:0 -14px}}
+  .testi-hdr h2{{font-size:22px}}
+  .tc{{flex:0 0 260px;padding:20px}}
   .person{{padding:8px 10px 8px 8px}}
   .crd{{padding:16px}}
   .sbox{{padding:16px;font-size:13px}}

@@ -86,25 +86,74 @@ body{background:#fafbfd;color:#121428;font-family:-apple-system,BlinkMacSystemFo
 .pill{display:inline-block;padding:5px 16px;border-radius:20px;font-size:12px;font-weight:700;white-space:nowrap}
 .opill{display:inline-block;padding:5px 16px;border-radius:20px;font-size:12px;font-weight:600;white-space:nowrap}
 
-/* ── Testimonials ── */
-.testi-sec{margin-bottom:48px}
-.testi-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
-.testi-hdr h2{font-size:22px;font-weight:700;color:#121428;display:flex;align-items:center;gap:10px}
-.testi-more{font-size:14px;font-weight:600;color:#4d65ff;text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .2s}
-.testi-more:hover{color:#3a4ecc}
-.testi-scroll{display:flex;gap:20px;overflow-x:auto;padding-bottom:16px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+/* ── Testimonials — dark branded section ── */
+.testi-wrap{
+  background:linear-gradient(165deg,#121428 0%,#1e2140 50%,#1a1d3a 100%);
+  position:relative;overflow:hidden;
+  margin:0 -72px;padding:72px 72px 64px;
+}
+.testi-wrap::before{
+  content:'';position:absolute;top:-200px;right:-100px;width:600px;height:600px;
+  background:radial-gradient(circle,rgba(77,101,255,.10) 0%,transparent 60%);border-radius:50%;
+}
+.testi-wrap::after{
+  content:'';position:absolute;bottom:-150px;left:-50px;width:500px;height:500px;
+  background:radial-gradient(circle,rgba(255,211,16,.06) 0%,transparent 60%);border-radius:50%;
+}
+.testi-sec{max-width:1320px;margin:0 auto;position:relative;z-index:1}
+.testi-badge{
+  display:inline-block;font-size:11px;font-weight:800;letter-spacing:2.5px;
+  color:#ffd310;border:1.5px solid rgba(255,211,16,.3);background:rgba(255,211,16,.06);
+  padding:8px 20px;border-radius:50px;margin-bottom:24px;
+}
+.testi-hdr{margin-bottom:40px}
+.testi-hdr h2{font-size:36px;font-weight:800;color:#ffffff;margin-bottom:10px;line-height:1.2}
+.testi-sub{font-size:16px;color:rgba(255,255,255,.45);max-width:500px;line-height:1.5}
+.testi-scroll{
+  display:flex;gap:24px;overflow-x:auto;padding-bottom:20px;
+  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+}
 .testi-scroll::-webkit-scrollbar{height:6px}
-.testi-scroll::-webkit-scrollbar-track{background:#f4f5f9;border-radius:3px}
-.testi-scroll::-webkit-scrollbar-thumb{background:#c5ccff;border-radius:3px}
+.testi-scroll::-webkit-scrollbar-track{background:rgba(255,255,255,.06);border-radius:3px}
+.testi-scroll::-webkit-scrollbar-thumb{background:rgba(77,101,255,.4);border-radius:3px}
 .testi-scroll::-webkit-scrollbar-thumb:hover{background:#4d65ff}
-.tc{flex:0 0 340px;scroll-snap-align:start;background:#ffffff;border:1.5px solid #e8eaf2;border-radius:18px;padding:28px;display:flex;flex-direction:column;justify-content:space-between;transition:all .2s;position:relative}
-.tc:hover{border-color:#dce1ff;box-shadow:0 6px 24px rgba(77,101,255,.08);transform:translateY(-2px)}
-.tc::before{content:'❝';position:absolute;top:16px;right:22px;font-size:36px;color:#dce1ff;line-height:1}
-.tc-q{font-size:15px;line-height:1.7;color:#2e3352;flex:1;margin-bottom:20px;font-style:italic}
-.tc-ft{display:flex;align-items:center;gap:12px;border-top:1px solid #f4f5f9;padding-top:16px}
-.tc-av{width:38px;height:38px;border-radius:50%;background:#4d65ff;color:#ffffff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
-.tc-nm{font-size:14px;font-weight:600;color:#121428}
-.tc-rl{font-size:12px;color:#6b7194}
+.tc{
+  flex:0 0 360px;scroll-snap-align:start;
+  background:rgba(255,255,255,.04);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1.5px solid rgba(255,255,255,.08);border-radius:20px;
+  padding:32px;display:flex;flex-direction:column;justify-content:space-between;
+  transition:all .3s ease;position:relative;
+}
+.tc:hover{
+  background:rgba(255,255,255,.07);border-color:rgba(77,101,255,.3);
+  transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.3),0 0 0 1px rgba(77,101,255,.15);
+}
+.tc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}
+.tc-quote-mark{font-size:56px;line-height:.8;color:#ffd310;opacity:.7;font-family:Georgia,serif}
+.tc-stars{font-size:14px;color:#ffd310;letter-spacing:2px}
+.tc-q{font-size:15px;line-height:1.8;color:rgba(255,255,255,.75);flex:1;margin-bottom:24px}
+.tc-ft{display:flex;align-items:center;gap:14px;border-top:1px solid rgba(255,255,255,.08);padding-top:20px}
+.tc-av{
+  width:44px;height:44px;border-radius:50%;
+  background:linear-gradient(135deg,#4d65ff,#3a4ecc);color:#ffffff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:700;flex-shrink:0;
+  box-shadow:0 2px 8px rgba(77,101,255,.3);
+}
+.tc-nm{font-size:15px;font-weight:700;color:#ffffff}
+.tc-rl{font-size:12px;color:rgba(255,255,255,.45);margin-top:1px}
+.tc-co{font-size:11px;color:#ffd310;font-weight:600;margin-top:2px;letter-spacing:.5px}
+.testi-cta{margin-top:36px;text-align:center}
+.testi-more{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:15px;font-weight:700;color:#ffffff;text-decoration:none;
+  background:linear-gradient(135deg,#4d65ff 0%,#3a4ecc 100%);
+  padding:14px 36px;border-radius:50px;
+  transition:all .3s;box-shadow:0 4px 16px rgba(77,101,255,.3);
+}
+.testi-more:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(77,101,255,.4)}
+.testi-arrow{font-size:18px;transition:transform .3s}
+.testi-more:hover .testi-arrow{transform:translateX(4px)}
 
 /* ── Resources ── */
 .rg{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
@@ -186,16 +235,25 @@ html,body{overflow-x:hidden;width:100%}
   .st tbody td:nth-child(2){order:1;font-size:15px}
   .st tbody td:last-child{order:3;margin-top:4px}
 
-  /* Testimonials — swipeable cards */
-  .testi-hdr{flex-direction:column;align-items:flex-start;gap:10px}
-  .testi-scroll{gap:14px;padding-bottom:12px;scroll-padding:0 20px}
-  .tc{flex:0 0 280px;padding:20px;border-radius:14px}
-  .tc::before{font-size:28px;top:12px;right:16px}
-  .tc-q{font-size:14px;line-height:1.6;margin-bottom:16px}
-  .tc-ft{padding-top:12px}
-  .tc-av{width:32px;height:32px;font-size:11px}
+  /* Testimonials — mobile */
+  .testi-wrap{margin:0 -20px;padding:48px 20px 40px}
+  .testi-badge{font-size:10px;letter-spacing:2px;padding:6px 16px;margin-bottom:18px}
+  .testi-hdr{margin-bottom:28px}
+  .testi-hdr h2{font-size:26px}
+  .testi-sub{font-size:14px}
+  .testi-scroll{gap:16px;padding-bottom:14px}
+  .tc{flex:0 0 290px;padding:24px;border-radius:16px}
+  .tc-top{margin-bottom:14px}
+  .tc-quote-mark{font-size:40px}
+  .tc-stars{font-size:12px}
+  .tc-q{font-size:14px;line-height:1.7;margin-bottom:18px}
+  .tc-ft{padding-top:14px;gap:10px}
+  .tc-av{width:36px;height:36px;font-size:12px}
   .tc-nm{font-size:13px}
   .tc-rl{font-size:11px}
+  .tc-co{font-size:10px}
+  .testi-cta{margin-top:28px}
+  .testi-more{font-size:14px;padding:12px 28px}
 
   /* Resources — single column */
   .rg{grid-template-columns:1fr}
@@ -223,7 +281,9 @@ html,body{overflow-x:hidden;width:100%}
   .hero .sub{font-size:13px}
   .hero-meta{gap:8px 16px}
   .hero-mi{font-size:11px}
-  .tc{flex:0 0 250px;padding:16px}
+  .testi-wrap{padding:40px 14px 36px;margin:0 -14px}
+  .testi-hdr h2{font-size:22px}
+  .tc{flex:0 0 260px;padding:20px}
   .person{padding:8px 10px 8px 8px}
   .crd{padding:16px}
   .sbox{padding:16px;font-size:13px}
@@ -304,11 +364,19 @@ html,body{overflow-x:hidden;width:100%}
   </div>
   <div class="sdiv"></div>
 
-  <div class="testi-sec">
-    <div class="testi-hdr"><h2>💬 What Our Partners Say</h2><a href="https://www.boomnow.com/partner-testimonials" class="testi-more">See more stories →</a></div>
-    <div class="testi-scroll"><div class="tc"><div class="tc-q">Boom&#x27;s support has been leagues ahead of any PMS we&#x27;ve used before. You don&#x27;t feel like just another subscription.</div><div class="tc-ft"><div class="tc-av">DM</div><div><div class="tc-nm">Dean McLuckie</div><div class="tc-rl">Founder · Euphoric Leisure</div></div></div></div><div class="tc"><div class="tc-q">If I had to rate it, it&#x27;s a 10. The platform is really fast, much faster than the other guys.</div><div class="tc-ft"><div class="tc-av">JT</div><div><div class="tc-nm">Joakim Thörn</div><div class="tc-rl">CEO · Guestly Homes</div></div></div></div><div class="tc"><div class="tc-q">We&#x27;re now in a position to attract creatives and true hospitality lovers to our team, because it is no longer a call center.</div><div class="tc-ft"><div class="tc-av">SM</div><div><div class="tc-nm">Sab Mulligan</div><div class="tc-rl">Head of Teams · Zzzing</div></div></div></div><div class="tc"><div class="tc-q">The relationship has felt like more than just business. I&#x27;ve felt the genuine interest in helping us grow.</div><div class="tc-ft"><div class="tc-av">JE</div><div><div class="tc-nm">Jonathan Ellse</div><div class="tc-rl">Managing Director · Perch Short Stays</div></div></div></div><div class="tc"><div class="tc-q">The software not only touches every facet of our business, but has added enormous improvements into areas which we never thought would be possible.</div><div class="tc-ft"><div class="tc-av">RM</div><div><div class="tc-nm">Richard Marshall</div><div class="tc-rl">Director · NOX</div></div></div></div><div class="tc"><div class="tc-q">Boom has completely transformed how I manage my properties. It&#x27;s streamlined, easy to use, and has taken so much stress off my plate.</div><div class="tc-ft"><div class="tc-av">CP</div><div><div class="tc-nm">Chet Persaud</div><div class="tc-rl">Owner · KFE Management</div></div></div></div><div class="tc"><div class="tc-q">This solution is the ultimate software tool for all property management needs! We&#x27;ve enhanced our operations to less than 1% bad reviews.</div><div class="tc-ft"><div class="tc-av">LM</div><div><div class="tc-nm">Liran Matok</div><div class="tc-rl">CEO · 250+ properties across US</div></div></div></div><div class="tc"><div class="tc-q">After a decade in the STR industry, the Boom team has brought us into a new era of tech-driven best practices and optimization.</div><div class="tc-ft"><div class="tc-av">YR</div><div><div class="tc-nm">Yuval Rephael</div><div class="tc-rl">CEO · Yalarent</div></div></div></div></div>
+  <div class="testi-wrap">
+    <div class="testi-sec">
+      <div class="testi-badge">TRUSTED BY 3,000+ PROPERTIES WORLDWIDE</div>
+      <div class="testi-hdr">
+        <h2>What Our Partners Say</h2>
+        <p class="testi-sub">Hear from property managers who transformed their business with Boom</p>
+      </div>
+      <div class="testi-scroll"><div class="tc"><div class="tc-top"><div class="tc-quote-mark">&#8220;</div><div class="tc-stars">★★★★★</div></div><div class="tc-q">Boom&#x27;s support has been leagues ahead of any PMS we&#x27;ve used before. You don&#x27;t feel like just another subscription.</div><div class="tc-ft"><div class="tc-av">DM</div><div><div class="tc-nm">Dean McLuckie</div><div class="tc-rl">Founder</div><div class="tc-co">Euphoric Leisure</div></div></div></div><div class="tc"><div class="tc-top"><div class="tc-quote-mark">&#8220;</div><div class="tc-stars">★★★★★</div></div><div class="tc-q">If I had to rate it, it&#x27;s a 10. The platform is really fast, much faster than the other guys.</div><div class="tc-ft"><div class="tc-av">JT</div><div><div class="tc-nm">Joakim Thörn</div><div class="tc-rl">CEO</div><div class="tc-co">Guestly Homes</div></div></div></div><div class="tc"><div class="tc-top"><div class="tc-quote-mark">&#8220;</div><div class="tc-stars">★★★★★</div></div><div class="tc-q">We&#x27;re now in a position to attract creatives and true hospitality lovers to our team, because it is no longer a call center.</div><div class="tc-ft"><div class="tc-av">SM</div><div><div class="tc-nm">Sab Mulligan</div><div class="tc-rl">Head of Teams</div><div class="tc-co">Zzzing</div></div></div></div><div class="tc"><div class="tc-top"><div class="tc-quote-mark">&#8220;</div><div class="tc-stars">★★★★★</div></div><div class="tc-q">The relationship has felt like more than just business. I&#x27;ve felt the genuine interest in helping us grow.</div><div class="tc-ft"><div class="tc-av">JE</div><div><div class="tc-nm">Jonathan Ellse</div><div class="tc-rl">Managing Director</div><div class="tc-co">Perch Short Stays</div></div></div></div><div class="tc"><div class="tc-top"><div class="tc-quote-mark">&#8220;</div><div class="tc-stars">★★★★★</div></div><div class="tc-q">The software not only touches every facet of our business, but has added enormous improvements into areas which we never thought would be possible.</div><div class="tc-ft"><div class="tc-av">RM</div><div><div class="tc-nm">Richard Marshall</div><div class="tc-rl">Director</div><div class="tc-co">NOX</div></div></div></div><div class="tc"><div class="tc-top"><div class="tc-quote-mark">&#8220;</div><div class="tc-stars">★★★★★</div></div><div class="tc-q">Boom has completely transformed how I manage my properties. It&#x27;s streamlined, easy to use, and has taken so much stress off my plate.</div><div class="tc-ft"><div class="tc-av">CP</div><div><div class="tc-nm">Chet Persaud</div><div class="tc-rl">Owner</div><div class="tc-co">KFE Management</div></div></div></div><div class="tc"><div class="tc-top"><div class="tc-quote-mark">&#8220;</div><div class="tc-stars">★★★★★</div></div><div class="tc-q">This solution is the ultimate software tool for all property management needs! We&#x27;ve enhanced our operations to less than 1% bad reviews.</div><div class="tc-ft"><div class="tc-av">LM</div><div><div class="tc-nm">Liran Matok</div><div class="tc-rl">CEO</div><div class="tc-co">250+ properties across US</div></div></div></div><div class="tc"><div class="tc-top"><div class="tc-quote-mark">&#8220;</div><div class="tc-stars">★★★★★</div></div><div class="tc-q">After a decade in the STR industry, the Boom team has brought us into a new era of tech-driven best practices and optimization.</div><div class="tc-ft"><div class="tc-av">YR</div><div><div class="tc-nm">Yuval Rephael</div><div class="tc-rl">CEO</div><div class="tc-co">Yalarent</div></div></div></div></div>
+      <div class="testi-cta">
+        <a href="https://www.boomnow.com/partner-testimonials" class="testi-more">See all partner stories<span class="testi-arrow">→</span></a>
+      </div>
+    </div>
   </div>
-  <div class="sdiv"></div>
 
   <div class="sec">
     <div class="sh"><h2>🔗 Resources</h2></div>
