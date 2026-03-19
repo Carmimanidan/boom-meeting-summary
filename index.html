@@ -128,25 +128,28 @@ body{background:#fafbfd;color:#121428;font-family:-apple-system,BlinkMacSystemFo
 .ftr-d{color:rgba(255,255,255,.12);font-size:10px}
 .ftr-c{margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,.05);font-size:12px;color:rgba(255,255,255,.2)}
 
+/* ── Prevent horizontal overflow globally ── */
+html,body{overflow-x:hidden;width:100%}
+
 @media(max-width:800px){
   /* Hero */
-  .hero-inner{padding:32px 20px 28px!important}
+  .hero-inner{padding:32px 20px 28px}
   .hero-logo{height:28px;margin-bottom:20px}
   .hero-type{font-size:11px;padding:6px 14px;margin-bottom:14px}
   .hero h1{font-size:24px;line-height:1.25}
   .hero .sub{font-size:14px}
-  .hero-meta{gap:16px;margin-top:20px}
+  .hero-meta{gap:12px 24px;margin-top:20px}
   .hero-mi{font-size:12px}
-  .hero::before{width:250px;height:250px;top:-60px;right:-40px}
-  .hero::after{width:200px;height:200px}
+  .hero::before{width:200px;height:200px;top:-80px;right:-60px}
+  .hero::after{width:160px;height:160px}
 
   /* Main */
-  .main{padding:32px 20px 24px!important}
+  .main{padding:32px 20px 24px}
 
   /* Sections */
-  .sec{margin-bottom:32px}
+  .sec{margin-bottom:28px}
   .sh h2{font-size:18px}
-  .sdiv{margin-bottom:32px}
+  .sdiv{margin-bottom:28px}
 
   /* Participants — stack vertically */
   .ppl{flex-direction:column;gap:10px}
@@ -160,28 +163,32 @@ body{background:#fafbfd;color:#121428;font-family:-apple-system,BlinkMacSystemFo
 
   /* Cards — single column */
   .g2,.g3{grid-template-columns:1fr}
-  .crd{padding:20px;border-radius:12px}
+  .crd{padding:18px;border-radius:12px}
   .crd-t{font-size:15px}
   .crd li{font-size:13px;padding:6px 0 6px 18px}
 
-  /* Demo table — stack rows */
+  /* Demo table — full block layout on mobile */
+  .dt,.dt thead,.dt tbody,.dt tr,.dt td{display:block;width:100%}
   .dt{border-radius:12px}
-  .dt tr{display:flex;flex-direction:column}
-  .dt td{padding:10px 16px}
-  .dt .ft{width:auto;white-space:normal;padding-bottom:2px}
-  .dt td:last-child{padding-top:2px;font-size:13px;color:#6b7194}
+  .dt tr{padding:14px 16px;border-bottom:1px solid #e8eaf2}
+  .dt tr:last-child{border-bottom:none}
+  .dt td{padding:0}
+  .dt .ft{width:auto;white-space:normal;font-size:15px;margin-bottom:4px}
+  .dt td:last-child{font-size:13px;color:#6b7194}
 
-  /* Steps table — card layout */
+  /* Steps table — card layout on mobile */
+  .st,.st thead,.st tbody,.st tr,.st td,.st th{display:block;width:100%}
   .st thead{display:none}
-  .st tbody tr{display:flex;flex-direction:column;padding:14px 0;gap:6px;border-bottom:1px solid #e8eaf2}
-  .st tbody td{padding:2px 0;font-size:14px}
-  .st tbody td:first-child{order:2}
-  .st tbody td:nth-child(2){order:1}
-  .st tbody td:last-child{order:3}
+  .st tbody tr{padding:14px 0;border-bottom:1px solid #e8eaf2}
+  .st tbody tr:last-child{border-bottom:none}
+  .st tbody td{padding:3px 0;font-size:14px}
+  .st tbody td:first-child{order:2;margin-top:8px}
+  .st tbody td:nth-child(2){order:1;font-size:15px}
+  .st tbody td:last-child{order:3;margin-top:4px}
 
-  /* Testimonials — narrower cards */
+  /* Testimonials — swipeable cards */
   .testi-hdr{flex-direction:column;align-items:flex-start;gap:10px}
-  .testi-scroll{gap:14px}
+  .testi-scroll{gap:14px;padding-bottom:12px;scroll-padding:0 20px}
   .tc{flex:0 0 280px;padding:20px;border-radius:14px}
   .tc::before{font-size:28px;top:12px;right:16px}
   .tc-q{font-size:14px;line-height:1.6;margin-bottom:16px}
@@ -192,28 +199,35 @@ body{background:#fafbfd;color:#121428;font-family:-apple-system,BlinkMacSystemFo
 
   /* Resources — single column */
   .rg{grid-template-columns:1fr}
-  .rl{padding:16px 18px;border-radius:12px}
+  .rl{padding:16px 18px;border-radius:12px;gap:12px}
   .ri{font-size:22px}
   .rt{font-size:14px}
   .rd{font-size:12px}
+  .ra{font-size:18px}
   .tz{padding:12px 16px;font-size:12px;border-radius:10px}
 
   /* Footer */
-  .ftr{padding:32px 20px 28px!important}
+  .ftr{padding:32px 20px 28px}
   .ftr-logo{height:28px;margin-bottom:12px}
   .ftr-tag{font-size:13px;margin-bottom:16px}
-  .ftr-lnk{gap:8px}
+  .ftr-lnk{gap:6px}
   .ftr-a{font-size:13px;padding:5px 10px}
   .ftr-c{margin-top:20px;padding-top:16px;font-size:11px}
 }
 
 @media(max-width:400px){
-  .hero-inner{padding:24px 16px 22px!important}
-  .main{padding:24px 16px 20px!important}
-  .ftr{padding:24px 16px 22px!important}
+  .hero-inner{padding:24px 14px 22px}
+  .main{padding:24px 14px 20px}
+  .ftr{padding:24px 14px 22px}
   .hero h1{font-size:20px}
-  .tc{flex:0 0 260px;padding:16px}
+  .hero .sub{font-size:13px}
+  .hero-meta{gap:8px 16px}
+  .hero-mi{font-size:11px}
+  .tc{flex:0 0 250px;padding:16px}
   .person{padding:8px 10px 8px 8px}
+  .crd{padding:16px}
+  .sbox{padding:16px;font-size:13px}
+  .rl{padding:14px 16px}
 }
 
 @media print{body{padding:0;background:#fff}.hero{break-inside:avoid}.rl:hover{transform:none;box-shadow:none}}
