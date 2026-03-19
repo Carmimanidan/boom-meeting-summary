@@ -129,7 +129,7 @@ def r_testi():
             f'<div class="tc-co">{e(t["c"])}</div></div></div></div>')
     return f'''<div class="testi-wrap">
     <div class="testi-sec">
-      <div class="testi-badge">TRUSTED BY 3,000+ PROPERTIES WORLDWIDE</div>
+      <div class="testi-badge">TRUSTED BY PROPERTY MANAGERS IN 30+ COUNTRIES</div>
       <div class="testi-hdr">
         <h2>What Our Partners Say</h2>
         <p class="testi-sub">Hear from property managers who transformed their business with Boom</p>
