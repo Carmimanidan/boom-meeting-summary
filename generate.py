@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Boom Meeting Summary — HTML Generator
-Only Boom brand colors: Blue (#4d65ff) + Gold (#ffd310) + neutrals.
+Boom Meeting Summary — HTML Generator v3
+Boom brand only: Blue #4d65ff · Gold #ffd310 · Navy/neutrals.
 
 Usage:
     python3 generate.py --json '{"meeting_title": "...", ...}'
@@ -17,6 +17,8 @@ LOGO_WHITE = open(os.path.join(_dir, "logo_white_b64.txt")).read().strip()
 LOGO_COLOR = open(os.path.join(_dir, "logo_color_b64.txt")).read().strip()
 ASSETS = os.path.join(_dir, "assets")
 PHOTO_PATH = os.path.join(ASSETS, "idan_photo_b64.txt")
+_logos_path = os.path.join(ASSETS, "partner_logos.json")
+PARTNER_LOGOS = json.load(open(_logos_path)) if os.path.exists(_logos_path) else {}
 
 def _photo():
     return open(PHOTO_PATH).read().strip() if os.path.exists(PHOTO_PATH) else None
@@ -26,35 +28,28 @@ def ini(n):
     p = n.split()
     return (p[0][0]+p[-1][0]).upper() if len(p)>=2 else n[0].upper() if n else "?"
 
-# ─── Only Boom colors ───
-B  = "#4d65ff"  # blue
-BD = "#3a4ecc"  # blue dark
-B10= "#eef1ff"  # blue 10%
-B20= "#dce1ff"  # blue 20%
-B30= "#c5ccff"  # blue 30%
-G  = "#ffd310"  # gold
-GD = "#e6be00"  # gold dark
-G10= "#fffbe6"  # gold 10%
-G20= "#fff3b3"  # gold 20%
-N9 = "#121428"  # navy (near-black)
-N8 = "#1e2140"  # navy 800
-N7 = "#2e3352"  # navy 700
-N5 = "#6b7194"  # gray text
-N3 = "#d0d3e0"  # gray border
-N2 = "#e8eaf2"  # gray light
-N1 = "#f4f5f9"  # gray bg
-N0 = "#fafbfd"  # near-white
-W  = "#ffffff"
+# ─── Boom palette ───
+B   = "#4d65ff"
+BD  = "#3a4ecc"
+B10 = "#eef1ff"
+B20 = "#dce1ff"
+B30 = "#c5ccff"
+G   = "#ffd310"
+GD  = "#e6be00"
+G10 = "#fffbe6"
+G20 = "#fff3b3"
+N9  = "#121428"
+N8  = "#1e2140"
+N7  = "#2e3352"
+N6  = "#464b6e"
+N5  = "#6b7194"
+N4  = "#9398b0"
+N3  = "#d0d3e0"
+N2  = "#e8eaf2"
+N1  = "#f4f5f9"
+N0  = "#fafbfd"
+W   = "#ffffff"
 
-# Cards: ONLY Boom blue + gold
-CAT = {
-    "challenges":    {"ico":"🔍","clr":GD, "bdr":G,  "bg":G10},
-    "solutions":     {"ico":"✅","clr":B,  "bdr":B,  "bg":B10},
-    "opportunities": {"ico":"🚀","clr":B,  "bdr":B20,"bg":B10},
-    "decisions":     {"ico":"📋","clr":GD, "bdr":G,  "bg":G10},
-}
-
-# Hardcoded testimonials from boomnow.com (curated best quotes)
 TESTIMONIALS = [
     {"q":"Boom's support has been leagues ahead of any PMS we've used before. You don't feel like just another subscription.","n":"Dean McLuckie","r":"Founder","c":"Euphoric Leisure"},
     {"q":"If I had to rate it, it's a 10. The platform is really fast, much faster than the other guys.","n":"Joakim Thörn","r":"CEO","c":"Guestly Homes"},
@@ -66,10 +61,46 @@ TESTIMONIALS = [
     {"q":"After a decade in the STR industry, the Boom team has brought us into a new era of tech-driven best practices and optimization.","n":"Yuval Rephael","r":"CEO","c":"Yalarent"},
 ]
 
+# Case studies for dynamic matching by portfolio size
+CASE_STUDIES = [
+    {"name":"Zzzing","props":360,"region":"UK","slug":"how-boom-helped-zzzing-scale-without-getting-slowed-down-by-tech"},
+    {"name":"Perch Short Stays","props":300,"region":"UK","slug":"how-perch-short-stays-reduced-overhead-and-gained-a-competitive-edge-with-boom"},
+    {"name":"Livestay","props":250,"region":"UK","slug":"how-livestay-made-busy-urban-operations-work-smarter-with-boom-automation"},
+    {"name":"Nox Cape Town","props":200,"region":"South Africa","slug":"how-nox-cape-town-elevates-luxury-hospitality-with-boom-ai-tools"},
+    {"name":"Housepitality","props":140,"region":"UK","slug":"how-housepitality-uses-boom-to-make-owner-and-guest-communication-a-breeze"},
+    {"name":"Enjoy Unique Stays","props":110,"region":"UK","slug":"enjoy-unique-stays"},
+    {"name":"Guestly Homes","props":105,"region":"Sweden","slug":"how-guestly-homes-streamlined-operations-and-scaled-with-ai-powered-hospitality"},
+    {"name":"Euphoric Leisure","props":100,"region":"UK","slug":"how-euphoric-leisure-future-proofed-operations-with-ai-and-a-unified-tech-stack"},
+    {"name":"Wehom.es","props":100,"region":"Hungary","slug":"how-wehom-es-used-ai-to-take-their-time-back-from-constant-calls"},
+    {"name":"PureServiced","props":71,"region":"UK","slug":"how-pureserviced-made-the-leap-to-ai-powered-hospitality-with-boom"},
+    {"name":"KFE Management","props":70,"region":"UK","slug":"how-kfe-management-reduced-costs-and-unlocked-new-revenue-streams-with-boom"},
+]
+
+# Partner names for the logo strip
+PARTNERS = ["Zzzing","Perch Short Stays","Guestly Homes","NOX","Euphoric Leisure",
+            "KFE Management","Livestay","Housepitality","PureServiced","Yalarent"]
+
+# Blog posts for contextual linking (keyword → post)
+BLOG_POSTS = [
+    {"kw":["pricing","revenue","dynamic"],"title":"Smarter Pricing with Boom × Wheelhouse","url":"https://www.boomnow.com/blog/pricing-strategy-just-got-smarter-with-boom-x-wheelhouse-integration"},
+    {"kw":["ai","automation","guest","communication","messaging"],"title":"Introducing BAM: The First Business Agentic Manager","url":"https://www.boomnow.com/blog/introducing-bam-the-first-ever-business-agentic-manager-for-the-short-term-rental-industry"},
+    {"kw":["damage","protection","insurance"],"title":"Introducing BoomGuard: Damage Protection","url":"https://www.boomnow.com/blog/introducing-boomguard-damage-protection-built-into-your-aipms"},
+    {"kw":["accounting","finance","trust","owner","payment"],"title":"Industry's First AI-Powered Trust Accounting","url":"https://www.boomnow.com/blog/introducing-the-industrys-first-fully-integrated-ai-powered-trust-accounting-system"},
+    {"kw":["noise","smart home","monitor"],"title":"Real-Time Noise Management with Boom × Minut","url":"https://www.boomnow.com/blog/introducing-boom-x-minut-real-time-noise-management-without-the-manual-work"},
+    {"kw":["website","direct booking","book direct"],"title":"Smarter Websites with Boom × ICND","url":"https://www.boomnow.com/blog/introducing-the-boom-x-icnd-integration-smarter-websites-smarter-operations"},
+]
+
+CAT = {
+    "challenges":    {"ico":"🔍","accent":G,  "bg":"rgba(255,211,16,.06)", "bdr":"rgba(255,211,16,.25)"},
+    "solutions":     {"ico":"✅","accent":B,  "bg":"rgba(77,101,255,.05)", "bdr":"rgba(77,101,255,.2)"},
+    "opportunities": {"ico":"🚀","accent":B,  "bg":"rgba(77,101,255,.05)", "bdr":"rgba(77,101,255,.15)"},
+    "decisions":     {"ico":"📋","accent":G,  "bg":"rgba(255,211,16,.06)", "bdr":"rgba(255,211,16,.25)"},
+}
+
 PILLS = {
-    "today":{"b":"#d03030","f":W},"tomorrow":{"b":GD,"f":N9},
+    "today":{"b":"#e03e3e","f":W},"tomorrow":{"b":GD,"f":N9},
     "this week":{"b":B,"f":W},"next week":{"b":BD,"f":W},
-    "ongoing":{"b":N5,"f":W},"tbd":{"b":N2,"f":N5},
+    "ongoing":{"b":N6,"f":W},"tbd":{"b":N2,"f":N5},
 }
 
 def pstyle(tl):
@@ -78,457 +109,883 @@ def pstyle(tl):
         if k in t: return f'background:{c["b"]};color:{c["f"]}'
     return f'background:{B};color:{W}'
 
+
+def _match_case_study(data):
+    """Find the best matching case study based on discussion content and portfolio size."""
+    # Build text blob from all content
+    blob = " ".join([
+        data.get("executive_summary",""),
+        data.get("company_name",""),
+        " ".join(i for dp in data.get("discussion_points",[]) for i in dp.get("items",[])),
+        " ".join(h.get("description","") for h in data.get("demo_highlights",[])),
+    ]).lower()
+    # Try to extract property count from content
+    import re
+    nums = [int(x) for x in re.findall(r'(\d+)\s*(?:properties|units|listings|apartments)', blob)]
+    target = max(nums) if nums else 100
+    # Sort by closest match
+    ranked = sorted(CASE_STUDIES, key=lambda cs: abs(cs["props"]-target))
+    # Return top 2
+    return ranked[:2]
+
+def _match_blog_posts(data):
+    """Find 1-2 relevant blog posts based on discussion topics."""
+    blob = " ".join([
+        data.get("executive_summary",""),
+        " ".join(i for dp in data.get("discussion_points",[]) for i in dp.get("items",[])),
+        " ".join(h.get("feature","")+" "+h.get("description","") for h in data.get("demo_highlights",[])),
+    ]).lower()
+    scored = []
+    for bp in BLOG_POSTS:
+        hits = sum(1 for kw in bp["kw"] if kw in blob)
+        if hits > 0:
+            scored.append((hits, bp))
+    scored.sort(key=lambda x: -x[0])
+    return [s[1] for s in scored[:2]]
+
+
+# ─── Renderers ───
+
 def r_people(parts):
     ph = _photo()
     o = []
     for p in parts:
-        nm=p.get("name",""); ib="boom" in p.get("company","").lower()
+        nm=p.get("name",""); co=p.get("company",""); rl=p.get("role","")
+        ib="boom" in co.lower()
         ii="idan" in nm.lower() and ib
         img=p.get("image")
         if not img and ii and ph: img=f"data:image/jpeg;base64,{ph}"
         if img:
             av=f'<img class="av-img" src="{e(img)}" alt="{e(nm)}"/>'
         elif ib:
-            av=f'<div class="av" style="background:{B};color:{W};border:2.5px solid {G}">{e(ini(nm))}</div>'
+            av=f'<div class="av av-boom">{e(ini(nm))}</div>'
         else:
-            av=f'<div class="av" style="background:{B10};color:{B};border:2.5px solid {B20}">{e(ini(nm))}</div>'
-        o.append(f'<div class="person">{av}<div><div class="pn">{e(nm)}</div><div class="pr">{e(p.get("role",""))}{(" · "+e(p.get("company",""))) if p.get("company") else ""}</div></div></div>')
+            av=f'<div class="av av-ext">{e(ini(nm))}</div>'
+        tag = f'<span class="ptag ptag-boom">Boom</span>' if ib else f'<span class="ptag">{e(co)}</span>' if co else ''
+        o.append(f'<div class="person">{av}<div class="pinfo"><div class="pn">{e(nm)}</div><div class="pr">{e(rl)}</div>{tag}</div></div>')
     return "\n".join(o)
 
 def r_cards(dps):
     o=[]
     for d in dps:
         c=CAT.get(d.get("category","solutions"),CAT["solutions"])
-        li="\n".join(f'<li>{e(i)}</li>' for i in d.get("items",[]))
-        o.append(f'<div class="crd" style="border-left:4px solid {c["bdr"]};background:{c["bg"]}"><div class="crd-h"><span class="crd-i">{c["ico"]}</span><span class="crd-t" style="color:{c["clr"]}">{e(d.get("title",""))}</span></div><ul>{li}</ul></div>')
+        li="\n".join(f'<li><span class="li-dot" style="background:{c["accent"]}"></span>{e(i)}</li>' for i in d.get("items",[]))
+        o.append(
+            f'<div class="crd" style="background:{c["bg"]};border:1.5px solid {c["bdr"]}">'
+            f'<div class="crd-h"><span class="crd-i">{c["ico"]}</span>'
+            f'<span class="crd-t">{e(d.get("title",""))}</span></div>'
+            f'<ul>{li}</ul></div>')
     return "\n".join(o)
 
 def r_demo(hl):
     if not hl: return ""
-    rows="\n".join(f'<tr><td class="ft">{e(h.get("feature",""))}</td><td>{e(h.get("description",""))}</td></tr>' for h in hl)
-    return f'<div class="sec"><div class="sh"><h2>💻 What We Showed You</h2></div><table class="dt"><tbody>{rows}</tbody></table></div><div class="sdiv"></div>'
+    rows=[]
+    for i,h in enumerate(hl):
+        desc = h.get("benefit") or h.get("description","")
+        rows.append(
+            f'<div class="demo-row">'
+            f'<div class="demo-num">{i+1:02d}</div>'
+            f'<div class="demo-body"><div class="demo-feat">{e(h.get("feature",""))}</div>'
+            f'<div class="demo-desc">{e(desc)}</div></div></div>')
+    return (f'<div class="sec"><div class="sec-label">WHAT THIS MEANS FOR YOU</div>'
+            f'<h2 class="sec-title">Features We Explored Together</h2>'
+            f'<div class="demo-list">{"".join(rows)}</div>'
+            f'<div class="bam-callout">'
+            f'<div class="bam-icon">🤖</div>'
+            f'<div class="bam-body">'
+            f'<div class="bam-title">Powered by BAM — Your AI Operations Manager</div>'
+            f'<div class="bam-desc">Everything you saw today runs on BAM (Business Agentic Manager) — '
+            f'think of it as ChatGPT for your property management business. BAM doesn\'t just automate tasks, '
+            f'it makes decisions, learns your preferences, and runs your day-to-day operations autonomously.</div>'
+            f'<a href="https://www.boomnow.com/blog/introducing-bam-the-first-ever-business-agentic-manager-for-the-short-term-rental-industry" class="bam-link">Learn more about BAM →</a>'
+            f'</div></div></div>')
 
 def r_steps(steps):
     rows=[]
-    for s in steps:
+    for i,s in enumerate(steps):
         ow=s.get("owner",""); ib="boom" in ow.lower() or "idan" in ow.lower()
-        os_=f'background:{B};color:{W}' if ib else f'background:{N1};color:{N5};border:1px solid {N2}'
-        rows.append(f'<tr><td><span class="pill" style="{pstyle(s.get("timeline",""))}">{e(s.get("timeline","TBD"))}</span></td><td class="act">{e(s.get("action",""))}</td><td><span class="opill" style="{os_}">{e(ow)}</span></td></tr>')
+        oc = "opill-boom" if ib else "opill-ext"
+        rows.append(
+            f'<div class="step-row">'
+            f'<div class="step-check"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="{B}" stroke-width="1.5" opacity=".3"/></svg></div>'
+            f'<div class="step-body"><div class="step-act">{e(s.get("action",""))}</div>'
+            f'<div class="step-meta"><span class="pill" style="{pstyle(s.get("timeline",""))}">{e(s.get("timeline","TBD"))}</span>'
+            f'<span class="opill {oc}">{e(ow)}</span></div></div></div>')
     return "\n".join(rows)
 
-def r_testi():
-    cards=[]
-    stars='<div class="tc-stars">★★★★★</div>'
-    for i,t in enumerate(TESTIMONIALS):
-        cards.append(f'<div class="tc">'
-            f'<div class="tc-top"><div class="tc-quote-mark">&#8220;</div>{stars}</div>'
-            f'<div class="tc-q">{e(t["q"])}</div>'
-            f'<div class="tc-ft"><div class="tc-av">{e(ini(t["n"]))}</div>'
-            f'<div><div class="tc-nm">{e(t["n"])}</div>'
-            f'<div class="tc-rl">{e(t["r"])}</div>'
-            f'<div class="tc-co">{e(t["c"])}</div></div></div></div>')
-    return f'''<div class="testi-wrap">
-    <div class="testi-sec">
-      <div class="testi-badge">TRUSTED BY PROPERTY MANAGERS IN 30+ COUNTRIES</div>
-      <div class="testi-hdr">
-        <h2>What Our Partners Say</h2>
-        <p class="testi-sub">Hear from property managers who transformed their business with Boom</p>
-      </div>
-      <div class="testi-scroll">{"".join(cards)}</div>
-      <div class="testi-cta">
-        <a href="https://www.boomnow.com/partner-testimonials" class="testi-more">See all partner stories<span class="testi-arrow">→</span></a>
-      </div>
+def r_logos():
+    """Render partner name strip — animated scroll."""
+    names = "".join(f'<span class="plogo-name">{e(p)}</span><span class="plogo-dot">·</span>' for p in PARTNERS)
+    return f'''<div class="plogo-sec">
+    <div class="plogo-inner">
+      <div class="plogo-label">TRUSTED BY LEADING PROPERTY MANAGERS</div>
+      <div class="plogo-strip"><div class="plogo-track">{names}{names}</div></div>
     </div>
   </div>'''
 
+def r_testi():
+    cards=[]
+    for t in TESTIMONIALS:
+        cards.append(
+            f'<div class="tc">'
+            f'<div class="tc-stars">★★★★★</div>'
+            f'<div class="tc-q">"{e(t["q"])}"</div>'
+            f'<div class="tc-ft"><div class="tc-av">{e(ini(t["n"]))}</div>'
+            f'<div><div class="tc-nm">{e(t["n"])}</div>'
+            f'<div class="tc-rl">{e(t["r"])} · {e(t["c"])}</div></div></div></div>')
+    return f'''<div class="testi-wrap">
+    <div class="testi-inner">
+      <div class="testi-badge">TRUSTED BY PROPERTY MANAGERS IN 30+ COUNTRIES</div>
+      <h2 class="testi-title">What Our Partners Say</h2>
+      <p class="testi-sub">Hear from property managers who transformed their business with Boom</p>
+      <div class="testi-scroll">{"".join(cards)}</div>
+      <div class="testi-cta"><a href="https://www.boomnow.com/partner-testimonials" class="btn-testi">See all partner stories <span>→</span></a></div>
+    </div>
+  </div>'''
+
+def r_case_studies(data):
+    matches = _match_case_study(data)
+    if not matches: return ""
+    cards = []
+    for cs in matches:
+        url = f'https://www.boomnow.com/case-studies/{cs["slug"]}'
+        cards.append(
+            f'<a href="{e(url)}" class="cs-card">'
+            f'<div class="cs-tag">CASE STUDY</div>'
+            f'<div class="cs-name">{e(cs["name"])}</div>'
+            f'<div class="cs-meta">{cs["props"]} properties · {e(cs["region"])}</div>'
+            f'<div class="cs-link">Read the full story →</div></a>')
+    return f'''<div class="sec">
+    <div class="sec-label">SIMILAR TO YOU</div>
+    <h2 class="sec-title">See How Others Made the Switch</h2>
+    <div class="cs-grid">{"".join(cards)}</div></div>
+    <div class="divider"></div>'''
+
+def r_blog(data):
+    posts = _match_blog_posts(data)
+    if not posts: return ""
+    items = []
+    for bp in posts:
+        items.append(
+            f'<a href="{e(bp["url"])}" class="blog-card">'
+            f'<div class="blog-ico">📖</div>'
+            f'<div class="blog-body"><div class="blog-title">{e(bp["title"])}</div>'
+            f'<div class="blog-link">Read on our blog →</div></div></a>')
+    return "\n".join(items)
+
 def r_res(res):
-    o=[]
-    for k,ic,tt,ds in [("recording_url","📹","Meeting Recording","Watch the full conversation"),("calendar_url","📅","Book Your Next Session","Pick a time that works for you")]:
+    items=[]
+    for k,ic,tt,ds in [("recording_url","📹","Meeting Recording","Watch the full conversation"),("calendar_url","📅","Book Your Next Session","Pick a time — or reply with 2-3 slots that work for you")]:
         u=res.get(k)
-        if u: o.append(f'<a href="{e(u)}" class="rl"><span class="ri">{ic}</span><div><div class="rt">{tt}</div><div class="rd">{ds}</div></div><span class="ra">→</span></a>')
-    return "\n".join(o)
+        if u: items.append(f'<a href="{e(u)}" class="res-card"><div class="res-ico">{ic}</div><div class="res-body"><div class="res-title">{tt}</div><div class="res-desc">{ds}</div></div><div class="res-arrow">→</div></a>')
+    return "\n".join(items)
+
 
 def generate_html(data):
-    mt=data.get("meeting_title","Meeting Summary")
-    md=data.get("meeting_date",datetime.now().strftime("%B %d, %Y"))
-    dur=data.get("meeting_duration","")
-    mtype=data.get("meeting_type","Meeting")
-    co=data.get("company_name","")
-    summ=data.get("executive_summary","")
-    parts=data.get("participants",[])
-    dps=data.get("discussion_points",[])
-    demos=data.get("demo_highlights",[])
-    steps=data.get("next_steps",[])
-    res=data.get("resources",{})
-    nc=len(dps); gc="g2" if nc<=2 else "g3" if nc==3 else "g2"
+    mt   = data.get("meeting_title","Meeting Summary")
+    md   = data.get("meeting_date",datetime.now().strftime("%B %d, %Y"))
+    dur  = data.get("meeting_duration","")
+    mtype= data.get("meeting_type","Meeting")
+    co   = data.get("company_name","")
+    summ = data.get("executive_summary","")
+    takeaway = data.get("key_takeaway","")
+    bullets = data.get("summary_bullets",[])
+    parts= data.get("participants",[])
+    dps  = data.get("discussion_points",[])
+    demos= data.get("demo_highlights",[])
+    steps= data.get("next_steps",[])
+    res  = data.get("resources",{})
+    nc   = len(dps)
+    gc   = "g2" if nc<=2 else "g3" if nc==3 else "g2"
 
     return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>{e(mt)}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 <style>
+/* ── RESET ── */
 *{{box-sizing:border-box;margin:0;padding:0}}
-body{{background:{N0};color:{N9};font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.65;padding:0;-webkit-font-smoothing:antialiased}}
+html,body{{overflow-x:hidden;width:100%}}
+body{{
+  background:{N1};color:{N9};
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
+  line-height:1.6;-webkit-font-smoothing:antialiased;
+}}
 
-/* ── HEADER — full-width hero ── */
+/* ════════════════════════════════════════
+   HERO
+   ════════════════════════════════════════ */
 .hero{{
-  background:linear-gradient(160deg,{N9} 0%,{N8} 40%,{N7} 100%);
-  color:{W};padding:0;position:relative;overflow:hidden;
+  background:{N9};color:{W};
+  position:relative;overflow:hidden;padding:0;
 }}
-.hero::before{{content:'';position:absolute;top:-120px;right:-60px;width:500px;height:500px;background:radial-gradient(circle,rgba(77,101,255,.12) 0%,transparent 65%);border-radius:50%}}
-.hero::after{{content:'';position:absolute;bottom:-100px;left:10%;width:400px;height:400px;background:radial-gradient(circle,rgba(255,211,16,.06) 0%,transparent 65%);border-radius:50%}}
-.hero-bar{{height:5px;background:linear-gradient(90deg,{B} 0%,{G} 50%,{B} 100%)}}
-.hero-inner{{max-width:1320px;margin:0 auto;padding:56px 72px 52px;position:relative;z-index:1}}
-.hero-logo{{height:36px;margin-bottom:32px;display:block}}
-.hero-type{{
-  display:inline-block;background:{B};color:{W};
-  font-size:13px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
-  padding:8px 20px;border-radius:8px;margin-bottom:20px;
+.hero::before{{
+  content:'';position:absolute;width:700px;height:700px;
+  top:-300px;right:-150px;border-radius:50%;
+  background:radial-gradient(circle,rgba(77,101,255,.15) 0%,transparent 60%);
 }}
-.hero h1{{font-size:44px;font-weight:800;line-height:1.15;margin-bottom:12px;max-width:900px}}
-.hero .sub{{font-size:17px;color:rgba(255,255,255,.6);max-width:700px}}
-.hero-meta{{display:flex;gap:32px;margin-top:32px;flex-wrap:wrap}}
-.hero-mi{{display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(255,255,255,.5)}}
-.hero-mi strong{{color:{W};font-weight:600}}
-.hero-mi .dot{{width:6px;height:6px;border-radius:50%;background:{G};flex-shrink:0}}
-.hero-gold{{height:4px;background:linear-gradient(90deg,{G},transparent 80%)}}
+.hero::after{{
+  content:'';position:absolute;width:500px;height:500px;
+  bottom:-200px;left:-100px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,211,16,.08) 0%,transparent 60%);
+}}
+.hero-accent{{height:4px;background:linear-gradient(90deg,{B},{G},{B})}}
+.hero-inner{{
+  max-width:1100px;margin:0 auto;padding:60px 56px 56px;
+  position:relative;z-index:1;
+}}
+.hero-top{{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:40px}}
+.hero-logo{{height:32px;display:block;opacity:.9}}
+.hero-badge{{
+  font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:{G};border:1.5px solid rgba(255,211,16,.25);
+  padding:6px 18px;border-radius:100px;background:rgba(255,211,16,.06);
+}}
+.hero h1{{
+  font-size:42px;font-weight:900;line-height:1.1;
+  margin-bottom:16px;letter-spacing:-.5px;
+  background:linear-gradient(135deg,{W} 60%,{B30} 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}}
+.hero-sub{{font-size:17px;color:rgba(255,255,255,.5);margin-bottom:36px}}
+.hero-pills{{display:flex;gap:12px;flex-wrap:wrap}}
+.hero-pill{{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);
+  padding:10px 20px;border-radius:12px;
+  font-size:13px;color:rgba(255,255,255,.6);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+}}
+.hero-pill strong{{color:{W};font-weight:600}}
+.hero-pill-dot{{width:5px;height:5px;border-radius:50%;background:{G};flex-shrink:0}}
+.hero-wave{{height:48px;background:{N1};position:relative;z-index:2;border-radius:24px 24px 0 0;margin-top:-24px}}
 
-/* ── MAIN ── */
-.main{{max-width:1320px;margin:0 auto;padding:56px 72px 40px}}
+/* ════════════════════════════════════════
+   STATS BAR — floating credibility strip
+   ════════════════════════════════════════ */
+.stats-bar{{
+  max-width:1100px;margin:-28px auto 0;padding:0 56px;position:relative;z-index:3;
+}}
+.stats-inner{{
+  display:flex;align-items:stretch;
+  background:{W};border-radius:24px;
+  box-shadow:0 8px 32px rgba(18,20,40,.08),0 1px 2px rgba(18,20,40,.04);
+  overflow:hidden;
+}}
+.stat{{
+  flex:1;padding:28px 24px;display:flex;align-items:center;gap:16px;
+  position:relative;
+}}
+.stat:not(:last-child)::after{{
+  content:'';position:absolute;right:0;top:24%;height:52%;width:1px;
+  background:linear-gradient(180deg,transparent,{N2},{N3},{N2},transparent);
+}}
+.stat-icon{{
+  width:48px;height:48px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;flex-shrink:0;
+}}
+.stat-icon-blue{{background:{B10}}}
+.stat-icon-gold{{background:{G10}}}
+.stat-content{{min-width:0}}
+.stat-num{{font-size:24px;font-weight:900;color:{N9};letter-spacing:-.5px;line-height:1.1}}
+.stat-num span{{color:{B}}}
+.stat-label{{font-size:11px;font-weight:600;color:{N5};margin-top:3px;line-height:1.3}}
 
-/* ── Sections ── */
-.sec{{margin-bottom:48px}}
-.sh{{margin-bottom:24px}}
-.sh h2{{font-size:22px;font-weight:700;color:{N9};display:flex;align-items:center;gap:10px}}
-.sdiv{{height:2px;background:linear-gradient(90deg,{B20} 0%,{G20} 40%,transparent 100%);margin-bottom:48px;border-radius:2px}}
+/* ════════════════════════════════════════
+   MAIN CONTENT
+   ════════════════════════════════════════ */
+.main{{max-width:1100px;margin:0 auto;padding:48px 56px 32px}}
+.sec{{margin-bottom:56px}}
+.sec-label{{
+  font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;
+  color:{B};margin-bottom:8px;
+}}
+.sec-title{{font-size:26px;font-weight:800;color:{N9};margin-bottom:24px;letter-spacing:-.3px}}
+.divider{{height:1px;margin:0 0 56px;background:linear-gradient(90deg,{N3},transparent 70%)}}
 
 /* ── Participants ── */
-.ppl{{display:flex;flex-wrap:wrap;gap:14px}}
-.person{{display:flex;align-items:center;gap:12px;background:{W};border:1px solid {N2};border-radius:14px;padding:12px 20px 12px 12px;box-shadow:0 1px 3px rgba(0,0,0,.03)}}
-.av{{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0}}
-.av-img{{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2.5px solid {G};flex-shrink:0}}
-.pn{{font-size:15px;font-weight:600}}
-.pr{{font-size:12px;color:{N5}}}
+.ppl{{display:flex;flex-wrap:wrap;gap:12px}}
+.person{{
+  display:flex;align-items:center;gap:14px;
+  background:{W};border:1px solid {N2};border-radius:16px;
+  padding:14px 22px 14px 14px;transition:all .2s;
+}}
+.person:hover{{border-color:{B20};box-shadow:0 4px 16px rgba(77,101,255,.06)}}
+.av{{
+  width:44px;height:44px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;font-weight:700;flex-shrink:0;
+}}
+.av-boom{{background:{B};color:{W}}}
+.av-ext{{background:{B10};color:{B}}}
+.av-img{{width:44px;height:44px;border-radius:14px;object-fit:cover;flex-shrink:0;border:2px solid {G}}}
+.pinfo{{min-width:0}}
+.pn{{font-size:14px;font-weight:700;color:{N9}}}
+.pr{{font-size:12px;color:{N5};margin-top:1px}}
+.ptag{{
+  display:inline-block;margin-top:4px;
+  font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+  padding:2px 8px;border-radius:6px;background:{N1};color:{N5};
+}}
+.ptag-boom{{background:rgba(77,101,255,.1);color:{B}}}
 
-/* ── Summary ── */
-.sbox{{
-  background:linear-gradient(135deg,{B10} 0%,{G10} 100%);
-  border-left:5px solid {B};border-radius:0 16px 16px 0;
-  padding:28px 34px;font-size:16px;line-height:1.8;color:{N7};
+/* ── Key Takeaway ── */
+.takeaway{{
+  background:linear-gradient(135deg,{N9} 0%,{N8} 100%);
+  border-radius:20px;padding:32px 36px;position:relative;overflow:hidden;
+  margin-bottom:24px;
+}}
+.takeaway::before{{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:5px;
+  background:linear-gradient(180deg,{G},{B});
+}}
+.takeaway::after{{
+  content:'';position:absolute;top:-60px;right:-40px;width:200px;height:200px;
+  background:radial-gradient(circle,rgba(77,101,255,.1) 0%,transparent 60%);border-radius:50%;
+}}
+.takeaway-label{{font-size:10px;font-weight:800;letter-spacing:2px;color:{G};text-transform:uppercase;margin-bottom:10px;position:relative;z-index:1}}
+.takeaway-text{{font-size:18px;font-weight:700;color:{W};line-height:1.5;position:relative;z-index:1}}
+
+/* ── Summary Bullets ── */
+.sbullets{{display:flex;flex-direction:column;gap:12px}}
+.sbullet{{
+  display:flex;align-items:flex-start;gap:14px;
+  background:{W};border:1px solid {N2};border-radius:16px;
+  padding:18px 22px;font-size:14px;color:{N7};line-height:1.7;
+}}
+.sbullet-num{{
+  width:28px;height:28px;border-radius:8px;
+  background:{B10};color:{B};
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:800;flex-shrink:0;
 }}
 
-/* ── Cards ── */
-.grid{{display:grid;gap:20px}}
-.g2{{grid-template-columns:repeat(auto-fit,minmax(360px,1fr))}}
-.g3{{grid-template-columns:repeat(auto-fit,minmax(310px,1fr))}}
-.crd{{border-radius:16px;padding:26px;border:1px solid transparent}}
-.crd-h{{display:flex;align-items:center;gap:10px;margin-bottom:16px}}
-.crd-i{{font-size:22px}}
-.crd-t{{font-size:17px;font-weight:700}}
-.crd ul{{list-style:none;padding:0}}
-.crd li{{font-size:14px;padding:7px 0 7px 20px;position:relative;border-bottom:1px solid rgba(0,0,0,.04)}}
+/* ── Summary (fallback for no bullets) ── */
+.sbox{{
+  background:{W};border-radius:20px;padding:32px 36px;
+  font-size:15px;line-height:1.85;color:{N7};
+  border:1px solid {N2};position:relative;
+  box-shadow:0 1px 3px rgba(0,0,0,.02);
+}}
+.sbox::before{{
+  content:'';position:absolute;left:0;top:20px;bottom:20px;width:4px;
+  background:linear-gradient(180deg,{B},{G});border-radius:0 4px 4px 0;
+}}
+
+/* ── Discussion Cards ── */
+.grid{{display:grid;gap:16px}}
+.g2{{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}}
+.g3{{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}}
+.crd{{border-radius:20px;padding:28px;transition:all .2s}}
+.crd:hover{{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.04)}}
+.crd-h{{display:flex;align-items:center;gap:10px;margin-bottom:18px}}
+.crd-i{{font-size:20px}}
+.crd-t{{font-size:16px;font-weight:800;color:{N9}}}
+.crd ul{{list-style:none}}
+.crd li{{
+  display:flex;align-items:flex-start;gap:12px;
+  font-size:14px;color:{N7};padding:8px 0;
+  border-bottom:1px solid rgba(0,0,0,.04);line-height:1.6;
+}}
 .crd li:last-child{{border-bottom:none}}
-.crd li::before{{content:'›';position:absolute;left:4px;color:{N5};font-weight:700;font-size:15px}}
+.li-dot{{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:8px}}
 
-/* ── Demo ── */
-.dt{{width:100%;border-collapse:collapse;background:{W};border:1px solid {N2};border-radius:16px;overflow:hidden}}
-.dt tr{{border-bottom:1px solid {N2}}}
-.dt tr:last-child{{border-bottom:none}}
-.dt td{{padding:18px 24px;font-size:15px;vertical-align:top}}
-.dt .ft{{font-weight:700;color:{B};white-space:nowrap;width:220px}}
+/* ── Demo Highlights ── */
+.demo-list{{display:flex;flex-direction:column;gap:0}}
+.demo-row{{
+  display:flex;align-items:flex-start;gap:20px;
+  padding:22px 28px;background:{W};
+  border:1px solid {N2};border-bottom:none;transition:background .15s;
+}}
+.demo-row:first-child{{border-radius:20px 20px 0 0}}
+.demo-row:last-child{{border-radius:0 0 20px 20px;border-bottom:1px solid {N2}}}
+.demo-row:only-child{{border-radius:20px;border-bottom:1px solid {N2}}}
+.demo-row:hover{{background:{B10}}}
+.demo-num{{
+  font-size:13px;font-weight:800;color:{B};
+  width:36px;height:36px;display:flex;align-items:center;justify-content:center;
+  background:{B10};border-radius:10px;flex-shrink:0;
+}}
+.demo-body{{flex:1;min-width:0}}
+.demo-feat{{font-size:15px;font-weight:700;color:{N9};margin-bottom:4px}}
+.demo-desc{{font-size:14px;color:{N5};line-height:1.6}}
 
-/* ── Steps ── */
-.st{{width:100%;border-collapse:collapse}}
-.st thead th{{background:{B10};text-align:left;padding:14px 20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:{B};border-bottom:3px solid {B20}}}
-.st thead th:first-child{{border-radius:16px 0 0 0}}.st thead th:last-child{{border-radius:0 16px 0 0}}
-.st tbody tr{{border-bottom:1px solid {N2};transition:background .15s}}
-.st tbody tr:last-child{{border-bottom:none}}
-.st tbody tr:hover{{background:{B10}}}
-.st tbody td{{padding:16px 20px;font-size:15px;vertical-align:middle}}
-.act{{font-weight:500}}
-.pill{{display:inline-block;padding:5px 16px;border-radius:20px;font-size:12px;font-weight:700;white-space:nowrap}}
-.opill{{display:inline-block;padding:5px 16px;border-radius:20px;font-size:12px;font-weight:600;white-space:nowrap}}
+/* ── BAM Callout ── */
+.bam-callout{{
+  margin-top:20px;display:flex;gap:20px;align-items:flex-start;
+  padding:28px 32px;border-radius:20px;
+  background:linear-gradient(135deg,rgba(77,101,255,.04) 0%,rgba(255,211,16,.04) 100%);
+  border:1.5px solid rgba(77,101,255,.12);
+}}
+.bam-icon{{font-size:28px;flex-shrink:0;margin-top:2px}}
+.bam-body{{flex:1;min-width:0}}
+.bam-title{{font-size:16px;font-weight:800;color:{N9};margin-bottom:6px}}
+.bam-desc{{font-size:14px;color:{N5};line-height:1.7;margin-bottom:10px}}
+.bam-link{{
+  font-size:13px;font-weight:700;color:{B};text-decoration:none;
+  display:inline-flex;align-items:center;gap:4px;transition:gap .2s;
+}}
+.bam-link:hover{{gap:8px}}
 
-/* ── Testimonials — dark branded section ── */
+/* ── Next Steps ── */
+.step-list{{display:flex;flex-direction:column;gap:0}}
+.step-row{{
+  display:flex;align-items:flex-start;gap:16px;
+  padding:20px 28px;background:{W};
+  border:1px solid {N2};border-bottom:none;transition:background .15s;
+}}
+.step-row:first-child{{border-radius:20px 20px 0 0}}
+.step-row:last-child{{border-radius:0 0 20px 20px;border-bottom:1px solid {N2}}}
+.step-row:only-child{{border-radius:20px;border-bottom:1px solid {N2}}}
+.step-row:hover{{background:{N0}}}
+.step-check{{flex-shrink:0;padding-top:2px}}
+.step-body{{flex:1;min-width:0}}
+.step-act{{font-size:15px;font-weight:600;color:{N9};margin-bottom:8px;line-height:1.5}}
+.step-meta{{display:flex;gap:8px;flex-wrap:wrap;align-items:center}}
+.pill{{display:inline-block;padding:4px 14px;border-radius:8px;font-size:11px;font-weight:700;white-space:nowrap;letter-spacing:.3px}}
+.opill{{display:inline-block;padding:4px 14px;border-radius:8px;font-size:11px;font-weight:600;white-space:nowrap}}
+.opill-boom{{background:{B10};color:{B}}}
+.opill-ext{{background:{N1};color:{N5}}}
+
+/* ── CTA Banner ── */
+.cta-banner{{
+  background:linear-gradient(135deg,{B} 0%,{BD} 100%);
+  border-radius:24px;padding:40px 44px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  margin-bottom:56px;position:relative;overflow:hidden;
+}}
+.cta-banner::before{{
+  content:'';position:absolute;top:-50px;right:-30px;width:200px;height:200px;
+  background:radial-gradient(circle,rgba(255,211,16,.15) 0%,transparent 60%);border-radius:50%;
+}}
+.cta-body{{position:relative;z-index:1}}
+.cta-title{{font-size:22px;font-weight:800;color:{W};margin-bottom:6px}}
+.cta-desc{{font-size:14px;color:rgba(255,255,255,.65)}}
+.cta-btn{{
+  display:inline-flex;align-items:center;gap:10px;
+  background:{W};color:{B};font-size:15px;font-weight:800;
+  padding:14px 32px;border-radius:14px;text-decoration:none;
+  transition:all .2s;flex-shrink:0;position:relative;z-index:1;
+  box-shadow:0 4px 16px rgba(0,0,0,.15);
+}}
+.cta-btn:hover{{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.2)}}
+.cta-btn span{{transition:transform .2s}}
+.cta-btn:hover span{{transform:translateX(4px)}}
+
+/* ── Case Studies ── */
+.cs-grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}}
+.cs-card{{
+  display:flex;flex-direction:column;gap:8px;
+  padding:28px;background:{W};border:1.5px solid {N2};border-radius:20px;
+  text-decoration:none;color:{N9};transition:all .2s;
+}}
+.cs-card:hover{{border-color:{B};box-shadow:0 6px 24px rgba(77,101,255,.08);transform:translateY(-2px)}}
+.cs-tag{{
+  font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+  color:{B};background:{B10};padding:4px 10px;border-radius:6px;
+  display:inline-block;width:fit-content;
+}}
+.cs-name{{font-size:18px;font-weight:800;color:{N9};margin-top:4px}}
+.cs-meta{{font-size:13px;color:{N5}}}
+.cs-link{{font-size:13px;font-weight:700;color:{B};margin-top:4px;transition:letter-spacing .2s}}
+.cs-card:hover .cs-link{{letter-spacing:.5px}}
+
+/* ════════════════════════════════════════
+   TESTIMONIALS
+   ════════════════════════════════════════ */
 .testi-wrap{{
-  background:linear-gradient(165deg,{N9} 0%,{N8} 50%,#1a1d3a 100%);
-  position:relative;overflow:hidden;
-  margin:0 -72px;padding:72px 72px 64px;
+  background:linear-gradient(170deg,{N9} 0%,{N8} 100%);
+  position:relative;overflow:hidden;padding:72px 0 64px;margin-top:24px;
 }}
 .testi-wrap::before{{
-  content:'';position:absolute;top:-200px;right:-100px;width:600px;height:600px;
-  background:radial-gradient(circle,rgba(77,101,255,.10) 0%,transparent 60%);border-radius:50%;
+  content:'';position:absolute;width:500px;height:500px;
+  top:-200px;right:-100px;border-radius:50%;
+  background:radial-gradient(circle,rgba(77,101,255,.12) 0%,transparent 60%);
 }}
-.testi-wrap::after{{
-  content:'';position:absolute;bottom:-150px;left:-50px;width:500px;height:500px;
-  background:radial-gradient(circle,rgba(255,211,16,.06) 0%,transparent 60%);border-radius:50%;
+.testi-inner{{max-width:1100px;margin:0 auto;padding:0 56px;position:relative;z-index:1}}
+
+/* ── Partner Logo Strip — light section ── */
+.plogo-sec{{
+  background:{W};border-top:1px solid {N2};border-bottom:1px solid {N2};
+  padding:40px 0;
 }}
-.testi-sec{{max-width:1320px;margin:0 auto;position:relative;z-index:1}}
+.plogo-inner{{max-width:1100px;margin:0 auto;padding:0 56px;text-align:center}}
+.plogo-label{{
+  font-size:10px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;
+  color:{N4};margin-bottom:28px;
+}}
+.plogo-strip{{
+  overflow:hidden;position:relative;
+  mask-image:linear-gradient(90deg,transparent 0%,black 8%,black 92%,transparent 100%);
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,black 8%,black 92%,transparent 100%);
+}}
+.plogo-track{{
+  display:flex;align-items:center;gap:20px;
+  animation:scroll-logos 40s linear infinite;
+}}
+@keyframes scroll-logos{{
+  0%{{transform:translateX(0)}}
+  100%{{transform:translateX(-50%)}}
+}}
+.plogo-name{{
+  font-size:15px;font-weight:700;color:{N5};white-space:nowrap;
+  letter-spacing:1px;text-transform:uppercase;flex-shrink:0;
+}}
+.plogo-dot{{color:{N3};font-size:18px;flex-shrink:0}}
+
 .testi-badge{{
-  display:inline-block;font-size:11px;font-weight:800;letter-spacing:2.5px;
-  color:{G};border:1.5px solid rgba(255,211,16,.3);background:rgba(255,211,16,.06);
-  padding:8px 20px;border-radius:50px;margin-bottom:24px;
+  display:inline-block;font-size:10px;font-weight:800;letter-spacing:2.5px;
+  color:{G};opacity:.7;margin-bottom:12px;
 }}
-.testi-hdr{{margin-bottom:40px}}
-.testi-hdr h2{{font-size:36px;font-weight:800;color:{W};margin-bottom:10px;line-height:1.2}}
-.testi-sub{{font-size:16px;color:rgba(255,255,255,.45);max-width:500px;line-height:1.5}}
+.testi-title{{font-size:32px;font-weight:900;color:{W};margin-bottom:8px;letter-spacing:-.3px}}
+.testi-sub{{font-size:15px;color:rgba(255,255,255,.4);margin-bottom:36px;max-width:460px;line-height:1.5}}
 .testi-scroll{{
-  display:flex;gap:24px;overflow-x:auto;padding-bottom:20px;
+  display:flex;gap:20px;overflow-x:auto;padding-bottom:16px;
   scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
 }}
-.testi-scroll::-webkit-scrollbar{{height:6px}}
-.testi-scroll::-webkit-scrollbar-track{{background:rgba(255,255,255,.06);border-radius:3px}}
-.testi-scroll::-webkit-scrollbar-thumb{{background:rgba(77,101,255,.4);border-radius:3px}}
-.testi-scroll::-webkit-scrollbar-thumb:hover{{background:{B}}}
+.testi-scroll::-webkit-scrollbar{{height:4px}}
+.testi-scroll::-webkit-scrollbar-track{{background:rgba(255,255,255,.04);border-radius:2px}}
+.testi-scroll::-webkit-scrollbar-thumb{{background:rgba(77,101,255,.3);border-radius:2px}}
 .tc{{
-  flex:0 0 360px;scroll-snap-align:start;
-  background:rgba(255,255,255,.04);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  border:1.5px solid rgba(255,255,255,.08);border-radius:20px;
-  padding:32px;display:flex;flex-direction:column;justify-content:space-between;
-  transition:all .3s ease;position:relative;
+  flex:0 0 320px;scroll-snap-align:start;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.07);border-radius:20px;
+  padding:28px;display:flex;flex-direction:column;transition:all .25s;
 }}
 .tc:hover{{
-  background:rgba(255,255,255,.07);border-color:rgba(77,101,255,.3);
-  transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.3),0 0 0 1px rgba(77,101,255,.15);
+  background:rgba(255,255,255,.07);border-color:rgba(77,101,255,.25);
+  transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,.25);
 }}
-.tc-top{{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}}
-.tc-quote-mark{{font-size:56px;line-height:.8;color:{G};opacity:.7;font-family:Georgia,serif}}
-.tc-stars{{font-size:14px;color:{G};letter-spacing:2px}}
-.tc-q{{font-size:15px;line-height:1.8;color:rgba(255,255,255,.75);flex:1;margin-bottom:24px}}
-.tc-ft{{display:flex;align-items:center;gap:14px;border-top:1px solid rgba(255,255,255,.08);padding-top:20px}}
+.tc-stars{{font-size:13px;color:{G};letter-spacing:3px;margin-bottom:16px}}
+.tc-q{{font-size:14px;line-height:1.8;color:rgba(255,255,255,.65);flex:1;margin-bottom:24px}}
+.tc-ft{{display:flex;align-items:center;gap:12px;padding-top:16px;border-top:1px solid rgba(255,255,255,.06)}}
 .tc-av{{
-  width:44px;height:44px;border-radius:50%;
+  width:36px;height:36px;border-radius:10px;
   background:linear-gradient(135deg,{B},{BD});color:{W};
   display:flex;align-items:center;justify-content:center;
-  font-size:14px;font-weight:700;flex-shrink:0;
-  box-shadow:0 2px 8px rgba(77,101,255,.3);
+  font-size:12px;font-weight:700;flex-shrink:0;
 }}
-.tc-nm{{font-size:15px;font-weight:700;color:{W}}}
-.tc-rl{{font-size:12px;color:rgba(255,255,255,.45);margin-top:1px}}
-.tc-co{{font-size:11px;color:{G};font-weight:600;margin-top:2px;letter-spacing:.5px}}
-.testi-cta{{margin-top:36px;text-align:center}}
-.testi-more{{
-  display:inline-flex;align-items:center;gap:10px;
-  font-size:15px;font-weight:700;color:{W};text-decoration:none;
-  background:linear-gradient(135deg,{B} 0%,{BD} 100%);
-  padding:14px 36px;border-radius:50px;
-  transition:all .3s;box-shadow:0 4px 16px rgba(77,101,255,.3);
+.tc-nm{{font-size:13px;font-weight:700;color:rgba(255,255,255,.85)}}
+.tc-rl{{font-size:11px;color:rgba(255,255,255,.35);margin-top:1px}}
+.testi-cta{{margin-top:32px}}
+.btn-testi{{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:700;color:rgba(255,255,255,.5);
+  text-decoration:none;padding:10px 0;
+  border-bottom:1px solid rgba(255,255,255,.1);transition:all .2s;
 }}
-.testi-more:hover{{transform:translateY(-2px);box-shadow:0 8px 28px rgba(77,101,255,.4)}}
-.testi-arrow{{font-size:18px;transition:transform .3s}}
-.testi-more:hover .testi-arrow{{transform:translateX(4px)}}
+.btn-testi:hover{{color:{G};border-color:{G}}}
+.btn-testi span{{transition:transform .2s}}
+.btn-testi:hover span{{transform:translateX(4px)}}
 
 /* ── Resources ── */
-.rg{{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}}
-.rl{{display:flex;align-items:center;gap:16px;padding:20px 24px;background:{W};border:2px solid {N2};border-radius:16px;text-decoration:none;color:{N9};transition:all .2s}}
-.rl:hover{{border-color:{B};background:{B10};box-shadow:0 4px 16px rgba(77,101,255,.1);transform:translateY(-2px)}}
-.ri{{font-size:28px;flex-shrink:0}}
-.rt{{font-size:16px;font-weight:600}}
-.rd{{font-size:13px;color:{N5}}}
-.ra{{margin-left:auto;color:{B};font-size:22px;font-weight:700}}
-.tz{{margin-top:16px;padding:16px 20px;background:{G10};border:1.5px solid {G20};border-radius:12px;font-size:13px;color:{N7}}}
+.res-sec{{max-width:1100px;margin:0 auto;padding:56px 56px 32px}}
+.res-grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:20px}}
+.res-g2{{grid-template-columns:repeat(2,1fr)}}
+.res-card,.blog-card{{
+  display:flex;align-items:center;gap:16px;
+  padding:22px 24px;background:{W};
+  border:1.5px solid {N2};border-radius:16px;
+  text-decoration:none;color:{N9};transition:all .2s;
+}}
+.res-card:hover,.blog-card:hover{{border-color:{B};box-shadow:0 4px 20px rgba(77,101,255,.08);transform:translateY(-2px)}}
+.res-ico,.blog-ico{{font-size:28px;flex-shrink:0}}
+.res-body,.blog-body{{flex:1;min-width:0}}
+.res-title,.blog-title{{font-size:15px;font-weight:700}}
+.res-desc{{font-size:12px;color:{N5};margin-top:2px}}
+.blog-link{{font-size:12px;color:{B};font-weight:600;margin-top:2px}}
+.res-arrow{{color:{B};font-size:20px;font-weight:700;opacity:.5;transition:opacity .2s}}
+.res-card:hover .res-arrow{{opacity:1}}
 
-/* ── Footer ── */
-.ftr{{background:{N9};padding:48px 72px 40px;position:relative}}
-.ftr::before{{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,{G} 0%,{B} 100%)}}
-.ftr-in{{max-width:1320px;margin:0 auto;text-align:center}}
-.ftr-logo{{height:38px;margin-bottom:16px}}
-.ftr-tag{{font-size:15px;color:rgba(255,255,255,.45);margin-bottom:24px}}
-.ftr-lnk{{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;align-items:center}}
-.ftr-a{{font-size:14px;color:rgba(255,255,255,.4);text-decoration:none;padding:6px 14px;border-radius:8px;transition:all .2s}}
-.ftr-a:hover{{color:{G};background:rgba(255,211,16,.08)}}
-.ftr-d{{color:rgba(255,255,255,.12);font-size:10px}}
-.ftr-c{{margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,.05);font-size:12px;color:rgba(255,255,255,.2)}}
+/* ════════════════════════════════════════
+   FOOTER
+   ════════════════════════════════════════ */
+.ftr{{background:{N9};padding:40px 56px 36px;position:relative}}
+.ftr::before{{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,{B},{G},{B})}}
+.ftr-in{{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}}
+.ftr-left{{display:flex;align-items:center;gap:16px}}
+.ftr-logo{{height:24px;opacity:.6}}
+.ftr-tag{{font-size:12px;color:rgba(255,255,255,.25)}}
+.ftr-right{{display:flex;flex-direction:column;align-items:flex-end;gap:8px}}
+.ftr-links{{display:flex;gap:8px;align-items:center}}
+.ftr-a{{
+  font-size:12px;color:rgba(255,255,255,.3);text-decoration:none;
+  padding:6px 12px;border-radius:8px;transition:all .15s;
+}}
+.ftr-a:hover{{color:{G};background:rgba(255,211,16,.06)}}
+.ftr-sep{{color:rgba(255,255,255,.1);font-size:10px}}
+.ftr-trust{{display:flex;gap:12px;align-items:center}}
+.ftr-badge{{
+  font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  color:rgba(255,255,255,.25);border:1px solid rgba(255,255,255,.08);
+  padding:4px 10px;border-radius:6px;
+}}
 
-/* ── Prevent horizontal overflow globally ── */
-html,body{{overflow-x:hidden;width:100%}}
-
+/* ════════════════════════════════════════
+   MOBILE — 800px
+   ════════════════════════════════════════ */
 @media(max-width:800px){{
-  /* Hero */
-  .hero-inner{{padding:32px 20px 28px}}
-  .hero-logo{{height:28px;margin-bottom:20px}}
-  .hero-type{{font-size:11px;padding:6px 14px;margin-bottom:14px}}
-  .hero h1{{font-size:24px;line-height:1.25}}
-  .hero .sub{{font-size:14px}}
-  .hero-meta{{gap:12px 24px;margin-top:20px}}
-  .hero-mi{{font-size:12px}}
-  .hero::before{{width:200px;height:200px;top:-80px;right:-60px}}
-  .hero::after{{width:160px;height:160px}}
+  .hero-inner{{padding:40px 24px 36px}}
+  .hero-top{{flex-direction:column;gap:16px;margin-bottom:28px}}
+  .hero-logo{{height:28px}}
+  .hero h1{{font-size:28px}}
+  .hero-sub{{font-size:15px;margin-bottom:24px}}
+  .hero-pills{{gap:8px}}
+  .hero-pill{{padding:8px 14px;font-size:12px}}
+  .hero::before{{width:400px;height:400px;top:-200px;right:-100px}}
+  .hero::after{{width:300px;height:300px;bottom:-150px;left:-80px}}
+  .hero-wave{{height:24px;border-radius:12px 12px 0 0;margin-top:-12px}}
 
-  /* Main */
+  .stats-bar{{padding:0 20px;margin-top:-12px}}
+  .stats-inner{{flex-wrap:wrap}}
+  .stat{{flex:1 1 45%;padding:20px 16px;gap:12px}}
+  .stat:nth-child(2)::after{{display:none}}
+  .stat-icon{{width:40px;height:40px;border-radius:12px;font-size:18px}}
+  .stat-num{{font-size:18px}}
+  .stat-label{{font-size:10px}}
+
   .main{{padding:32px 20px 24px}}
+  .sec{{margin-bottom:40px}}
+  .sec-title{{font-size:22px;margin-bottom:20px}}
+  .divider{{margin-bottom:40px}}
 
-  /* Sections */
-  .sec{{margin-bottom:28px}}
-  .sh h2{{font-size:18px}}
-  .sdiv{{margin-bottom:28px}}
-
-  /* Participants — stack vertically */
   .ppl{{flex-direction:column;gap:10px}}
-  .person{{padding:10px 14px 10px 10px}}
-  .av,.av-img{{width:36px;height:36px}}
-  .pn{{font-size:14px}}
-  .pr{{font-size:11px}}
+  .person{{padding:12px 16px 12px 12px}}
+  .av,.av-img{{width:38px;height:38px;border-radius:12px}}
 
-  /* Summary */
-  .sbox{{padding:20px;font-size:14px;line-height:1.7;border-radius:0 12px 12px 0}}
+  .takeaway{{padding:24px;border-radius:16px}}
+  .takeaway-text{{font-size:16px}}
+  .sbullet{{padding:14px 16px;font-size:13px;border-radius:14px}}
+  .sbullet-num{{width:24px;height:24px;font-size:11px;border-radius:6px}}
+  .sbox{{padding:24px;font-size:14px;border-radius:16px}}
+  .sbox::before{{width:3px;top:16px;bottom:16px}}
 
-  /* Cards — single column */
+  .cta-banner{{flex-direction:column;padding:28px 24px;border-radius:20px;text-align:center;gap:20px}}
+  .cta-title{{font-size:20px}}
+  .cta-desc{{font-size:13px}}
+  .cta-btn{{padding:12px 28px;font-size:14px;width:100%;justify-content:center}}
+
   .g2,.g3{{grid-template-columns:1fr}}
-  .crd{{padding:18px;border-radius:12px}}
-  .crd-t{{font-size:15px}}
-  .crd li{{font-size:13px;padding:6px 0 6px 18px}}
+  .crd{{padding:22px;border-radius:16px}}
+  .crd li{{font-size:13px}}
 
-  /* Demo table — full block layout on mobile */
-  .dt,.dt thead,.dt tbody,.dt tr,.dt td{{display:block;width:100%}}
-  .dt{{border-radius:12px}}
-  .dt tr{{padding:14px 16px;border-bottom:1px solid {N2}}}
-  .dt tr:last-child{{border-bottom:none}}
-  .dt td{{padding:0}}
-  .dt .ft{{width:auto;white-space:normal;font-size:15px;margin-bottom:4px}}
-  .dt td:last-child{{font-size:13px;color:{N5}}}
+  .demo-row{{flex-direction:column;gap:12px;padding:18px 20px}}
+  .demo-row:first-child{{border-radius:16px 16px 0 0}}
+  .demo-row:last-child{{border-radius:0 0 16px 16px}}
+  .demo-row:only-child{{border-radius:16px}}
+  .demo-num{{width:32px;height:32px;font-size:12px;border-radius:8px}}
 
-  /* Steps table — card layout on mobile */
-  .st,.st thead,.st tbody,.st tr,.st td,.st th{{display:block;width:100%}}
-  .st thead{{display:none}}
-  .st tbody tr{{padding:14px 0;border-bottom:1px solid {N2}}}
-  .st tbody tr:last-child{{border-bottom:none}}
-  .st tbody td{{padding:3px 0;font-size:14px}}
-  .st tbody td:first-child{{order:2;margin-top:8px}}
-  .st tbody td:nth-child(2){{order:1;font-size:15px}}
-  .st tbody td:last-child{{order:3;margin-top:4px}}
+  .bam-callout{{flex-direction:column;gap:14px;padding:22px;border-radius:16px}}
+  .bam-title{{font-size:15px}}
+  .bam-desc{{font-size:13px}}
 
-  /* Testimonials — mobile */
-  .testi-wrap{{margin:0 -20px;padding:48px 20px 40px}}
-  .testi-badge{{font-size:10px;letter-spacing:2px;padding:6px 16px;margin-bottom:18px}}
-  .testi-hdr{{margin-bottom:28px}}
-  .testi-hdr h2{{font-size:26px}}
-  .testi-sub{{font-size:14px}}
-  .testi-scroll{{gap:16px;padding-bottom:14px}}
-  .tc{{flex:0 0 290px;padding:24px;border-radius:16px}}
-  .tc-top{{margin-bottom:14px}}
-  .tc-quote-mark{{font-size:40px}}
-  .tc-stars{{font-size:12px}}
-  .tc-q{{font-size:14px;line-height:1.7;margin-bottom:18px}}
-  .tc-ft{{padding-top:14px;gap:10px}}
-  .tc-av{{width:36px;height:36px;font-size:12px}}
-  .tc-nm{{font-size:13px}}
-  .tc-rl{{font-size:11px}}
-  .tc-co{{font-size:10px}}
-  .testi-cta{{margin-top:28px}}
-  .testi-more{{font-size:14px;padding:12px 28px}}
+  .step-row{{padding:16px 20px;gap:12px}}
+  .step-row:first-child{{border-radius:16px 16px 0 0}}
+  .step-row:last-child{{border-radius:0 0 16px 16px}}
+  .step-row:only-child{{border-radius:16px}}
+  .step-act{{font-size:14px}}
+  .step-meta{{gap:6px}}
 
-  /* Resources — single column */
-  .rg{{grid-template-columns:1fr}}
-  .rl{{padding:16px 18px;border-radius:12px;gap:12px}}
-  .ri{{font-size:22px}}
-  .rt{{font-size:14px}}
-  .rd{{font-size:12px}}
-  .ra{{font-size:18px}}
-  .tz{{padding:12px 16px;font-size:12px;border-radius:10px}}
+  .cs-grid{{grid-template-columns:1fr}}
+  .cs-card{{padding:22px;border-radius:16px}}
+  .cs-name{{font-size:16px}}
 
-  /* Footer */
-  .ftr{{padding:32px 20px 28px}}
-  .ftr-logo{{height:28px;margin-bottom:12px}}
-  .ftr-tag{{font-size:13px;margin-bottom:16px}}
-  .ftr-lnk{{gap:6px}}
-  .ftr-a{{font-size:13px;padding:5px 10px}}
-  .ftr-c{{margin-top:20px;padding-top:16px;font-size:11px}}
+  .plogo-sec{{padding:24px 0}}
+  .plogo-inner{{padding:0 20px}}
+  .plogo-label{{margin-bottom:16px;font-size:9px}}
+  .plogo-track{{gap:24px}}
+  .plogo-name{{font-size:12px}}
+  .plogo-dot{{font-size:14px}}
+
+  .testi-wrap{{padding:48px 0 40px}}
+  .testi-inner{{padding:0 20px}}
+  .testi-title{{font-size:24px}}
+  .testi-sub{{font-size:14px;margin-bottom:28px}}
+  .testi-scroll{{gap:14px}}
+  .tc{{flex:0 0 270px;padding:22px;border-radius:16px}}
+  .tc-q{{font-size:13px;line-height:1.7}}
+  .tc-av{{width:32px;height:32px;border-radius:8px;font-size:11px}}
+  .tc-nm{{font-size:12px}}
+  .tc-rl{{font-size:10px}}
+  .res-sec{{padding:40px 20px 24px}}
+  .res-grid,.res-g2{{grid-template-columns:1fr}}
+  .res-card,.blog-card{{padding:18px 20px;border-radius:14px}}
+
+
+  .ftr{{padding:28px 20px 24px}}
+  .ftr-in{{flex-direction:column;align-items:flex-start;gap:16px}}
+  .ftr-right{{align-items:flex-start}}
+  .ftr-logo{{height:20px}}
+  .ftr-tag{{font-size:11px}}
+  .ftr-a{{font-size:11px;padding:4px 10px}}
 }}
 
 @media(max-width:400px){{
-  .hero-inner{{padding:24px 14px 22px}}
+  .hero-inner{{padding:32px 16px 28px}}
+  .hero h1{{font-size:24px}}
+  .hero-pill{{padding:6px 12px;font-size:11px}}
+  .stats-bar{{padding:0 14px;margin-top:-12px}}
+  .stat{{flex:1 1 100%;padding:16px 14px;gap:10px}}
+  .stat::after{{display:none!important}}
+  .stat-icon{{width:36px;height:36px;border-radius:10px;font-size:16px}}
+  .stat-num{{font-size:16px}}
+  .stat-label{{font-size:9px}}
   .main{{padding:24px 14px 20px}}
-  .ftr{{padding:24px 14px 22px}}
-  .hero h1{{font-size:20px}}
-  .hero .sub{{font-size:13px}}
-  .hero-meta{{gap:8px 16px}}
-  .hero-mi{{font-size:11px}}
-  .testi-wrap{{padding:40px 14px 36px;margin:0 -14px}}
-  .testi-hdr h2{{font-size:22px}}
-  .tc{{flex:0 0 260px;padding:20px}}
-  .person{{padding:8px 10px 8px 8px}}
-  .crd{{padding:16px}}
-  .sbox{{padding:16px;font-size:13px}}
-  .rl{{padding:14px 16px}}
+  .takeaway{{padding:20px}}
+  .takeaway-text{{font-size:15px}}
+  .sbox{{padding:20px}}
+  .cta-banner{{padding:24px 20px;border-radius:16px}}
+  .crd{{padding:18px}}
+  .demo-row{{padding:14px 16px}}
+  .bam-callout{{padding:18px}}
+  .step-row{{padding:14px 16px}}
+  .testi-inner{{padding:0 14px}}
+  .tc{{flex:0 0 250px;padding:18px}}
+  .res-sec{{padding:32px 14px 20px}}
+  .ftr{{padding:24px 14px 20px}}
 }}
 
-@media print{{body{{padding:0;background:#fff}}.hero{{break-inside:avoid}}.rl:hover{{transform:none;box-shadow:none}}}}
+@media print{{
+  body{{background:#fff}}
+  .hero,.testi-wrap{{break-inside:avoid}}
+  .testi-wrap{{background:#1a1d3a!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+  .plogo-track{{animation:none}}
+  .tc:hover,.res-card:hover,.blog-card:hover,.person:hover,.crd:hover,.demo-row:hover,.cs-card:hover{{transform:none;box-shadow:none}}
+}}
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
+<!-- ▌ HERO ▌ -->
 <div class="hero">
-  <div class="hero-bar"></div>
+  <div class="hero-accent"></div>
   <div class="hero-inner">
-    <img src="data:image/webp;base64,{LOGO_WHITE}" alt="Boom" class="hero-logo"/>
-    <div class="hero-type">{e(mtype)}</div>
+    <div class="hero-top">
+      <img src="data:image/webp;base64,{LOGO_WHITE}" alt="Boom" class="hero-logo"/>
+      <div class="hero-badge">{e(mtype)}</div>
+    </div>
     <h1>{e(mt)}</h1>
-    <p class="sub">Meeting summary prepared for {e(co)}</p>
-    <div class="hero-meta">
-      <div class="hero-mi"><span class="dot"></span><strong>{e(md)}</strong></div>
-      {"<div class='hero-mi'><span class='dot'></span><strong>"+e(dur)+"</strong></div>" if dur else ""}
-      <div class="hero-mi"><span class="dot"></span><strong>{len(parts)} participants</strong></div>
+    <p class="hero-sub">Meeting summary prepared for {e(co)}</p>
+    <div class="hero-pills">
+      <div class="hero-pill"><span class="hero-pill-dot"></span><strong>{e(md)}</strong></div>
+      {"<div class='hero-pill'><span class='hero-pill-dot'></span><strong>"+e(dur)+"</strong></div>" if dur else ""}
+      <div class="hero-pill"><span class="hero-pill-dot"></span><strong>{len(parts)} participants</strong></div>
     </div>
   </div>
-  <div class="hero-gold"></div>
+  <div class="hero-wave"></div>
 </div>
 
-<!-- CONTENT -->
+<!-- ▌ STATS BAR ▌ -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat">
+      <div class="stat-icon stat-icon-blue">🌍</div>
+      <div class="stat-content"><div class="stat-num"><span>20+</span> Countries</div><div class="stat-label">5 continents worldwide</div></div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon stat-icon-blue">🔗</div>
+      <div class="stat-content"><div class="stat-num"><span>250+</span> Channels</div><div class="stat-label">Direct API with Airbnb &amp; Booking.com</div></div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon stat-icon-gold">💰</div>
+      <div class="stat-content"><div class="stat-num"><span>$12.7M</span> Raised</div><div class="stat-label">Led by Avenue Growth Partners</div></div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon stat-icon-blue">⚡</div>
+      <div class="stat-content"><div class="stat-num"><span>6</span> Week Onboarding</div><div class="stat-label">Average time to go live</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ▌ CONTENT ▌ -->
 <div class="main">
 
   <div class="sec">
-    <div class="sh"><h2>👥 Participants</h2></div>
+    <div class="sec-label">ATTENDEES</div>
+    <h2 class="sec-title">Who Was There</h2>
     <div class="ppl">{r_people(parts)}</div>
   </div>
-  <div class="sdiv"></div>
+  <div class="divider"></div>
 
   <div class="sec">
-    <div class="sh"><h2>📄 Summary</h2></div>
-    <div class="sbox">{e(summ)}</div>
+    <div class="sec-label">EXECUTIVE SUMMARY</div>
+    <h2 class="sec-title">Overview</h2>
+    {"" if not takeaway else f'<div class="takeaway"><div class="takeaway-label">KEY TAKEAWAY</div><div class="takeaway-text">{e(takeaway)}</div></div>'}
+    {"" if not bullets else '<div class="sbullets">' + "".join(f'<div class="sbullet"><div class="sbullet-num">{i+1}</div><div>{e(b)}</div></div>' for i,b in enumerate(bullets)) + '</div>'}
+    {"" if takeaway or bullets else f'<div class="sbox">{e(summ)}</div>'}
   </div>
-  <div class="sdiv"></div>
+  <div class="divider"></div>
 
   {"" if not dps else f'''<div class="sec">
-    <div class="sh"><h2>💬 Key Discussion Points</h2></div>
+    <div class="sec-label">KEY INSIGHTS</div>
+    <h2 class="sec-title">Discussion Points</h2>
     <div class="grid {gc}">{r_cards(dps)}</div>
   </div>
-  <div class="sdiv"></div>'''}
+  <div class="divider"></div>'''}
 
   {r_demo(demos)}
+  {"<div class='divider'></div>" if demos else ""}
 
   {"" if not steps else f'''<div class="sec">
-    <div class="sh"><h2>✅ Next Steps</h2></div>
-    <table class="st"><thead><tr><th>Timeline</th><th>Action</th><th>Owner</th></tr></thead>
-    <tbody>{r_steps(steps)}</tbody></table>
+    <div class="sec-label">ACTION ITEMS</div>
+    <h2 class="sec-title">Next Steps</h2>
+    <div class="step-list">{r_steps(steps)}</div>
   </div>
-  <div class="sdiv"></div>'''}
+  <div class="divider"></div>'''}
 
-  {r_testi()}
+  {"" if not res.get("calendar_url") else f'''<a href="{e(res["calendar_url"])}" style="text-decoration:none;display:block">
+  <div class="cta-banner">
+    <div class="cta-body">
+      <div class="cta-title">Ready to See the Full Platform?</div>
+      <div class="cta-desc">Book your next session — we\'ll tailor the demo to {e(co)}\'s specific needs.</div>
+    </div>
+    <div class="cta-btn">Book a Session <span>→</span></div>
+  </div></a>'''}
 
-  {"" if not res else f'''<div class="sec">
-    <div class="sh"><h2>🔗 Resources</h2></div>
-    <div class="rg">{r_res(res)}</div>
-    <div class="tz">💡 If you don't see availability that works (time zones can be tricky), just send me 2-3 windows that fit your schedule and I'll make it work on my end.</div>
-  </div>'''}
+  {r_case_studies(data)}
 
 </div>
 
-<!-- FOOTER -->
+<!-- ▌ PARTNER LOGOS ▌ -->
+{r_logos()}
+
+<!-- ▌ TESTIMONIALS ▌ -->
+{r_testi()}
+
+<!-- ▌ RESOURCES ▌ -->
+{"" if not res else f"""<div class="res-sec">
+  <div class="sec-label">RESOURCES</div>
+  <h2 class="sec-title">Continue the Conversation</h2>
+  <div class="res-grid res-g2">{r_res(res)}</div>
+  {f'<div class="blog-sec"><div class="sec-label" style="margin-top:32px">RECOMMENDED READING</div><div class="res-grid res-g2">{r_blog(data)}</div></div>' if r_blog(data) else ''}
+</div>"""}
+
+<!-- ▌ FOOTER ▌ -->
 <div class="ftr">
   <div class="ftr-in">
-    <img src="data:image/webp;base64,{LOGO_WHITE}" alt="Boom" class="ftr-logo"/>
-    <div class="ftr-tag">Property Management, Simplified</div>
-    <div class="ftr-lnk">
-      <a href="https://www.boomnow.com" class="ftr-a">boomnow.com</a>
-      <span class="ftr-d">·</span>
-      <a href="https://www.boomnow.com/partner-testimonials" class="ftr-a">Partner Stories</a>
-      <span class="ftr-d">·</span>
-      <a href="https://meetings.hubspot.com/idan-carmi" class="ftr-a">Book a Call</a>
+    <div class="ftr-left">
+      <img src="data:image/webp;base64,{LOGO_WHITE}" alt="Boom" class="ftr-logo"/>
+      <span class="ftr-tag">Prepared by Idan Carmi, Chief Growth Officer</span>
     </div>
-    <div class="ftr-c">Prepared by Boom · Idan Carmi, Chief Growth Officer</div>
+    <div class="ftr-right">
+      <div class="ftr-links">
+        <a href="https://www.boomnow.com" class="ftr-a">boomnow.com</a>
+        <span class="ftr-sep">·</span>
+        <a href="https://www.boomnow.com/partner-testimonials" class="ftr-a">Partner Stories</a>
+        <span class="ftr-sep">·</span>
+        <a href="https://meetings.hubspot.com/idan-carmi" class="ftr-a">Book a Call</a>
+      </div>
+      <div class="ftr-trust">
+        <span class="ftr-badge">GDPR Compliant</span>
+        <span class="ftr-badge">ISO 27001</span>
+      </div>
+      <div style="font-size:10px;color:rgba(255,255,255,.3)">Backed by Avenue Growth Partners · Advisors include former Hilton International CEO Ian Carter</div>
+    </div>
   </div>
 </div>
 

@@ -10,6 +10,12 @@
     {"name": "Tom Richards", "role": "CEO", "company": "Seaside Villas"},
     {"name": "Idan Carmi", "role": "CGO", "company": "Boom"}
   ],
+  "key_takeaway": "Seaside Villas can replace 4 tools with one platform and save 15+ hours per week on pricing alone — while preparing to scale from 85 to 120 properties by Q4.",
+  "summary_bullets": [
+    "Your team is managing 85 properties across the Algarve with 4 disconnected tools — Boom consolidates everything into one dashboard",
+    "Manual pricing is eating 15+ hours/week — Boom's dynamic pricing engine automates this with market data",
+    "You're planning to scale to 120 properties by Q4 — Boom's automation means you can grow without growing headcount"
+  ],
   "executive_summary": "We had a fantastic conversation about how Seaside Villas can consolidate their current 4-tool stack into Boom's unified platform. Maria and Tom shared the challenges of managing 85 properties across Portugal's Algarve coast, from fragmented guest communication to manual pricing adjustments. We walked through how Boom handles multi-channel distribution, automated guest messaging, and dynamic pricing — all from one dashboard. Both expressed strong interest in moving forward with a full demo next week.",
   "discussion_points": [
     {
@@ -46,10 +52,10 @@
     }
   ],
   "demo_highlights": [
-    {"feature": "Unified Inbox", "description": "Showed how all Airbnb, Booking.com, and direct messages flow into one timeline per guest"},
-    {"feature": "Dynamic Pricing", "description": "Demonstrated market-aware pricing engine with manual override capabilities"},
-    {"feature": "Owner Portal", "description": "Walked through the owner-facing dashboard with real-time revenue and occupancy data"},
-    {"feature": "Task Management", "description": "Showed automated cleaning and maintenance task assignment based on check-in/check-out"}
+    {"feature": "Unified Inbox", "benefit": "Every guest message from Airbnb, Booking.com, and direct — in one timeline. No more switching between tabs."},
+    {"feature": "Dynamic Pricing", "benefit": "Your rates adjust automatically based on market demand, events, and competitor data. No more 15-hour/week manual work."},
+    {"feature": "Owner Portal", "benefit": "Your property owners get real-time revenue and occupancy dashboards — fewer calls, happier owners."},
+    {"feature": "Task Management", "benefit": "Cleaning and maintenance tasks auto-assign based on check-in/check-out. Your team just follows the list."}
   ],
   "next_steps": [
     {"action": "Send detailed proposal with pricing for 85 properties", "owner": "Boom", "timeline": "This week"},

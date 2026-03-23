@@ -1,405 +1,729 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Discovery Call — Seaside Villas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 <style>
+/* ── RESET ── */
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#fafbfd;color:#121428;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.65;padding:0;-webkit-font-smoothing:antialiased}
+html,body{overflow-x:hidden;width:100%}
+body{
+  background:#f4f5f9;color:#121428;
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
+  line-height:1.6;-webkit-font-smoothing:antialiased;
+}
 
-/* ── HEADER — full-width hero ── */
+/* ════════════════════════════════════════
+   HERO
+   ════════════════════════════════════════ */
 .hero{
-  background:linear-gradient(160deg,#121428 0%,#1e2140 40%,#2e3352 100%);
-  color:#ffffff;padding:0;position:relative;overflow:hidden;
+  background:#121428;color:#ffffff;
+  position:relative;overflow:hidden;padding:0;
 }
-.hero::before{content:'';position:absolute;top:-120px;right:-60px;width:500px;height:500px;background:radial-gradient(circle,rgba(77,101,255,.12) 0%,transparent 65%);border-radius:50%}
-.hero::after{content:'';position:absolute;bottom:-100px;left:10%;width:400px;height:400px;background:radial-gradient(circle,rgba(255,211,16,.06) 0%,transparent 65%);border-radius:50%}
-.hero-bar{height:5px;background:linear-gradient(90deg,#4d65ff 0%,#ffd310 50%,#4d65ff 100%)}
-.hero-inner{max-width:1320px;margin:0 auto;padding:56px 72px 52px;position:relative;z-index:1}
-.hero-logo{height:36px;margin-bottom:32px;display:block}
-.hero-type{
-  display:inline-block;background:#4d65ff;color:#ffffff;
-  font-size:13px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
-  padding:8px 20px;border-radius:8px;margin-bottom:20px;
+.hero::before{
+  content:'';position:absolute;width:700px;height:700px;
+  top:-300px;right:-150px;border-radius:50%;
+  background:radial-gradient(circle,rgba(77,101,255,.15) 0%,transparent 60%);
 }
-.hero h1{font-size:44px;font-weight:800;line-height:1.15;margin-bottom:12px;max-width:900px}
-.hero .sub{font-size:17px;color:rgba(255,255,255,.6);max-width:700px}
-.hero-meta{display:flex;gap:32px;margin-top:32px;flex-wrap:wrap}
-.hero-mi{display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(255,255,255,.5)}
-.hero-mi strong{color:#ffffff;font-weight:600}
-.hero-mi .dot{width:6px;height:6px;border-radius:50%;background:#ffd310;flex-shrink:0}
-.hero-gold{height:4px;background:linear-gradient(90deg,#ffd310,transparent 80%)}
+.hero::after{
+  content:'';position:absolute;width:500px;height:500px;
+  bottom:-200px;left:-100px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,211,16,.08) 0%,transparent 60%);
+}
+.hero-accent{height:4px;background:linear-gradient(90deg,#4d65ff,#ffd310,#4d65ff)}
+.hero-inner{
+  max-width:1100px;margin:0 auto;padding:60px 56px 56px;
+  position:relative;z-index:1;
+}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:40px}
+.hero-logo{height:32px;display:block;opacity:.9}
+.hero-badge{
+  font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:#ffd310;border:1.5px solid rgba(255,211,16,.25);
+  padding:6px 18px;border-radius:100px;background:rgba(255,211,16,.06);
+}
+.hero h1{
+  font-size:42px;font-weight:900;line-height:1.1;
+  margin-bottom:16px;letter-spacing:-.5px;
+  background:linear-gradient(135deg,#ffffff 60%,#c5ccff 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-sub{font-size:17px;color:rgba(255,255,255,.5);margin-bottom:36px}
+.hero-pills{display:flex;gap:12px;flex-wrap:wrap}
+.hero-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);
+  padding:10px 20px;border-radius:12px;
+  font-size:13px;color:rgba(255,255,255,.6);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+}
+.hero-pill strong{color:#ffffff;font-weight:600}
+.hero-pill-dot{width:5px;height:5px;border-radius:50%;background:#ffd310;flex-shrink:0}
+.hero-wave{height:48px;background:#f4f5f9;position:relative;z-index:2;border-radius:24px 24px 0 0;margin-top:-24px}
 
-/* ── MAIN ── */
-.main{max-width:1320px;margin:0 auto;padding:56px 72px 40px}
+/* ════════════════════════════════════════
+   STATS BAR — floating credibility strip
+   ════════════════════════════════════════ */
+.stats-bar{
+  max-width:1100px;margin:-28px auto 0;padding:0 56px;position:relative;z-index:3;
+}
+.stats-inner{
+  display:flex;align-items:stretch;
+  background:#ffffff;border-radius:24px;
+  box-shadow:0 8px 32px rgba(18,20,40,.08),0 1px 2px rgba(18,20,40,.04);
+  overflow:hidden;
+}
+.stat{
+  flex:1;padding:28px 24px;display:flex;align-items:center;gap:16px;
+  position:relative;
+}
+.stat:not(:last-child)::after{
+  content:'';position:absolute;right:0;top:24%;height:52%;width:1px;
+  background:linear-gradient(180deg,transparent,#e8eaf2,#d0d3e0,#e8eaf2,transparent);
+}
+.stat-icon{
+  width:48px;height:48px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;flex-shrink:0;
+}
+.stat-icon-blue{background:#eef1ff}
+.stat-icon-gold{background:#fffbe6}
+.stat-content{min-width:0}
+.stat-num{font-size:24px;font-weight:900;color:#121428;letter-spacing:-.5px;line-height:1.1}
+.stat-num span{color:#4d65ff}
+.stat-label{font-size:11px;font-weight:600;color:#6b7194;margin-top:3px;line-height:1.3}
 
-/* ── Sections ── */
-.sec{margin-bottom:48px}
-.sh{margin-bottom:24px}
-.sh h2{font-size:22px;font-weight:700;color:#121428;display:flex;align-items:center;gap:10px}
-.sdiv{height:2px;background:linear-gradient(90deg,#dce1ff 0%,#fff3b3 40%,transparent 100%);margin-bottom:48px;border-radius:2px}
+/* ════════════════════════════════════════
+   MAIN CONTENT
+   ════════════════════════════════════════ */
+.main{max-width:1100px;margin:0 auto;padding:48px 56px 32px}
+.sec{margin-bottom:56px}
+.sec-label{
+  font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;
+  color:#4d65ff;margin-bottom:8px;
+}
+.sec-title{font-size:26px;font-weight:800;color:#121428;margin-bottom:24px;letter-spacing:-.3px}
+.divider{height:1px;margin:0 0 56px;background:linear-gradient(90deg,#d0d3e0,transparent 70%)}
 
 /* ── Participants ── */
-.ppl{display:flex;flex-wrap:wrap;gap:14px}
-.person{display:flex;align-items:center;gap:12px;background:#ffffff;border:1px solid #e8eaf2;border-radius:14px;padding:12px 20px 12px 12px;box-shadow:0 1px 3px rgba(0,0,0,.03)}
-.av{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0}
-.av-img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2.5px solid #ffd310;flex-shrink:0}
-.pn{font-size:15px;font-weight:600}
-.pr{font-size:12px;color:#6b7194}
+.ppl{display:flex;flex-wrap:wrap;gap:12px}
+.person{
+  display:flex;align-items:center;gap:14px;
+  background:#ffffff;border:1px solid #e8eaf2;border-radius:16px;
+  padding:14px 22px 14px 14px;transition:all .2s;
+}
+.person:hover{border-color:#dce1ff;box-shadow:0 4px 16px rgba(77,101,255,.06)}
+.av{
+  width:44px;height:44px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;font-weight:700;flex-shrink:0;
+}
+.av-boom{background:#4d65ff;color:#ffffff}
+.av-ext{background:#eef1ff;color:#4d65ff}
+.av-img{width:44px;height:44px;border-radius:14px;object-fit:cover;flex-shrink:0;border:2px solid #ffd310}
+.pinfo{min-width:0}
+.pn{font-size:14px;font-weight:700;color:#121428}
+.pr{font-size:12px;color:#6b7194;margin-top:1px}
+.ptag{
+  display:inline-block;margin-top:4px;
+  font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+  padding:2px 8px;border-radius:6px;background:#f4f5f9;color:#6b7194;
+}
+.ptag-boom{background:rgba(77,101,255,.1);color:#4d65ff}
 
-/* ── Summary ── */
-.sbox{
-  background:linear-gradient(135deg,#eef1ff 0%,#fffbe6 100%);
-  border-left:5px solid #4d65ff;border-radius:0 16px 16px 0;
-  padding:28px 34px;font-size:16px;line-height:1.8;color:#2e3352;
+/* ── Key Takeaway ── */
+.takeaway{
+  background:linear-gradient(135deg,#121428 0%,#1e2140 100%);
+  border-radius:20px;padding:32px 36px;position:relative;overflow:hidden;
+  margin-bottom:24px;
+}
+.takeaway::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:5px;
+  background:linear-gradient(180deg,#ffd310,#4d65ff);
+}
+.takeaway::after{
+  content:'';position:absolute;top:-60px;right:-40px;width:200px;height:200px;
+  background:radial-gradient(circle,rgba(77,101,255,.1) 0%,transparent 60%);border-radius:50%;
+}
+.takeaway-label{font-size:10px;font-weight:800;letter-spacing:2px;color:#ffd310;text-transform:uppercase;margin-bottom:10px;position:relative;z-index:1}
+.takeaway-text{font-size:18px;font-weight:700;color:#ffffff;line-height:1.5;position:relative;z-index:1}
+
+/* ── Summary Bullets ── */
+.sbullets{display:flex;flex-direction:column;gap:12px}
+.sbullet{
+  display:flex;align-items:flex-start;gap:14px;
+  background:#ffffff;border:1px solid #e8eaf2;border-radius:16px;
+  padding:18px 22px;font-size:14px;color:#2e3352;line-height:1.7;
+}
+.sbullet-num{
+  width:28px;height:28px;border-radius:8px;
+  background:#eef1ff;color:#4d65ff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:800;flex-shrink:0;
 }
 
-/* ── Cards ── */
-.grid{display:grid;gap:20px}
-.g2{grid-template-columns:repeat(auto-fit,minmax(360px,1fr))}
-.g3{grid-template-columns:repeat(auto-fit,minmax(310px,1fr))}
-.crd{border-radius:16px;padding:26px;border:1px solid transparent}
-.crd-h{display:flex;align-items:center;gap:10px;margin-bottom:16px}
-.crd-i{font-size:22px}
-.crd-t{font-size:17px;font-weight:700}
-.crd ul{list-style:none;padding:0}
-.crd li{font-size:14px;padding:7px 0 7px 20px;position:relative;border-bottom:1px solid rgba(0,0,0,.04)}
+/* ── Summary (fallback for no bullets) ── */
+.sbox{
+  background:#ffffff;border-radius:20px;padding:32px 36px;
+  font-size:15px;line-height:1.85;color:#2e3352;
+  border:1px solid #e8eaf2;position:relative;
+  box-shadow:0 1px 3px rgba(0,0,0,.02);
+}
+.sbox::before{
+  content:'';position:absolute;left:0;top:20px;bottom:20px;width:4px;
+  background:linear-gradient(180deg,#4d65ff,#ffd310);border-radius:0 4px 4px 0;
+}
+
+/* ── Discussion Cards ── */
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.crd{border-radius:20px;padding:28px;transition:all .2s}
+.crd:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.04)}
+.crd-h{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.crd-i{font-size:20px}
+.crd-t{font-size:16px;font-weight:800;color:#121428}
+.crd ul{list-style:none}
+.crd li{
+  display:flex;align-items:flex-start;gap:12px;
+  font-size:14px;color:#2e3352;padding:8px 0;
+  border-bottom:1px solid rgba(0,0,0,.04);line-height:1.6;
+}
 .crd li:last-child{border-bottom:none}
-.crd li::before{content:'›';position:absolute;left:4px;color:#6b7194;font-weight:700;font-size:15px}
+.li-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:8px}
 
-/* ── Demo ── */
-.dt{width:100%;border-collapse:collapse;background:#ffffff;border:1px solid #e8eaf2;border-radius:16px;overflow:hidden}
-.dt tr{border-bottom:1px solid #e8eaf2}
-.dt tr:last-child{border-bottom:none}
-.dt td{padding:18px 24px;font-size:15px;vertical-align:top}
-.dt .ft{font-weight:700;color:#4d65ff;white-space:nowrap;width:220px}
+/* ── Demo Highlights ── */
+.demo-list{display:flex;flex-direction:column;gap:0}
+.demo-row{
+  display:flex;align-items:flex-start;gap:20px;
+  padding:22px 28px;background:#ffffff;
+  border:1px solid #e8eaf2;border-bottom:none;transition:background .15s;
+}
+.demo-row:first-child{border-radius:20px 20px 0 0}
+.demo-row:last-child{border-radius:0 0 20px 20px;border-bottom:1px solid #e8eaf2}
+.demo-row:only-child{border-radius:20px;border-bottom:1px solid #e8eaf2}
+.demo-row:hover{background:#eef1ff}
+.demo-num{
+  font-size:13px;font-weight:800;color:#4d65ff;
+  width:36px;height:36px;display:flex;align-items:center;justify-content:center;
+  background:#eef1ff;border-radius:10px;flex-shrink:0;
+}
+.demo-body{flex:1;min-width:0}
+.demo-feat{font-size:15px;font-weight:700;color:#121428;margin-bottom:4px}
+.demo-desc{font-size:14px;color:#6b7194;line-height:1.6}
 
-/* ── Steps ── */
-.st{width:100%;border-collapse:collapse}
-.st thead th{background:#eef1ff;text-align:left;padding:14px 20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:#4d65ff;border-bottom:3px solid #dce1ff}
-.st thead th:first-child{border-radius:16px 0 0 0}.st thead th:last-child{border-radius:0 16px 0 0}
-.st tbody tr{border-bottom:1px solid #e8eaf2;transition:background .15s}
-.st tbody tr:last-child{border-bottom:none}
-.st tbody tr:hover{background:#eef1ff}
-.st tbody td{padding:16px 20px;font-size:15px;vertical-align:middle}
-.act{font-weight:500}
-.pill{display:inline-block;padding:5px 16px;border-radius:20px;font-size:12px;font-weight:700;white-space:nowrap}
-.opill{display:inline-block;padding:5px 16px;border-radius:20px;font-size:12px;font-weight:600;white-space:nowrap}
+/* ── BAM Callout ── */
+.bam-callout{
+  margin-top:20px;display:flex;gap:20px;align-items:flex-start;
+  padding:28px 32px;border-radius:20px;
+  background:linear-gradient(135deg,rgba(77,101,255,.04) 0%,rgba(255,211,16,.04) 100%);
+  border:1.5px solid rgba(77,101,255,.12);
+}
+.bam-icon{font-size:28px;flex-shrink:0;margin-top:2px}
+.bam-body{flex:1;min-width:0}
+.bam-title{font-size:16px;font-weight:800;color:#121428;margin-bottom:6px}
+.bam-desc{font-size:14px;color:#6b7194;line-height:1.7;margin-bottom:10px}
+.bam-link{
+  font-size:13px;font-weight:700;color:#4d65ff;text-decoration:none;
+  display:inline-flex;align-items:center;gap:4px;transition:gap .2s;
+}
+.bam-link:hover{gap:8px}
 
-/* ── Testimonials — dark branded section ── */
+/* ── Next Steps ── */
+.step-list{display:flex;flex-direction:column;gap:0}
+.step-row{
+  display:flex;align-items:flex-start;gap:16px;
+  padding:20px 28px;background:#ffffff;
+  border:1px solid #e8eaf2;border-bottom:none;transition:background .15s;
+}
+.step-row:first-child{border-radius:20px 20px 0 0}
+.step-row:last-child{border-radius:0 0 20px 20px;border-bottom:1px solid #e8eaf2}
+.step-row:only-child{border-radius:20px;border-bottom:1px solid #e8eaf2}
+.step-row:hover{background:#fafbfd}
+.step-check{flex-shrink:0;padding-top:2px}
+.step-body{flex:1;min-width:0}
+.step-act{font-size:15px;font-weight:600;color:#121428;margin-bottom:8px;line-height:1.5}
+.step-meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.pill{display:inline-block;padding:4px 14px;border-radius:8px;font-size:11px;font-weight:700;white-space:nowrap;letter-spacing:.3px}
+.opill{display:inline-block;padding:4px 14px;border-radius:8px;font-size:11px;font-weight:600;white-space:nowrap}
+.opill-boom{background:#eef1ff;color:#4d65ff}
+.opill-ext{background:#f4f5f9;color:#6b7194}
+
+/* ── CTA Banner ── */
+.cta-banner{
+  background:linear-gradient(135deg,#4d65ff 0%,#3a4ecc 100%);
+  border-radius:24px;padding:40px 44px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  margin-bottom:56px;position:relative;overflow:hidden;
+}
+.cta-banner::before{
+  content:'';position:absolute;top:-50px;right:-30px;width:200px;height:200px;
+  background:radial-gradient(circle,rgba(255,211,16,.15) 0%,transparent 60%);border-radius:50%;
+}
+.cta-body{position:relative;z-index:1}
+.cta-title{font-size:22px;font-weight:800;color:#ffffff;margin-bottom:6px}
+.cta-desc{font-size:14px;color:rgba(255,255,255,.65)}
+.cta-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  background:#ffffff;color:#4d65ff;font-size:15px;font-weight:800;
+  padding:14px 32px;border-radius:14px;text-decoration:none;
+  transition:all .2s;flex-shrink:0;position:relative;z-index:1;
+  box-shadow:0 4px 16px rgba(0,0,0,.15);
+}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.2)}
+.cta-btn span{transition:transform .2s}
+.cta-btn:hover span{transform:translateX(4px)}
+
+/* ── Case Studies ── */
+.cs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.cs-card{
+  display:flex;flex-direction:column;gap:8px;
+  padding:28px;background:#ffffff;border:1.5px solid #e8eaf2;border-radius:20px;
+  text-decoration:none;color:#121428;transition:all .2s;
+}
+.cs-card:hover{border-color:#4d65ff;box-shadow:0 6px 24px rgba(77,101,255,.08);transform:translateY(-2px)}
+.cs-tag{
+  font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+  color:#4d65ff;background:#eef1ff;padding:4px 10px;border-radius:6px;
+  display:inline-block;width:fit-content;
+}
+.cs-name{font-size:18px;font-weight:800;color:#121428;margin-top:4px}
+.cs-meta{font-size:13px;color:#6b7194}
+.cs-link{font-size:13px;font-weight:700;color:#4d65ff;margin-top:4px;transition:letter-spacing .2s}
+.cs-card:hover .cs-link{letter-spacing:.5px}
+
+/* ════════════════════════════════════════
+   TESTIMONIALS
+   ════════════════════════════════════════ */
 .testi-wrap{
-  background:linear-gradient(165deg,#121428 0%,#1e2140 50%,#1a1d3a 100%);
-  position:relative;overflow:hidden;
-  margin:0 -72px;padding:72px 72px 64px;
+  background:linear-gradient(170deg,#121428 0%,#1e2140 100%);
+  position:relative;overflow:hidden;padding:72px 0 64px;margin-top:24px;
 }
 .testi-wrap::before{
-  content:'';position:absolute;top:-200px;right:-100px;width:600px;height:600px;
-  background:radial-gradient(circle,rgba(77,101,255,.10) 0%,transparent 60%);border-radius:50%;
+  content:'';position:absolute;width:500px;height:500px;
+  top:-200px;right:-100px;border-radius:50%;
+  background:radial-gradient(circle,rgba(77,101,255,.12) 0%,transparent 60%);
 }
-.testi-wrap::after{
-  content:'';position:absolute;bottom:-150px;left:-50px;width:500px;height:500px;
-  background:radial-gradient(circle,rgba(255,211,16,.06) 0%,transparent 60%);border-radius:50%;
+.testi-inner{max-width:1100px;margin:0 auto;padding:0 56px;position:relative;z-index:1}
+
+/* ── Partner Logo Strip — light section ── */
+.plogo-sec{
+  background:#ffffff;border-top:1px solid #e8eaf2;border-bottom:1px solid #e8eaf2;
+  padding:40px 0;
 }
-.testi-sec{max-width:1320px;margin:0 auto;position:relative;z-index:1}
+.plogo-inner{max-width:1100px;margin:0 auto;padding:0 56px;text-align:center}
+.plogo-label{
+  font-size:10px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;
+  color:#9398b0;margin-bottom:28px;
+}
+.plogo-strip{
+  overflow:hidden;position:relative;
+  mask-image:linear-gradient(90deg,transparent 0%,black 8%,black 92%,transparent 100%);
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,black 8%,black 92%,transparent 100%);
+}
+.plogo-track{
+  display:flex;align-items:center;gap:20px;
+  animation:scroll-logos 40s linear infinite;
+}
+@keyframes scroll-logos{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
+.plogo-name{
+  font-size:15px;font-weight:700;color:#6b7194;white-space:nowrap;
+  letter-spacing:1px;text-transform:uppercase;flex-shrink:0;
+}
+.plogo-dot{color:#d0d3e0;font-size:18px;flex-shrink:0}
+
 .testi-badge{
-  display:inline-block;font-size:11px;font-weight:800;letter-spacing:2.5px;
-  color:#ffd310;border:1.5px solid rgba(255,211,16,.3);background:rgba(255,211,16,.06);
-  padding:8px 20px;border-radius:50px;margin-bottom:24px;
+  display:inline-block;font-size:10px;font-weight:800;letter-spacing:2.5px;
+  color:#ffd310;opacity:.7;margin-bottom:12px;
 }
-.testi-hdr{margin-bottom:40px}
-.testi-hdr h2{font-size:36px;font-weight:800;color:#ffffff;margin-bottom:10px;line-height:1.2}
-.testi-sub{font-size:16px;color:rgba(255,255,255,.45);max-width:500px;line-height:1.5}
+.testi-title{font-size:32px;font-weight:900;color:#ffffff;margin-bottom:8px;letter-spacing:-.3px}
+.testi-sub{font-size:15px;color:rgba(255,255,255,.4);margin-bottom:36px;max-width:460px;line-height:1.5}
 .testi-scroll{
-  display:flex;gap:24px;overflow-x:auto;padding-bottom:20px;
+  display:flex;gap:20px;overflow-x:auto;padding-bottom:16px;
   scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
 }
-.testi-scroll::-webkit-scrollbar{height:6px}
-.testi-scroll::-webkit-scrollbar-track{background:rgba(255,255,255,.06);border-radius:3px}
-.testi-scroll::-webkit-scrollbar-thumb{background:rgba(77,101,255,.4);border-radius:3px}
-.testi-scroll::-webkit-scrollbar-thumb:hover{background:#4d65ff}
+.testi-scroll::-webkit-scrollbar{height:4px}
+.testi-scroll::-webkit-scrollbar-track{background:rgba(255,255,255,.04);border-radius:2px}
+.testi-scroll::-webkit-scrollbar-thumb{background:rgba(77,101,255,.3);border-radius:2px}
 .tc{
-  flex:0 0 360px;scroll-snap-align:start;
-  background:rgba(255,255,255,.04);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  border:1.5px solid rgba(255,255,255,.08);border-radius:20px;
-  padding:32px;display:flex;flex-direction:column;justify-content:space-between;
-  transition:all .3s ease;position:relative;
+  flex:0 0 320px;scroll-snap-align:start;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.07);border-radius:20px;
+  padding:28px;display:flex;flex-direction:column;transition:all .25s;
 }
 .tc:hover{
-  background:rgba(255,255,255,.07);border-color:rgba(77,101,255,.3);
-  transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.3),0 0 0 1px rgba(77,101,255,.15);
+  background:rgba(255,255,255,.07);border-color:rgba(77,101,255,.25);
+  transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,.25);
 }
-.tc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}
-.tc-quote-mark{font-size:56px;line-height:.8;color:#ffd310;opacity:.7;font-family:Georgia,serif}
-.tc-stars{font-size:14px;color:#ffd310;letter-spacing:2px}
-.tc-q{font-size:15px;line-height:1.8;color:rgba(255,255,255,.75);flex:1;margin-bottom:24px}
-.tc-ft{display:flex;align-items:center;gap:14px;border-top:1px solid rgba(255,255,255,.08);padding-top:20px}
+.tc-stars{font-size:13px;color:#ffd310;letter-spacing:3px;margin-bottom:16px}
+.tc-q{font-size:14px;line-height:1.8;color:rgba(255,255,255,.65);flex:1;margin-bottom:24px}
+.tc-ft{display:flex;align-items:center;gap:12px;padding-top:16px;border-top:1px solid rgba(255,255,255,.06)}
 .tc-av{
-  width:44px;height:44px;border-radius:50%;
+  width:36px;height:36px;border-radius:10px;
   background:linear-gradient(135deg,#4d65ff,#3a4ecc);color:#ffffff;
   display:flex;align-items:center;justify-content:center;
-  font-size:14px;font-weight:700;flex-shrink:0;
-  box-shadow:0 2px 8px rgba(77,101,255,.3);
+  font-size:12px;font-weight:700;flex-shrink:0;
 }
-.tc-nm{font-size:15px;font-weight:700;color:#ffffff}
-.tc-rl{font-size:12px;color:rgba(255,255,255,.45);margin-top:1px}
-.tc-co{font-size:11px;color:#ffd310;font-weight:600;margin-top:2px;letter-spacing:.5px}
-.testi-cta{margin-top:36px;text-align:center}
-.testi-more{
-  display:inline-flex;align-items:center;gap:10px;
-  font-size:15px;font-weight:700;color:#ffffff;text-decoration:none;
-  background:linear-gradient(135deg,#4d65ff 0%,#3a4ecc 100%);
-  padding:14px 36px;border-radius:50px;
-  transition:all .3s;box-shadow:0 4px 16px rgba(77,101,255,.3);
+.tc-nm{font-size:13px;font-weight:700;color:rgba(255,255,255,.85)}
+.tc-rl{font-size:11px;color:rgba(255,255,255,.35);margin-top:1px}
+.testi-cta{margin-top:32px}
+.btn-testi{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:700;color:rgba(255,255,255,.5);
+  text-decoration:none;padding:10px 0;
+  border-bottom:1px solid rgba(255,255,255,.1);transition:all .2s;
 }
-.testi-more:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(77,101,255,.4)}
-.testi-arrow{font-size:18px;transition:transform .3s}
-.testi-more:hover .testi-arrow{transform:translateX(4px)}
+.btn-testi:hover{color:#ffd310;border-color:#ffd310}
+.btn-testi span{transition:transform .2s}
+.btn-testi:hover span{transform:translateX(4px)}
 
 /* ── Resources ── */
-.rg{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
-.rl{display:flex;align-items:center;gap:16px;padding:20px 24px;background:#ffffff;border:2px solid #e8eaf2;border-radius:16px;text-decoration:none;color:#121428;transition:all .2s}
-.rl:hover{border-color:#4d65ff;background:#eef1ff;box-shadow:0 4px 16px rgba(77,101,255,.1);transform:translateY(-2px)}
-.ri{font-size:28px;flex-shrink:0}
-.rt{font-size:16px;font-weight:600}
-.rd{font-size:13px;color:#6b7194}
-.ra{margin-left:auto;color:#4d65ff;font-size:22px;font-weight:700}
-.tz{margin-top:16px;padding:16px 20px;background:#fffbe6;border:1.5px solid #fff3b3;border-radius:12px;font-size:13px;color:#2e3352}
+.res-sec{max-width:1100px;margin:0 auto;padding:56px 56px 32px}
+.res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:20px}
+.res-g2{grid-template-columns:repeat(2,1fr)}
+.res-card,.blog-card{
+  display:flex;align-items:center;gap:16px;
+  padding:22px 24px;background:#ffffff;
+  border:1.5px solid #e8eaf2;border-radius:16px;
+  text-decoration:none;color:#121428;transition:all .2s;
+}
+.res-card:hover,.blog-card:hover{border-color:#4d65ff;box-shadow:0 4px 20px rgba(77,101,255,.08);transform:translateY(-2px)}
+.res-ico,.blog-ico{font-size:28px;flex-shrink:0}
+.res-body,.blog-body{flex:1;min-width:0}
+.res-title,.blog-title{font-size:15px;font-weight:700}
+.res-desc{font-size:12px;color:#6b7194;margin-top:2px}
+.blog-link{font-size:12px;color:#4d65ff;font-weight:600;margin-top:2px}
+.res-arrow{color:#4d65ff;font-size:20px;font-weight:700;opacity:.5;transition:opacity .2s}
+.res-card:hover .res-arrow{opacity:1}
 
-/* ── Footer ── */
-.ftr{background:#121428;padding:48px 72px 40px;position:relative}
-.ftr::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,#ffd310 0%,#4d65ff 100%)}
-.ftr-in{max-width:1320px;margin:0 auto;text-align:center}
-.ftr-logo{height:38px;margin-bottom:16px}
-.ftr-tag{font-size:15px;color:rgba(255,255,255,.45);margin-bottom:24px}
-.ftr-lnk{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;align-items:center}
-.ftr-a{font-size:14px;color:rgba(255,255,255,.4);text-decoration:none;padding:6px 14px;border-radius:8px;transition:all .2s}
-.ftr-a:hover{color:#ffd310;background:rgba(255,211,16,.08)}
-.ftr-d{color:rgba(255,255,255,.12);font-size:10px}
-.ftr-c{margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,.05);font-size:12px;color:rgba(255,255,255,.2)}
+/* ════════════════════════════════════════
+   FOOTER
+   ════════════════════════════════════════ */
+.ftr{background:#121428;padding:40px 56px 36px;position:relative}
+.ftr::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#4d65ff,#ffd310,#4d65ff)}
+.ftr-in{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+.ftr-left{display:flex;align-items:center;gap:16px}
+.ftr-logo{height:24px;opacity:.6}
+.ftr-tag{font-size:12px;color:rgba(255,255,255,.25)}
+.ftr-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.ftr-links{display:flex;gap:8px;align-items:center}
+.ftr-a{
+  font-size:12px;color:rgba(255,255,255,.3);text-decoration:none;
+  padding:6px 12px;border-radius:8px;transition:all .15s;
+}
+.ftr-a:hover{color:#ffd310;background:rgba(255,211,16,.06)}
+.ftr-sep{color:rgba(255,255,255,.1);font-size:10px}
+.ftr-trust{display:flex;gap:12px;align-items:center}
+.ftr-badge{
+  font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  color:rgba(255,255,255,.25);border:1px solid rgba(255,255,255,.08);
+  padding:4px 10px;border-radius:6px;
+}
 
-/* ── Prevent horizontal overflow globally ── */
-html,body{overflow-x:hidden;width:100%}
-
+/* ════════════════════════════════════════
+   MOBILE — 800px
+   ════════════════════════════════════════ */
 @media(max-width:800px){
-  /* Hero */
-  .hero-inner{padding:32px 20px 28px}
-  .hero-logo{height:28px;margin-bottom:20px}
-  .hero-type{font-size:11px;padding:6px 14px;margin-bottom:14px}
-  .hero h1{font-size:24px;line-height:1.25}
-  .hero .sub{font-size:14px}
-  .hero-meta{gap:12px 24px;margin-top:20px}
-  .hero-mi{font-size:12px}
-  .hero::before{width:200px;height:200px;top:-80px;right:-60px}
-  .hero::after{width:160px;height:160px}
+  .hero-inner{padding:40px 24px 36px}
+  .hero-top{flex-direction:column;gap:16px;margin-bottom:28px}
+  .hero-logo{height:28px}
+  .hero h1{font-size:28px}
+  .hero-sub{font-size:15px;margin-bottom:24px}
+  .hero-pills{gap:8px}
+  .hero-pill{padding:8px 14px;font-size:12px}
+  .hero::before{width:400px;height:400px;top:-200px;right:-100px}
+  .hero::after{width:300px;height:300px;bottom:-150px;left:-80px}
+  .hero-wave{height:24px;border-radius:12px 12px 0 0;margin-top:-12px}
 
-  /* Main */
+  .stats-bar{padding:0 20px;margin-top:-12px}
+  .stats-inner{flex-wrap:wrap}
+  .stat{flex:1 1 45%;padding:20px 16px;gap:12px}
+  .stat:nth-child(2)::after{display:none}
+  .stat-icon{width:40px;height:40px;border-radius:12px;font-size:18px}
+  .stat-num{font-size:18px}
+  .stat-label{font-size:10px}
+
   .main{padding:32px 20px 24px}
+  .sec{margin-bottom:40px}
+  .sec-title{font-size:22px;margin-bottom:20px}
+  .divider{margin-bottom:40px}
 
-  /* Sections */
-  .sec{margin-bottom:28px}
-  .sh h2{font-size:18px}
-  .sdiv{margin-bottom:28px}
-
-  /* Participants — stack vertically */
   .ppl{flex-direction:column;gap:10px}
-  .person{padding:10px 14px 10px 10px}
-  .av,.av-img{width:36px;height:36px}
-  .pn{font-size:14px}
-  .pr{font-size:11px}
+  .person{padding:12px 16px 12px 12px}
+  .av,.av-img{width:38px;height:38px;border-radius:12px}
 
-  /* Summary */
-  .sbox{padding:20px;font-size:14px;line-height:1.7;border-radius:0 12px 12px 0}
+  .takeaway{padding:24px;border-radius:16px}
+  .takeaway-text{font-size:16px}
+  .sbullet{padding:14px 16px;font-size:13px;border-radius:14px}
+  .sbullet-num{width:24px;height:24px;font-size:11px;border-radius:6px}
+  .sbox{padding:24px;font-size:14px;border-radius:16px}
+  .sbox::before{width:3px;top:16px;bottom:16px}
 
-  /* Cards — single column */
+  .cta-banner{flex-direction:column;padding:28px 24px;border-radius:20px;text-align:center;gap:20px}
+  .cta-title{font-size:20px}
+  .cta-desc{font-size:13px}
+  .cta-btn{padding:12px 28px;font-size:14px;width:100%;justify-content:center}
+
   .g2,.g3{grid-template-columns:1fr}
-  .crd{padding:18px;border-radius:12px}
-  .crd-t{font-size:15px}
-  .crd li{font-size:13px;padding:6px 0 6px 18px}
+  .crd{padding:22px;border-radius:16px}
+  .crd li{font-size:13px}
 
-  /* Demo table — full block layout on mobile */
-  .dt,.dt thead,.dt tbody,.dt tr,.dt td{display:block;width:100%}
-  .dt{border-radius:12px}
-  .dt tr{padding:14px 16px;border-bottom:1px solid #e8eaf2}
-  .dt tr:last-child{border-bottom:none}
-  .dt td{padding:0}
-  .dt .ft{width:auto;white-space:normal;font-size:15px;margin-bottom:4px}
-  .dt td:last-child{font-size:13px;color:#6b7194}
+  .demo-row{flex-direction:column;gap:12px;padding:18px 20px}
+  .demo-row:first-child{border-radius:16px 16px 0 0}
+  .demo-row:last-child{border-radius:0 0 16px 16px}
+  .demo-row:only-child{border-radius:16px}
+  .demo-num{width:32px;height:32px;font-size:12px;border-radius:8px}
 
-  /* Steps table — card layout on mobile */
-  .st,.st thead,.st tbody,.st tr,.st td,.st th{display:block;width:100%}
-  .st thead{display:none}
-  .st tbody tr{padding:14px 0;border-bottom:1px solid #e8eaf2}
-  .st tbody tr:last-child{border-bottom:none}
-  .st tbody td{padding:3px 0;font-size:14px}
-  .st tbody td:first-child{order:2;margin-top:8px}
-  .st tbody td:nth-child(2){order:1;font-size:15px}
-  .st tbody td:last-child{order:3;margin-top:4px}
+  .bam-callout{flex-direction:column;gap:14px;padding:22px;border-radius:16px}
+  .bam-title{font-size:15px}
+  .bam-desc{font-size:13px}
 
-  /* Testimonials — mobile */
-  .testi-wrap{margin:0 -20px;padding:48px 20px 40px}
-  .testi-badge{font-size:10px;letter-spacing:2px;padding:6px 16px;margin-bottom:18px}
-  .testi-hdr{margin-bottom:28px}
-  .testi-hdr h2{font-size:26px}
-  .testi-sub{font-size:14px}
-  .testi-scroll{gap:16px;padding-bottom:14px}
-  .tc{flex:0 0 290px;padding:24px;border-radius:16px}
-  .tc-top{margin-bottom:14px}
-  .tc-quote-mark{font-size:40px}
-  .tc-stars{font-size:12px}
-  .tc-q{font-size:14px;line-height:1.7;margin-bottom:18px}
-  .tc-ft{padding-top:14px;gap:10px}
-  .tc-av{width:36px;height:36px;font-size:12px}
-  .tc-nm{font-size:13px}
-  .tc-rl{font-size:11px}
-  .tc-co{font-size:10px}
-  .testi-cta{margin-top:28px}
-  .testi-more{font-size:14px;padding:12px 28px}
+  .step-row{padding:16px 20px;gap:12px}
+  .step-row:first-child{border-radius:16px 16px 0 0}
+  .step-row:last-child{border-radius:0 0 16px 16px}
+  .step-row:only-child{border-radius:16px}
+  .step-act{font-size:14px}
+  .step-meta{gap:6px}
 
-  /* Resources — single column */
-  .rg{grid-template-columns:1fr}
-  .rl{padding:16px 18px;border-radius:12px;gap:12px}
-  .ri{font-size:22px}
-  .rt{font-size:14px}
-  .rd{font-size:12px}
-  .ra{font-size:18px}
-  .tz{padding:12px 16px;font-size:12px;border-radius:10px}
+  .cs-grid{grid-template-columns:1fr}
+  .cs-card{padding:22px;border-radius:16px}
+  .cs-name{font-size:16px}
 
-  /* Footer */
-  .ftr{padding:32px 20px 28px}
-  .ftr-logo{height:28px;margin-bottom:12px}
-  .ftr-tag{font-size:13px;margin-bottom:16px}
-  .ftr-lnk{gap:6px}
-  .ftr-a{font-size:13px;padding:5px 10px}
-  .ftr-c{margin-top:20px;padding-top:16px;font-size:11px}
+  .plogo-sec{padding:24px 0}
+  .plogo-inner{padding:0 20px}
+  .plogo-label{margin-bottom:16px;font-size:9px}
+  .plogo-track{gap:24px}
+  .plogo-name{font-size:12px}
+  .plogo-dot{font-size:14px}
+
+  .testi-wrap{padding:48px 0 40px}
+  .testi-inner{padding:0 20px}
+  .testi-title{font-size:24px}
+  .testi-sub{font-size:14px;margin-bottom:28px}
+  .testi-scroll{gap:14px}
+  .tc{flex:0 0 270px;padding:22px;border-radius:16px}
+  .tc-q{font-size:13px;line-height:1.7}
+  .tc-av{width:32px;height:32px;border-radius:8px;font-size:11px}
+  .tc-nm{font-size:12px}
+  .tc-rl{font-size:10px}
+  .res-sec{padding:40px 20px 24px}
+  .res-grid,.res-g2{grid-template-columns:1fr}
+  .res-card,.blog-card{padding:18px 20px;border-radius:14px}
+
+
+  .ftr{padding:28px 20px 24px}
+  .ftr-in{flex-direction:column;align-items:flex-start;gap:16px}
+  .ftr-right{align-items:flex-start}
+  .ftr-logo{height:20px}
+  .ftr-tag{font-size:11px}
+  .ftr-a{font-size:11px;padding:4px 10px}
 }
 
 @media(max-width:400px){
-  .hero-inner{padding:24px 14px 22px}
+  .hero-inner{padding:32px 16px 28px}
+  .hero h1{font-size:24px}
+  .hero-pill{padding:6px 12px;font-size:11px}
+  .stats-bar{padding:0 14px;margin-top:-12px}
+  .stat{flex:1 1 100%;padding:16px 14px;gap:10px}
+  .stat::after{display:none!important}
+  .stat-icon{width:36px;height:36px;border-radius:10px;font-size:16px}
+  .stat-num{font-size:16px}
+  .stat-label{font-size:9px}
   .main{padding:24px 14px 20px}
-  .ftr{padding:24px 14px 22px}
-  .hero h1{font-size:20px}
-  .hero .sub{font-size:13px}
-  .hero-meta{gap:8px 16px}
-  .hero-mi{font-size:11px}
-  .testi-wrap{padding:40px 14px 36px;margin:0 -14px}
-  .testi-hdr h2{font-size:22px}
-  .tc{flex:0 0 260px;padding:20px}
-  .person{padding:8px 10px 8px 8px}
-  .crd{padding:16px}
-  .sbox{padding:16px;font-size:13px}
-  .rl{padding:14px 16px}
+  .takeaway{padding:20px}
+  .takeaway-text{font-size:15px}
+  .sbox{padding:20px}
+  .cta-banner{padding:24px 20px;border-radius:16px}
+  .crd{padding:18px}
+  .demo-row{padding:14px 16px}
+  .bam-callout{padding:18px}
+  .step-row{padding:14px 16px}
+  .testi-inner{padding:0 14px}
+  .tc{flex:0 0 250px;padding:18px}
+  .res-sec{padding:32px 14px 20px}
+  .ftr{padding:24px 14px 20px}
 }
 
-@media print{body{padding:0;background:#fff}.hero{break-inside:avoid}.rl:hover{transform:none;box-shadow:none}}
+@media print{
+  body{background:#fff}
+  .hero,.testi-wrap{break-inside:avoid}
+  .testi-wrap{background:#1a1d3a!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .plogo-track{animation:none}
+  .tc:hover,.res-card:hover,.blog-card:hover,.person:hover,.crd:hover,.demo-row:hover,.cs-card:hover{transform:none;box-shadow:none}
+}
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
+<!-- ▌ HERO ▌ -->
 <div class="hero">
-  <div class="hero-bar"></div>
+  <div class="hero-accent"></div>
   <div class="hero-inner">
-    <img src="data:image/webp;base64,UklGRiIIAABXRUJQVlA4WAoAAAAQAAAA7wAAZgAAQUxQSBAHAAABoFZtW97YeiQg4ZWABCTUweBg4iA4aBxQB9kOOA4i4ZWAhOdHCLxh2n2+14qICcD/e/v18SfKhWcl65+lsJTK8/FnyC175XX+0xOeyv7wp8Yve+Uw/ryGZ6Vl+RND4+VPzGEU/sQgqkXFn9to8OtPTjZY/tw8aRj+1Kw0rPi9DqWy7mGalZa/3oYL8Zn3UkpOS3CTyWPJuZSyP9PD3+MK29nNsdJ0AeDDrX6KsBYOliSzuJAr+3WPzswprw83w0pbD0B585HDPW4pND3iDPKsNM1i9GRvmWClrWIGkhpv+K4013iX7LTPYiHsz7etNM6zkCpG4eCtKreslbc+3VgcYL7pm9ZxHlZv8uTtq50cvFtlaBthvuWL5jIRq4y5wgl3Z/SonHAZeQ1xveGLlnshqZiJ6kZEOaWKyTfnXAe2Ma5mX7Q8XCCZ52IaEOWk6gy+OevaFwy4GvlqcTigkHGy6rrcwWkPN/TgvF9drhpwNfGVhocDEEiZjLHryYmfI6ITVd+DxYKrga80VMH5ETBb7omc+jGgnFldDzYLrkNSaaiCwYlqh+hc1XWtnPvZhZcF1wFRGqrgrtwudYzuKnPyZ49wdt+FlwW/ukRpqILbcL2N+Qvh9NKRpysXsgLAy4JfHaI0VMFEqEPhIhvVI++lGuUrobHuuRxGDBdcAbjDgl8XojRUASBumpeV0LQENMPLhO4im9TkcJaoJtsVVwDusGBoiNJQBYCoTJOsFgsN6HyoRbpQi82hM1lUd8UVgDssqgcgSsMqAEQ5zz7kWoeBCrpFDUor0DChPxkwdnAF4A4DVg+nNKwegCjnEY4qmsJxFQxKHaNrZIOE0WSQe7gCEDVgDQcNqwfgDt4nbb/WodyKBhHDD4PYOMYU42WsdnEBIGpg7AG4gxPcKK08VmBYxraT43g0CGOULn4BEJ0jAnAHf1JCu4xFi8fYcQpjCssyFvv4BUB0hgjAHfxJL1zWoQpLV4fqKY5tJsvYMsAvAKL3RQDY+ZNeuHQcLiYoQzylsWDix/IIAwDRuxYAyPxJ9SkXMrbZbGMCYBsTE3df9QCk3pMAIPNHkepbfizZJJvXGGzrUBli9QB8vSMBQOZPI78aYSy+Hb2P1QPw1S4BwJNvoPqTjKW3UyegCgBfrRIArHwHPIw2m5fNNiYmjsPZgioAHkYJAFa+B0YAbqzYHGMAkMaiSRjbTJgBIJokAFj5LgoA1CE6C+GwnuLYZrKNLTcgGmwAsHKu0PkaowNQxhaLOFZOfqw6Cx0LdyAOvXAuk6HX16EIYBtTCx3bTm6MySBy3N2CNPDCT0Ma2gDEMS5jK8cfJ5SxKkNOxxT3IHUV/LwwlAE4A/oRT0PXSGMsQzvH811IHSpvQIYKABSD6vtCNShoBgNm1/ekYbgNS20VwRvwNosBuXa4lZaxhcOAKh1SaKi4D7IU1RzQ+ZOijasW1MWfZK20VFwmCzI/HAAXdprmGQx/kOjQrxOSyVm10jhfuWpCsqrSWj6JC8rhreGqlb3KFZLVjRkfQK9puTSQZkvodHUylU9wr285nUvR/ZhswYdTXIa5pA/7VAWfLl9hmSlh0OlEKh9POvCaZ8Ow1Gmqx6dL6H7N8oKhr7MEfDrF4GuOF0y9TlE9Pp3KCNIMCcaiE6jHp1PBeNS7aoC5227bHT7d5mApr3s2hzuj3lIfGP40dQ+wlmJXAu6OalaTwyfTY4sOd8pLLeoWMGMsJmVxsHwr7zBsR9+xBYdZJe61q+6L4HfZP5aUUorRO8zuQkzn+BD8D3Usj7fly/MzFD2Xp8ySGMcWvXzYhKebJbB8BmVb3c9JvIw2SvntCABEmTpc8H0SgtyVMeh8ECvnw4DzYUTkU+DB40IKSY1X3wdJ7jLTdyW5S0N4ji2XSeraIYWkLj2PSurjQ4QrUda8k8tFrVtMyjJRpG5JeTRcqtySbzhlzTu5Xoiy5p1cr5QlK6t8hsxfrcwEQGp1LQ8AUulvKfH8aL0YALyWBqAUtFfuDhCltDJ3B0jVKy4ACre3V3LOhYwtKs6JSwvhuT/DznhLW1uJT0Fvj1YBgIWpVSkAILhSAAg83l6zLmh6ajpn5tZKHoX1pj/i+dFySpYoBo6azht/NYQF/YHlJNS3t4RQmHBVtb01AlUA0ZsyBuNeyXVMSG3vny4AwupajhX9iQkAtrkAxEo3hFod+mt1nwsvPlsoXAHI98XC7ZRnChkACsNVuNj4BOCe7qLwCcBpdp9ISGn5yryslanlycW5lTdpboZG4R5kIaW1U5+xIcp9WZT5Qir3ZVFmfCJsLC14JckNl7GSrHrTZWyI8pzQ9kqWBkRJsrgLeCXJl/swIbiTC+ECeCxR0CmPFJ0PriXBjUm4dA0gbnnx6AzBt4CwxIDusETBpQv+5IJ/c/9GBlZQOCDsAAAAcBMAnQEq8ABnAD5tKpFFpCKhmI/UAEAGxLS3cGAAM7OvT9AP4B+AH6Afn73+E3nefCU/Uj8TmkTS6E98KS+ee1vgpbK4sMZ6WrEq7cyypks8007cQnIakiBGJWC3ablJvq1WaXpU/RWMf9jSWzleHdtmOFWlBrS2Ho/UFJStLnOpvrNtqZjw+uYfnFbqLkJbR1Rtuj9xrepjsG2Y7KLlwx8aMgAA/sNMHb4giYv/1h03nzYPiEPw7mdfF78Qd/7BBk+IpvxD4HxDoJ34iIvxFh+JF9h///7duYUuP//+1O4vEgfxEFPiHQAAAAA=" alt="Boom" class="hero-logo"/>
-    <div class="hero-type">Discovery Call</div>
+    <div class="hero-top">
+      <img src="data:image/webp;base64,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" alt="Boom" class="hero-logo"/>
+      <div class="hero-badge">Discovery Call</div>
+    </div>
     <h1>Discovery Call — Seaside Villas</h1>
-    <p class="sub">Meeting summary prepared for Seaside Villas</p>
-    <div class="hero-meta">
-      <div class="hero-mi"><span class="dot"></span><strong>March 18, 2026</strong></div>
-      <div class='hero-mi'><span class='dot'></span><strong>52 minutes</strong></div>
-      <div class="hero-mi"><span class="dot"></span><strong>3 participants</strong></div>
+    <p class="hero-sub">Meeting summary prepared for Seaside Villas</p>
+    <div class="hero-pills">
+      <div class="hero-pill"><span class="hero-pill-dot"></span><strong>March 18, 2026</strong></div>
+      <div class='hero-pill'><span class='hero-pill-dot'></span><strong>52 minutes</strong></div>
+      <div class="hero-pill"><span class="hero-pill-dot"></span><strong>3 participants</strong></div>
     </div>
   </div>
-  <div class="hero-gold"></div>
+  <div class="hero-wave"></div>
 </div>
 
-<!-- CONTENT -->
+<!-- ▌ STATS BAR ▌ -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat">
+      <div class="stat-icon stat-icon-blue">🌍</div>
+      <div class="stat-content"><div class="stat-num"><span>20+</span> Countries</div><div class="stat-label">5 continents worldwide</div></div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon stat-icon-blue">🔗</div>
+      <div class="stat-content"><div class="stat-num"><span>250+</span> Channels</div><div class="stat-label">Direct API with Airbnb &amp; Booking.com</div></div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon stat-icon-gold">💰</div>
+      <div class="stat-content"><div class="stat-num"><span>$12.7M</span> Raised</div><div class="stat-label">Led by Avenue Growth Partners</div></div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon stat-icon-blue">⚡</div>
+      <div class="stat-content"><div class="stat-num"><span>6</span> Week Onboarding</div><div class="stat-label">Average time to go live</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ▌ CONTENT ▌ -->
 <div class="main">
 
   <div class="sec">
-    <div class="sh"><h2>👥 Participants</h2></div>
-    <div class="ppl"><div class="person"><div class="av" style="background:#eef1ff;color:#4d65ff;border:2.5px solid #dce1ff">MS</div><div><div class="pn">Maria Santos</div><div class="pr">Operations Director · Seaside Villas</div></div></div>
-<div class="person"><div class="av" style="background:#eef1ff;color:#4d65ff;border:2.5px solid #dce1ff">TR</div><div><div class="pn">Tom Richards</div><div class="pr">CEO · Seaside Villas</div></div></div>
-<div class="person"><img class="av-img" src="data:image/jpeg;base64,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" alt="Idan Carmi"/><div><div class="pn">Idan Carmi</div><div class="pr">CGO · Boom</div></div></div></div>
+    <div class="sec-label">ATTENDEES</div>
+    <h2 class="sec-title">Who Was There</h2>
+    <div class="ppl"><div class="person"><div class="av av-ext">MS</div><div class="pinfo"><div class="pn">Maria Santos</div><div class="pr">Operations Director</div><span class="ptag">Seaside Villas</span></div></div>
+<div class="person"><div class="av av-ext">TR</div><div class="pinfo"><div class="pn">Tom Richards</div><div class="pr">CEO</div><span class="ptag">Seaside Villas</span></div></div>
+<div class="person"><img class="av-img" src="data:image/jpeg;base64,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" alt="Idan Carmi"/><div class="pinfo"><div class="pn">Idan Carmi</div><div class="pr">CGO</div><span class="ptag ptag-boom">Boom</span></div></div></div>
   </div>
-  <div class="sdiv"></div>
+  <div class="divider"></div>
 
   <div class="sec">
-    <div class="sh"><h2>📄 Summary</h2></div>
-    <div class="sbox">We had a fantastic conversation about how Seaside Villas can consolidate their current 4-tool stack into Boom&#x27;s unified platform. Maria and Tom shared the challenges of managing 85 properties across Portugal&#x27;s Algarve coast, from fragmented guest communication to manual pricing adjustments. We walked through how Boom handles multi-channel distribution, automated guest messaging, and dynamic pricing — all from one dashboard. Both expressed strong interest in moving forward with a full demo next week.</div>
+    <div class="sec-label">EXECUTIVE SUMMARY</div>
+    <h2 class="sec-title">Overview</h2>
+    <div class="takeaway"><div class="takeaway-label">KEY TAKEAWAY</div><div class="takeaway-text">Seaside Villas can replace 4 tools with one platform and save 15+ hours per week on pricing alone — while preparing to scale from 85 to 120 properties by Q4.</div></div>
+    <div class="sbullets"><div class="sbullet"><div class="sbullet-num">1</div><div>Your team is managing 85 properties across the Algarve with 4 disconnected tools — Boom consolidates everything into one dashboard</div></div><div class="sbullet"><div class="sbullet-num">2</div><div>Manual pricing is eating 15+ hours/week — Boom&#x27;s dynamic pricing engine automates this with market data</div></div><div class="sbullet"><div class="sbullet-num">3</div><div>You&#x27;re planning to scale to 120 properties by Q4 — Boom&#x27;s automation means you can grow without growing headcount</div></div></div>
+    
   </div>
-  <div class="sdiv"></div>
+  <div class="divider"></div>
 
   <div class="sec">
-    <div class="sh"><h2>💬 Key Discussion Points</h2></div>
-    <div class="grid g3"><div class="crd" style="border-left:4px solid #ffd310;background:#fffbe6"><div class="crd-h"><span class="crd-i">🔍</span><span class="crd-t" style="color:#e6be00">Current Challenges</span></div><ul><li>Managing 4 separate tools (Guesty, PriceLabs, Hospitable, spreadsheets)</li>
-<li>No unified view of guest communications across channels</li>
-<li>Manual pricing adjustments taking 15+ hours/week</li>
-<li>Difficulty onboarding new team members due to tool complexity</li>
-<li>Limited reporting — can&#x27;t see portfolio performance at a glance</li></ul></div>
-<div class="crd" style="border-left:4px solid #4d65ff;background:#eef1ff"><div class="crd-h"><span class="crd-i">✅</span><span class="crd-t" style="color:#4d65ff">How Boom Addresses This</span></div><ul><li>Single platform replacing all 4 tools — one login, one dashboard</li>
-<li>Unified inbox for all guest messages (Airbnb, Booking.com, direct)</li>
-<li>Built-in dynamic pricing with market data integration</li>
-<li>Intuitive UI designed for team onboarding in days, not weeks</li>
-<li>Real-time portfolio analytics and owner reporting</li></ul></div>
-<div class="crd" style="border-left:4px solid #dce1ff;background:#eef1ff"><div class="crd-h"><span class="crd-i">🚀</span><span class="crd-t" style="color:#4d65ff">Growth Opportunities</span></div><ul><li>Expanding to 120 properties by Q4 — needs scalable ops</li>
-<li>Direct booking channel launch planned for summer</li>
-<li>Owner acquisition strategy could benefit from Boom&#x27;s reporting</li>
-<li>Potential to reduce team from 6 to 4 with automation</li></ul></div></div>
+    <div class="sec-label">KEY INSIGHTS</div>
+    <h2 class="sec-title">Discussion Points</h2>
+    <div class="grid g3"><div class="crd" style="background:rgba(255,211,16,.06);border:1.5px solid rgba(255,211,16,.25)"><div class="crd-h"><span class="crd-i">🔍</span><span class="crd-t">Current Challenges</span></div><ul><li><span class="li-dot" style="background:#ffd310"></span>Managing 4 separate tools (Guesty, PriceLabs, Hospitable, spreadsheets)</li>
+<li><span class="li-dot" style="background:#ffd310"></span>No unified view of guest communications across channels</li>
+<li><span class="li-dot" style="background:#ffd310"></span>Manual pricing adjustments taking 15+ hours/week</li>
+<li><span class="li-dot" style="background:#ffd310"></span>Difficulty onboarding new team members due to tool complexity</li>
+<li><span class="li-dot" style="background:#ffd310"></span>Limited reporting — can&#x27;t see portfolio performance at a glance</li></ul></div>
+<div class="crd" style="background:rgba(77,101,255,.05);border:1.5px solid rgba(77,101,255,.2)"><div class="crd-h"><span class="crd-i">✅</span><span class="crd-t">How Boom Addresses This</span></div><ul><li><span class="li-dot" style="background:#4d65ff"></span>Single platform replacing all 4 tools — one login, one dashboard</li>
+<li><span class="li-dot" style="background:#4d65ff"></span>Unified inbox for all guest messages (Airbnb, Booking.com, direct)</li>
+<li><span class="li-dot" style="background:#4d65ff"></span>Built-in dynamic pricing with market data integration</li>
+<li><span class="li-dot" style="background:#4d65ff"></span>Intuitive UI designed for team onboarding in days, not weeks</li>
+<li><span class="li-dot" style="background:#4d65ff"></span>Real-time portfolio analytics and owner reporting</li></ul></div>
+<div class="crd" style="background:rgba(77,101,255,.05);border:1.5px solid rgba(77,101,255,.15)"><div class="crd-h"><span class="crd-i">🚀</span><span class="crd-t">Growth Opportunities</span></div><ul><li><span class="li-dot" style="background:#4d65ff"></span>Expanding to 120 properties by Q4 — needs scalable ops</li>
+<li><span class="li-dot" style="background:#4d65ff"></span>Direct booking channel launch planned for summer</li>
+<li><span class="li-dot" style="background:#4d65ff"></span>Owner acquisition strategy could benefit from Boom&#x27;s reporting</li>
+<li><span class="li-dot" style="background:#4d65ff"></span>Potential to reduce team from 6 to 4 with automation</li></ul></div></div>
   </div>
-  <div class="sdiv"></div>
+  <div class="divider"></div>
 
-  <div class="sec"><div class="sh"><h2>💻 What We Showed You</h2></div><table class="dt"><tbody><tr><td class="ft">Unified Inbox</td><td>Showed how all Airbnb, Booking.com, and direct messages flow into one timeline per guest</td></tr>
-<tr><td class="ft">Dynamic Pricing</td><td>Demonstrated market-aware pricing engine with manual override capabilities</td></tr>
-<tr><td class="ft">Owner Portal</td><td>Walked through the owner-facing dashboard with real-time revenue and occupancy data</td></tr>
-<tr><td class="ft">Task Management</td><td>Showed automated cleaning and maintenance task assignment based on check-in/check-out</td></tr></tbody></table></div><div class="sdiv"></div>
+  <div class="sec"><div class="sec-label">WHAT THIS MEANS FOR YOU</div><h2 class="sec-title">Features We Explored Together</h2><div class="demo-list"><div class="demo-row"><div class="demo-num">01</div><div class="demo-body"><div class="demo-feat">Unified Inbox</div><div class="demo-desc">Every guest message from Airbnb, Booking.com, and direct — in one timeline. No more switching between tabs.</div></div></div><div class="demo-row"><div class="demo-num">02</div><div class="demo-body"><div class="demo-feat">Dynamic Pricing</div><div class="demo-desc">Your rates adjust automatically based on market demand, events, and competitor data. No more 15-hour/week manual work.</div></div></div><div class="demo-row"><div class="demo-num">03</div><div class="demo-body"><div class="demo-feat">Owner Portal</div><div class="demo-desc">Your property owners get real-time revenue and occupancy dashboards — fewer calls, happier owners.</div></div></div><div class="demo-row"><div class="demo-num">04</div><div class="demo-body"><div class="demo-feat">Task Management</div><div class="demo-desc">Cleaning and maintenance tasks auto-assign based on check-in/check-out. Your team just follows the list.</div></div></div></div><div class="bam-callout"><div class="bam-icon">🤖</div><div class="bam-body"><div class="bam-title">Powered by BAM — Your AI Operations Manager</div><div class="bam-desc">Everything you saw today runs on BAM (Business Agentic Manager) — think of it as ChatGPT for your property management business. BAM doesn't just automate tasks, it makes decisions, learns your preferences, and runs your day-to-day operations autonomously.</div><a href="https://www.boomnow.com/blog/introducing-bam-the-first-ever-business-agentic-manager-for-the-short-term-rental-industry" class="bam-link">Learn more about BAM →</a></div></div></div>
+  <div class='divider'></div>
 
   <div class="sec">
-    <div class="sh"><h2>✅ Next Steps</h2></div>
-    <table class="st"><thead><tr><th>Timeline</th><th>Action</th><th>Owner</th></tr></thead>
-    <tbody><tr><td><span class="pill" style="background:#4d65ff;color:#ffffff">This week</span></td><td class="act">Send detailed proposal with pricing for 85 properties</td><td><span class="opill" style="background:#4d65ff;color:#ffffff">Boom</span></td></tr>
-<tr><td><span class="pill" style="background:#3a4ecc;color:#ffffff">Next week</span></td><td class="act">Full product demo with operations team (3 additional members)</td><td><span class="opill" style="background:#f4f5f9;color:#6b7194;border:1px solid #e8eaf2">Both</span></td></tr>
-<tr><td><span class="pill" style="background:#4d65ff;color:#ffffff">This week</span></td><td class="act">Review current Guesty contract renewal date</td><td><span class="opill" style="background:#f4f5f9;color:#6b7194;border:1px solid #e8eaf2">Seaside Villas</span></td></tr>
-<tr><td><span class="pill" style="background:#3a4ecc;color:#ffffff">Next week</span></td><td class="act">Prepare migration timeline and data export checklist</td><td><span class="opill" style="background:#4d65ff;color:#ffffff">Boom</span></td></tr>
-<tr><td><span class="pill" style="background:#3a4ecc;color:#ffffff">Next week</span></td><td class="act">Decision on moving forward with pilot</td><td><span class="opill" style="background:#f4f5f9;color:#6b7194;border:1px solid #e8eaf2">Seaside Villas</span></td></tr></tbody></table>
+    <div class="sec-label">ACTION ITEMS</div>
+    <h2 class="sec-title">Next Steps</h2>
+    <div class="step-list"><div class="step-row"><div class="step-check"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#4d65ff" stroke-width="1.5" opacity=".3"/></svg></div><div class="step-body"><div class="step-act">Send detailed proposal with pricing for 85 properties</div><div class="step-meta"><span class="pill" style="background:#4d65ff;color:#ffffff">This week</span><span class="opill opill-boom">Boom</span></div></div></div>
+<div class="step-row"><div class="step-check"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#4d65ff" stroke-width="1.5" opacity=".3"/></svg></div><div class="step-body"><div class="step-act">Full product demo with operations team (3 additional members)</div><div class="step-meta"><span class="pill" style="background:#3a4ecc;color:#ffffff">Next week</span><span class="opill opill-ext">Both</span></div></div></div>
+<div class="step-row"><div class="step-check"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#4d65ff" stroke-width="1.5" opacity=".3"/></svg></div><div class="step-body"><div class="step-act">Review current Guesty contract renewal date</div><div class="step-meta"><span class="pill" style="background:#4d65ff;color:#ffffff">This week</span><span class="opill opill-ext">Seaside Villas</span></div></div></div>
+<div class="step-row"><div class="step-check"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#4d65ff" stroke-width="1.5" opacity=".3"/></svg></div><div class="step-body"><div class="step-act">Prepare migration timeline and data export checklist</div><div class="step-meta"><span class="pill" style="background:#3a4ecc;color:#ffffff">Next week</span><span class="opill opill-boom">Boom</span></div></div></div>
+<div class="step-row"><div class="step-check"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#4d65ff" stroke-width="1.5" opacity=".3"/></svg></div><div class="step-body"><div class="step-act">Decision on moving forward with pilot</div><div class="step-meta"><span class="pill" style="background:#3a4ecc;color:#ffffff">Next week</span><span class="opill opill-ext">Seaside Villas</span></div></div></div></div>
   </div>
-  <div class="sdiv"></div>
+  <div class="divider"></div>
 
-  <div class="testi-wrap">
-    <div class="testi-sec">
-      <div class="testi-badge">TRUSTED BY PROPERTY MANAGERS IN 30+ COUNTRIES</div>
-      <div class="testi-hdr">
-        <h2>What Our Partners Say</h2>
-        <p class="testi-sub">Hear from property managers who transformed their business with Boom</p>
-      </div>
-      <div class="testi-scroll"><div class="tc"><div class="tc-top"><div class="tc-quote-mark">&#8220;</div><div class="tc-stars">★★★★★</div></div><div class="tc-q">Boom&#x27;s support has been leagues ahead of any PMS we&#x27;ve used before. You don&#x27;t feel like just another subscription.</div><div class="tc-ft"><div class="tc-av">DM</div><div><div class="tc-nm">Dean McLuckie</div><div class="tc-rl">Founder</div><div class="tc-co">Euphoric Leisure</div></div></div></div><div class="tc"><div class="tc-top"><div class="tc-quote-mark">&#8220;</div><div class="tc-stars">★★★★★</div></div><div class="tc-q">If I had to rate it, it&#x27;s a 10. The platform is really fast, much faster than the other guys.</div><div class="tc-ft"><div class="tc-av">JT</div><div><div class="tc-nm">Joakim Thörn</div><div class="tc-rl">CEO</div><div class="tc-co">Guestly Homes</div></div></div></div><div class="tc"><div class="tc-top"><div class="tc-quote-mark">&#8220;</div><div class="tc-stars">★★★★★</div></div><div class="tc-q">We&#x27;re now in a position to attract creatives and true hospitality lovers to our team, because it is no longer a call center.</div><div class="tc-ft"><div class="tc-av">SM</div><div><div class="tc-nm">Sab Mulligan</div><div class="tc-rl">Head of Teams</div><div class="tc-co">Zzzing</div></div></div></div><div class="tc"><div class="tc-top"><div class="tc-quote-mark">&#8220;</div><div class="tc-stars">★★★★★</div></div><div class="tc-q">The relationship has felt like more than just business. I&#x27;ve felt the genuine interest in helping us grow.</div><div class="tc-ft"><div class="tc-av">JE</div><div><div class="tc-nm">Jonathan Ellse</div><div class="tc-rl">Managing Director</div><div class="tc-co">Perch Short Stays</div></div></div></div><div class="tc"><div class="tc-top"><div class="tc-quote-mark">&#8220;</div><div class="tc-stars">★★★★★</div></div><div class="tc-q">The software not only touches every facet of our business, but has added enormous improvements into areas which we never thought would be possible.</div><div class="tc-ft"><div class="tc-av">RM</div><div><div class="tc-nm">Richard Marshall</div><div class="tc-rl">Director</div><div class="tc-co">NOX</div></div></div></div><div class="tc"><div class="tc-top"><div class="tc-quote-mark">&#8220;</div><div class="tc-stars">★★★★★</div></div><div class="tc-q">Boom has completely transformed how I manage my properties. It&#x27;s streamlined, easy to use, and has taken so much stress off my plate.</div><div class="tc-ft"><div class="tc-av">CP</div><div><div class="tc-nm">Chet Persaud</div><div class="tc-rl">Owner</div><div class="tc-co">KFE Management</div></div></div></div><div class="tc"><div class="tc-top"><div class="tc-quote-mark">&#8220;</div><div class="tc-stars">★★★★★</div></div><div class="tc-q">This solution is the ultimate software tool for all property management needs! We&#x27;ve enhanced our operations to less than 1% bad reviews.</div><div class="tc-ft"><div class="tc-av">LM</div><div><div class="tc-nm">Liran Matok</div><div class="tc-rl">CEO</div><div class="tc-co">250+ properties across US</div></div></div></div><div class="tc"><div class="tc-top"><div class="tc-quote-mark">&#8220;</div><div class="tc-stars">★★★★★</div></div><div class="tc-q">After a decade in the STR industry, the Boom team has brought us into a new era of tech-driven best practices and optimization.</div><div class="tc-ft"><div class="tc-av">YR</div><div><div class="tc-nm">Yuval Rephael</div><div class="tc-rl">CEO</div><div class="tc-co">Yalarent</div></div></div></div></div>
-      <div class="testi-cta">
-        <a href="https://www.boomnow.com/partner-testimonials" class="testi-more">See all partner stories<span class="testi-arrow">→</span></a>
-      </div>
+  <a href="https://meetings.hubspot.com/idan-carmi" style="text-decoration:none;display:block">
+  <div class="cta-banner">
+    <div class="cta-body">
+      <div class="cta-title">Ready to See the Full Platform?</div>
+      <div class="cta-desc">Book your next session — we'll tailor the demo to Seaside Villas's specific needs.</div>
     </div>
-  </div>
+    <div class="cta-btn">Book a Session <span>→</span></div>
+  </div></a>
 
   <div class="sec">
-    <div class="sh"><h2>🔗 Resources</h2></div>
-    <div class="rg"><a href="https://fellow.link/abc123" class="rl"><span class="ri">📹</span><div><div class="rt">Meeting Recording</div><div class="rd">Watch the full conversation</div></div><span class="ra">→</span></a>
-<a href="https://meetings.hubspot.com/idan-carmi" class="rl"><span class="ri">📅</span><div><div class="rt">Book Your Next Session</div><div class="rd">Pick a time that works for you</div></div><span class="ra">→</span></a></div>
-    <div class="tz">💡 If you don't see availability that works (time zones can be tricky), just send me 2-3 windows that fit your schedule and I'll make it work on my end.</div>
-  </div>
+    <div class="sec-label">SIMILAR TO YOU</div>
+    <h2 class="sec-title">See How Others Made the Switch</h2>
+    <div class="cs-grid"><a href="https://www.boomnow.com/case-studies/enjoy-unique-stays" class="cs-card"><div class="cs-tag">CASE STUDY</div><div class="cs-name">Enjoy Unique Stays</div><div class="cs-meta">110 properties · UK</div><div class="cs-link">Read the full story →</div></a><a href="https://www.boomnow.com/case-studies/how-guestly-homes-streamlined-operations-and-scaled-with-ai-powered-hospitality" class="cs-card"><div class="cs-tag">CASE STUDY</div><div class="cs-name">Guestly Homes</div><div class="cs-meta">105 properties · Sweden</div><div class="cs-link">Read the full story →</div></a></div></div>
+    <div class="divider"></div>
 
 </div>
 
-<!-- FOOTER -->
+<!-- ▌ PARTNER LOGOS ▌ -->
+<div class="plogo-sec">
+    <div class="plogo-inner">
+      <div class="plogo-label">TRUSTED BY LEADING PROPERTY MANAGERS</div>
+      <div class="plogo-strip"><div class="plogo-track"><span class="plogo-name">Zzzing</span><span class="plogo-dot">·</span><span class="plogo-name">Perch Short Stays</span><span class="plogo-dot">·</span><span class="plogo-name">Guestly Homes</span><span class="plogo-dot">·</span><span class="plogo-name">NOX</span><span class="plogo-dot">·</span><span class="plogo-name">Euphoric Leisure</span><span class="plogo-dot">·</span><span class="plogo-name">KFE Management</span><span class="plogo-dot">·</span><span class="plogo-name">Livestay</span><span class="plogo-dot">·</span><span class="plogo-name">Housepitality</span><span class="plogo-dot">·</span><span class="plogo-name">PureServiced</span><span class="plogo-dot">·</span><span class="plogo-name">Yalarent</span><span class="plogo-dot">·</span><span class="plogo-name">Zzzing</span><span class="plogo-dot">·</span><span class="plogo-name">Perch Short Stays</span><span class="plogo-dot">·</span><span class="plogo-name">Guestly Homes</span><span class="plogo-dot">·</span><span class="plogo-name">NOX</span><span class="plogo-dot">·</span><span class="plogo-name">Euphoric Leisure</span><span class="plogo-dot">·</span><span class="plogo-name">KFE Management</span><span class="plogo-dot">·</span><span class="plogo-name">Livestay</span><span class="plogo-dot">·</span><span class="plogo-name">Housepitality</span><span class="plogo-dot">·</span><span class="plogo-name">PureServiced</span><span class="plogo-dot">·</span><span class="plogo-name">Yalarent</span><span class="plogo-dot">·</span></div></div>
+    </div>
+  </div>
+
+<!-- ▌ TESTIMONIALS ▌ -->
+<div class="testi-wrap">
+    <div class="testi-inner">
+      <div class="testi-badge">TRUSTED BY PROPERTY MANAGERS IN 30+ COUNTRIES</div>
+      <h2 class="testi-title">What Our Partners Say</h2>
+      <p class="testi-sub">Hear from property managers who transformed their business with Boom</p>
+      <div class="testi-scroll"><div class="tc"><div class="tc-stars">★★★★★</div><div class="tc-q">"Boom&#x27;s support has been leagues ahead of any PMS we&#x27;ve used before. You don&#x27;t feel like just another subscription."</div><div class="tc-ft"><div class="tc-av">DM</div><div><div class="tc-nm">Dean McLuckie</div><div class="tc-rl">Founder · Euphoric Leisure</div></div></div></div><div class="tc"><div class="tc-stars">★★★★★</div><div class="tc-q">"If I had to rate it, it&#x27;s a 10. The platform is really fast, much faster than the other guys."</div><div class="tc-ft"><div class="tc-av">JT</div><div><div class="tc-nm">Joakim Thörn</div><div class="tc-rl">CEO · Guestly Homes</div></div></div></div><div class="tc"><div class="tc-stars">★★★★★</div><div class="tc-q">"We&#x27;re now in a position to attract creatives and true hospitality lovers to our team, because it is no longer a call center."</div><div class="tc-ft"><div class="tc-av">SM</div><div><div class="tc-nm">Sab Mulligan</div><div class="tc-rl">Head of Teams · Zzzing</div></div></div></div><div class="tc"><div class="tc-stars">★★★★★</div><div class="tc-q">"The relationship has felt like more than just business. I&#x27;ve felt the genuine interest in helping us grow."</div><div class="tc-ft"><div class="tc-av">JE</div><div><div class="tc-nm">Jonathan Ellse</div><div class="tc-rl">Managing Director · Perch Short Stays</div></div></div></div><div class="tc"><div class="tc-stars">★★★★★</div><div class="tc-q">"The software not only touches every facet of our business, but has added enormous improvements into areas which we never thought would be possible."</div><div class="tc-ft"><div class="tc-av">RM</div><div><div class="tc-nm">Richard Marshall</div><div class="tc-rl">Director · NOX</div></div></div></div><div class="tc"><div class="tc-stars">★★★★★</div><div class="tc-q">"Boom has completely transformed how I manage my properties. It&#x27;s streamlined, easy to use, and has taken so much stress off my plate."</div><div class="tc-ft"><div class="tc-av">CP</div><div><div class="tc-nm">Chet Persaud</div><div class="tc-rl">Owner · KFE Management</div></div></div></div><div class="tc"><div class="tc-stars">★★★★★</div><div class="tc-q">"This solution is the ultimate software tool for all property management needs! We&#x27;ve enhanced our operations to less than 1% bad reviews."</div><div class="tc-ft"><div class="tc-av">LM</div><div><div class="tc-nm">Liran Matok</div><div class="tc-rl">CEO · 250+ properties across US</div></div></div></div><div class="tc"><div class="tc-stars">★★★★★</div><div class="tc-q">"After a decade in the STR industry, the Boom team has brought us into a new era of tech-driven best practices and optimization."</div><div class="tc-ft"><div class="tc-av">YR</div><div><div class="tc-nm">Yuval Rephael</div><div class="tc-rl">CEO · Yalarent</div></div></div></div></div>
+      <div class="testi-cta"><a href="https://www.boomnow.com/partner-testimonials" class="btn-testi">See all partner stories <span>→</span></a></div>
+    </div>
+  </div>
+
+<!-- ▌ RESOURCES ▌ -->
+<div class="res-sec">
+  <div class="sec-label">RESOURCES</div>
+  <h2 class="sec-title">Continue the Conversation</h2>
+  <div class="res-grid res-g2"><a href="https://fellow.link/abc123" class="res-card"><div class="res-ico">📹</div><div class="res-body"><div class="res-title">Meeting Recording</div><div class="res-desc">Watch the full conversation</div></div><div class="res-arrow">→</div></a>
+<a href="https://meetings.hubspot.com/idan-carmi" class="res-card"><div class="res-ico">📅</div><div class="res-body"><div class="res-title">Book Your Next Session</div><div class="res-desc">Pick a time — or reply with 2-3 slots that work for you</div></div><div class="res-arrow">→</div></a></div>
+  <div class="blog-sec"><div class="sec-label" style="margin-top:32px">RECOMMENDED READING</div><div class="res-grid res-g2"><a href="https://www.boomnow.com/blog/introducing-bam-the-first-ever-business-agentic-manager-for-the-short-term-rental-industry" class="blog-card"><div class="blog-ico">📖</div><div class="blog-body"><div class="blog-title">Introducing BAM: The First Business Agentic Manager</div><div class="blog-link">Read on our blog →</div></div></a>
+<a href="https://www.boomnow.com/blog/pricing-strategy-just-got-smarter-with-boom-x-wheelhouse-integration" class="blog-card"><div class="blog-ico">📖</div><div class="blog-body"><div class="blog-title">Smarter Pricing with Boom × Wheelhouse</div><div class="blog-link">Read on our blog →</div></div></a></div></div>
+</div>
+
+<!-- ▌ FOOTER ▌ -->
 <div class="ftr">
   <div class="ftr-in">
-    <img src="data:image/webp;base64,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" alt="Boom" class="ftr-logo"/>
-    <div class="ftr-tag">Property Management, Simplified</div>
-    <div class="ftr-lnk">
-      <a href="https://www.boomnow.com" class="ftr-a">boomnow.com</a>
-      <span class="ftr-d">·</span>
-      <a href="https://www.boomnow.com/partner-testimonials" class="ftr-a">Partner Stories</a>
-      <span class="ftr-d">·</span>
-      <a href="https://meetings.hubspot.com/idan-carmi" class="ftr-a">Book a Call</a>
+    <div class="ftr-left">
+      <img src="data:image/webp;base64,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" alt="Boom" class="ftr-logo"/>
+      <span class="ftr-tag">Prepared by Idan Carmi, Chief Growth Officer</span>
     </div>
-    <div class="ftr-c">Prepared by Boom · Idan Carmi, Chief Growth Officer</div>
+    <div class="ftr-right">
+      <div class="ftr-links">
+        <a href="https://www.boomnow.com" class="ftr-a">boomnow.com</a>
+        <span class="ftr-sep">·</span>
+        <a href="https://www.boomnow.com/partner-testimonials" class="ftr-a">Partner Stories</a>
+        <span class="ftr-sep">·</span>
+        <a href="https://meetings.hubspot.com/idan-carmi" class="ftr-a">Book a Call</a>
+      </div>
+      <div class="ftr-trust">
+        <span class="ftr-badge">GDPR Compliant</span>
+        <span class="ftr-badge">ISO 27001</span>
+      </div>
+      <div style="font-size:10px;color:rgba(255,255,255,.3)">Backed by Avenue Growth Partners · Advisors include former Hilton International CEO Ian Carter</div>
+    </div>
   </div>
 </div>
 

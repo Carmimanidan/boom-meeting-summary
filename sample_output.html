@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Discovery Call — Seaside Villas</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#fafbfd;color:#121428;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.65;padding:0;-webkit-font-smoothing:antialiased}
+
+/* ── HEADER — full-width hero ── */
+.hero{
+  background:linear-gradient(160deg,#121428 0%,#1e2140 40%,#2e3352 100%);
+  color:#ffffff;padding:0;position:relative;overflow:hidden;
+}
+.hero::before{content:'';position:absolute;top:-120px;right:-60px;width:500px;height:500px;background:radial-gradient(circle,rgba(77,101,255,.12) 0%,transparent 65%);border-radius:50%}
+.hero::after{content:'';position:absolute;bottom:-100px;left:10%;width:400px;height:400px;background:radial-gradient(circle,rgba(255,211,16,.06) 0%,transparent 65%);border-radius:50%}
+.hero-bar{height:5px;background:linear-gradient(90deg,#4d65ff 0%,#ffd310 50%,#4d65ff 100%)}
+.hero-inner{max-width:1320px;margin:0 auto;padding:56px 72px 52px;position:relative;z-index:1}
+.hero-logo{height:36px;margin-bottom:32px;display:block}
+.hero-type{
+  display:inline-block;background:#4d65ff;color:#ffffff;
+  font-size:13px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+  padding:8px 20px;border-radius:8px;margin-bottom:20px;
+}
+.hero h1{font-size:44px;font-weight:800;line-height:1.15;margin-bottom:12px;max-width:900px}
+.hero .sub{font-size:17px;color:rgba(255,255,255,.6);max-width:700px}
+.hero-meta{display:flex;gap:32px;margin-top:32px;flex-wrap:wrap}
+.hero-mi{display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(255,255,255,.5)}
+.hero-mi strong{color:#ffffff;font-weight:600}
+.hero-mi .dot{width:6px;height:6px;border-radius:50%;background:#ffd310;flex-shrink:0}
+.hero-gold{height:4px;background:linear-gradient(90deg,#ffd310,transparent 80%)}
+
+/* ── MAIN ── */
+.main{max-width:1320px;margin:0 auto;padding:56px 72px 40px}
+
+/* ── Sections ── */
+.sec{margin-bottom:48px}
+.sh{margin-bottom:24px}
+.sh h2{font-size:22px;font-weight:700;color:#121428;display:flex;align-items:center;gap:10px}
+.sdiv{height:2px;background:linear-gradient(90deg,#dce1ff 0%,#fff3b3 40%,transparent 100%);margin-bottom:48px;border-radius:2px}
+
+/* ── Participants ── */
+.ppl{display:flex;flex-wrap:wrap;gap:14px}
+.person{display:flex;align-items:center;gap:12px;background:#ffffff;border:1px solid #e8eaf2;border-radius:14px;padding:12px 20px 12px 12px;box-shadow:0 1px 3px rgba(0,0,0,.03)}
+.av{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0}
+.av-img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2.5px solid #ffd310;flex-shrink:0}
+.pn{font-size:15px;font-weight:600}
+.pr{font-size:12px;color:#6b7194}
+
+/* ── Summary ── */
+.sbox{
+  background:linear-gradient(135deg,#eef1ff 0%,#fffbe6 100%);
+  border-left:5px solid #4d65ff;border-radius:0 16px 16px 0;
+  padding:28px 34px;font-size:16px;line-height:1.8;color:#2e3352;
+}
+
+/* ── Cards ── */
+.grid{display:grid;gap:20px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(360px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(310px,1fr))}
+.crd{border-radius:16px;padding:26px;border:1px solid transparent}
+.crd-h{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.crd-i{font-size:22px}
+.crd-t{font-size:17px;font-weight:700}
+.crd ul{list-style:none;padding:0}
+.crd li{font-size:14px;padding:7px 0 7px 20px;position:relative;border-bottom:1px solid rgba(0,0,0,.04)}
+.crd li:last-child{border-bottom:none}
+.crd li::before{content:'›';position:absolute;left:4px;color:#6b7194;font-weight:700;font-size:15px}
+
+/* ── Demo ── */
+.dt{width:100%;border-collapse:collapse;background:#ffffff;border:1px solid #e8eaf2;border-radius:16px;overflow:hidden}
+.dt tr{border-bottom:1px solid #e8eaf2}
+.dt tr:last-child{border-bottom:none}
+.dt td{padding:18px 24px;font-size:15px;vertical-align:top}
+.dt .ft{font-weight:700;color:#4d65ff;white-space:nowrap;width:220px}
+
+/* ── Steps ── */
+.st{width:100%;border-collapse:collapse}
+.st thead th{background:#eef1ff;text-align:left;padding:14px 20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:#4d65ff;border-bottom:3px solid #dce1ff}
+.st thead th:first-child{border-radius:16px 0 0 0}.st thead th:last-child{border-radius:0 16px 0 0}
+.st tbody tr{border-bottom:1px solid #e8eaf2;transition:background .15s}
+.st tbody tr:last-child{border-bottom:none}
+.st tbody tr:hover{background:#eef1ff}
+.st tbody td{padding:16px 20px;font-size:15px;vertical-align:middle}
+.act{font-weight:500}
+.pill{display:inline-block;padding:5px 16px;border-radius:20px;font-size:12px;font-weight:700;white-space:nowrap}
+.opill{display:inline-block;padding:5px 16px;border-radius:20px;font-size:12px;font-weight:600;white-space:nowrap}
+
+/* ── Resources ── */
+.rg{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.rl{display:flex;align-items:center;gap:16px;padding:20px 24px;background:#ffffff;border:2px solid #e8eaf2;border-radius:16px;text-decoration:none;color:#121428;transition:all .2s}
+.rl:hover{border-color:#4d65ff;background:#eef1ff;box-shadow:0 4px 16px rgba(77,101,255,.1);transform:translateY(-2px)}
+.ri{font-size:28px;flex-shrink:0}
+.rt{font-size:16px;font-weight:600}
+.rd{font-size:13px;color:#6b7194}
+.ra{margin-left:auto;color:#4d65ff;font-size:22px;font-weight:700}
+.tz{margin-top:16px;padding:16px 20px;background:#fffbe6;border:1.5px solid #fff3b3;border-radius:12px;font-size:13px;color:#2e3352}
+
+/* ── Footer ── */
+.ftr{background:#121428;padding:48px 72px 40px;position:relative}
+.ftr::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,#ffd310 0%,#4d65ff 100%)}
+.ftr-in{max-width:1320px;margin:0 auto;text-align:center}
+.ftr-logo{height:38px;margin-bottom:16px}
+.ftr-tag{font-size:15px;color:rgba(255,255,255,.45);margin-bottom:24px}
+.ftr-lnk{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;align-items:center}
+.ftr-a{font-size:14px;color:rgba(255,255,255,.4);text-decoration:none;padding:6px 14px;border-radius:8px;transition:all .2s}
+.ftr-a:hover{color:#ffd310;background:rgba(255,211,16,.08)}
+.ftr-d{color:rgba(255,255,255,.12);font-size:10px}
+.ftr-c{margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,.05);font-size:12px;color:rgba(255,255,255,.2)}
+
+@media(max-width:800px){
+  .hero-inner,.main,.ftr{padding-left:24px!important;padding-right:24px!important}
+  .hero h1{font-size:28px}.g2,.g3{grid-template-columns:1fr}
+  .dt .ft{width:auto;white-space:normal}
+  .st thead{display:none}.st tbody tr{display:flex;flex-direction:column;padding:12px 0}.st tbody td{padding:4px 0}
+  .rg{grid-template-columns:1fr}
+}
+@media print{body{padding:0;background:#fff}.hero{break-inside:avoid}.rl:hover{transform:none;box-shadow:none}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hero">
+  <div class="hero-bar"></div>
+  <div class="hero-inner">
+    <img src="data:image/webp;base64,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" alt="Boom" class="hero-logo"/>
+    <div class="hero-type">Discovery Call</div>
+    <h1>Discovery Call — Seaside Villas</h1>
+    <p class="sub">Meeting summary prepared for Seaside Villas</p>
+    <div class="hero-meta">
+      <div class="hero-mi"><span class="dot"></span><strong>March 18, 2026</strong></div>
+      <div class='hero-mi'><span class='dot'></span><strong>52 minutes</strong></div>
+      <div class="hero-mi"><span class="dot"></span><strong>3 participants</strong></div>
+    </div>
+  </div>
+  <div class="hero-gold"></div>
+</div>
+
+<!-- CONTENT -->
+<div class="main">
+
+  <div class="sec">
+    <div class="sh"><h2>👥 Participants</h2></div>
+    <div class="ppl"><div class="person"><div class="av" style="background:#eef1ff;color:#4d65ff;border:2.5px solid #dce1ff">MS</div><div><div class="pn">Maria Santos</div><div class="pr">Operations Director · Seaside Villas</div></div></div>
+<div class="person"><div class="av" style="background:#eef1ff;color:#4d65ff;border:2.5px solid #dce1ff">TR</div><div><div class="pn">Tom Richards</div><div class="pr">CEO · Seaside Villas</div></div></div>
+<div class="person"><img class="av-img" src="data:image/png;base64,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" alt="Idan Carmi"/><div><div class="pn">Idan Carmi</div><div class="pr">CGO · Boom</div></div></div></div>
+  </div>
+  <div class="sdiv"></div>
+
+  <div class="sec">
+    <div class="sh"><h2>📄 Summary</h2></div>
+    <div class="sbox">We had a fantastic conversation about how Seaside Villas can consolidate their current 4-tool stack into Boom&#x27;s unified platform. Maria and Tom shared the challenges of managing 85 properties across Portugal&#x27;s Algarve coast, from fragmented guest communication to manual pricing adjustments. We walked through how Boom handles multi-channel distribution, automated guest messaging, and dynamic pricing — all from one dashboard. Both expressed strong interest in moving forward with a full demo next week.</div>
+  </div>
+  <div class="sdiv"></div>
+
+  <div class="sec">
+    <div class="sh"><h2>💬 Key Discussion Points</h2></div>
+    <div class="grid g3"><div class="crd" style="border-left:4px solid #ffd310;background:#fffbe6"><div class="crd-h"><span class="crd-i">🔍</span><span class="crd-t" style="color:#e6be00">Current Challenges</span></div><ul><li>Managing 4 separate tools (Guesty, PriceLabs, Hospitable, spreadsheets)</li>
+<li>No unified view of guest communications across channels</li>
+<li>Manual pricing adjustments taking 15+ hours/week</li>
+<li>Difficulty onboarding new team members due to tool complexity</li>
+<li>Limited reporting — can&#x27;t see portfolio performance at a glance</li></ul></div>
+<div class="crd" style="border-left:4px solid #4d65ff;background:#eef1ff"><div class="crd-h"><span class="crd-i">✅</span><span class="crd-t" style="color:#4d65ff">How Boom Addresses This</span></div><ul><li>Single platform replacing all 4 tools — one login, one dashboard</li>
+<li>Unified inbox for all guest messages (Airbnb, Booking.com, direct)</li>
+<li>Built-in dynamic pricing with market data integration</li>
+<li>Intuitive UI designed for team onboarding in days, not weeks</li>
+<li>Real-time portfolio analytics and owner reporting</li></ul></div>
+<div class="crd" style="border-left:4px solid #c5ccff;background:#f4f6ff"><div class="crd-h"><span class="crd-i">🚀</span><span class="crd-t" style="color:#3a4ecc">Growth Opportunities</span></div><ul><li>Expanding to 120 properties by Q4 — needs scalable ops</li>
+<li>Direct booking channel launch planned for summer</li>
+<li>Owner acquisition strategy could benefit from Boom&#x27;s reporting</li>
+<li>Potential to reduce team from 6 to 4 with automation</li></ul></div></div>
+  </div>
+  <div class="sdiv"></div>
+
+  <div class="sec"><div class="sh"><h2>💻 What We Showed You</h2></div><table class="dt"><tbody><tr><td class="ft">Unified Inbox</td><td>Showed how all Airbnb, Booking.com, and direct messages flow into one timeline per guest</td></tr>
+<tr><td class="ft">Dynamic Pricing</td><td>Demonstrated market-aware pricing engine with manual override capabilities</td></tr>
+<tr><td class="ft">Owner Portal</td><td>Walked through the owner-facing dashboard with real-time revenue and occupancy data</td></tr>
+<tr><td class="ft">Task Management</td><td>Showed automated cleaning and maintenance task assignment based on check-in/check-out</td></tr></tbody></table></div><div class="sdiv"></div>
+
+  <div class="sec">
+    <div class="sh"><h2>✅ Next Steps</h2></div>
+    <table class="st"><thead><tr><th>Timeline</th><th>Action</th><th>Owner</th></tr></thead>
+    <tbody><tr><td><span class="pill" style="background:#4d65ff;color:#ffffff">This week</span></td><td class="act">Send detailed proposal with pricing for 85 properties</td><td><span class="opill" style="background:#4d65ff;color:#ffffff">Boom</span></td></tr>
+<tr><td><span class="pill" style="background:#3a4ecc;color:#ffffff">Next week</span></td><td class="act">Full product demo with operations team (3 additional members)</td><td><span class="opill" style="background:#f4f5f9;color:#6b7194;border:1px solid #e8eaf2">Both</span></td></tr>
+<tr><td><span class="pill" style="background:#4d65ff;color:#ffffff">This week</span></td><td class="act">Review current Guesty contract renewal date</td><td><span class="opill" style="background:#f4f5f9;color:#6b7194;border:1px solid #e8eaf2">Seaside Villas</span></td></tr>
+<tr><td><span class="pill" style="background:#3a4ecc;color:#ffffff">Next week</span></td><td class="act">Prepare migration timeline and data export checklist</td><td><span class="opill" style="background:#4d65ff;color:#ffffff">Boom</span></td></tr>
+<tr><td><span class="pill" style="background:#3a4ecc;color:#ffffff">Next week</span></td><td class="act">Decision on moving forward with pilot</td><td><span class="opill" style="background:#f4f5f9;color:#6b7194;border:1px solid #e8eaf2">Seaside Villas</span></td></tr></tbody></table>
+  </div>
+  <div class="sdiv"></div>
+
+  <div class="sec">
+    <div class="sh"><h2>🔗 Resources</h2></div>
+    <div class="rg"><a href="https://fellow.link/abc123" class="rl"><span class="ri">📹</span><div><div class="rt">Meeting Recording</div><div class="rd">Watch the full conversation</div></div><span class="ra">→</span></a>
+<a href="https://www.boomnow.com/partner-testimonials" class="rl"><span class="ri">💬</span><div><div class="rt">What Our Partners Say</div><div class="rd">Hear from property managers like you</div></div><span class="ra">→</span></a>
+<a href="https://meetings.hubspot.com/idan-carmi" class="rl"><span class="ri">📅</span><div><div class="rt">Book Your Next Session</div><div class="rd">Pick a time that works for you</div></div><span class="ra">→</span></a></div>
+    <div class="tz">💡 If you don't see availability that works (time zones can be tricky), just send me 2-3 windows that fit your schedule and I'll make it work on my end.</div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="ftr">
+  <div class="ftr-in">
+    <img src="data:image/webp;base64,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" alt="Boom" class="ftr-logo"/>
+    <div class="ftr-tag">Property Management, Simplified</div>
+    <div class="ftr-lnk">
+      <a href="https://www.boomnow.com" class="ftr-a">boomnow.com</a>
+      <span class="ftr-d">·</span>
+      <a href="https://www.boomnow.com/partner-testimonials" class="ftr-a">Partner Stories</a>
+      <span class="ftr-d">·</span>
+      <a href="https://meetings.hubspot.com/idan-carmi" class="ftr-a">Book a Call</a>
+    </div>
+    <div class="ftr-c">Prepared by Boom · Idan Carmi, Chief Growth Officer</div>
+  </div>
+</div>
+
+</body>
+</html>
