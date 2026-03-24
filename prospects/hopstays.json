@@ -1,0 +1,64 @@
+{
+  "page_type": "prospect_overview",
+  "meeting_title": "Boom × Hopstays",
+  "meeting_date": "March 2026",
+  "meeting_duration": "",
+  "meeting_type": "Personalized Overview",
+  "company_name": "Hopstays",
+  "company_domain": "hopstays.com",
+  "participants": [],
+  "key_takeaway": "With 50 properties in Portugal, Hopstays is primed to scale — Boom gives you the automation and AI-powered tools to grow your portfolio without growing your team proportionally.",
+  "summary_bullets": [
+    "Portugal's STR market is one of the fastest-growing in Europe — Boom helps you capture maximum revenue with dynamic pricing tuned to seasonal tourism patterns",
+    "At 50 properties, you're at the stage where manual processes start becoming a real bottleneck — Boom automates the repetitive work so your team can focus on growth",
+    "You mentioned you found us at a convention — great timing, because we're actively expanding our European partner base and have deep experience in the Portugal market"
+  ],
+  "executive_summary": "",
+  "discussion_points": [
+    {
+      "category": "challenges",
+      "title": "Managing 50 Properties in Portugal",
+      "items": [
+        "Portugal's tourism seasons create huge demand swings — pricing needs to be responsive to peak periods, holidays, and local events",
+        "Multi-language guest communication (Portuguese, English, French, Spanish) across multiple channels",
+        "Coordinating cleaning and maintenance across a growing portfolio",
+        "Competition from other PMs for owner acquisition — differentiation matters",
+        "Reporting and transparency for property owners"
+      ]
+    },
+    {
+      "category": "solutions",
+      "title": "How Boom Solves This",
+      "items": [
+        "Dynamic pricing that adapts to Portugal's seasonal patterns, local events, and competitor rates automatically",
+        "AI-powered multilingual guest communication — BAM responds in any language, 24/7, with instant accuracy",
+        "Automated task management — cleaning and turnover tasks auto-assign from your booking calendar",
+        "Professional owner portal and reporting that helps you win and retain property owners",
+        "One platform for everything — PMS, channel manager, pricing, comms, tasks, accounting"
+      ]
+    },
+    {
+      "category": "opportunities",
+      "title": "Growth Opportunities",
+      "items": [
+        "Direct booking website — reduce Airbnb and Booking.com commissions",
+        "Scale from 50 to 100+ properties with the same team size",
+        "AI-powered guest upsells — offer experiences, early check-in, and premium services automatically"
+      ]
+    }
+  ],
+  "demo_highlights": [
+    {"feature": "Dynamic Pricing", "benefit": "All 50 listings optimally priced for Portugal's seasonal demand. Peak summer, off-season, local festivals — all handled automatically."},
+    {"feature": "Multilingual AI Comms", "benefit": "BAM communicates with guests in Portuguese, English, French, Spanish — instantly. No language barriers, no delays."},
+    {"feature": "Task Management", "benefit": "Cleaning and maintenance auto-scheduled from bookings. Your field team follows the app. No missed turnovers."},
+    {"feature": "Owner Portal", "benefit": "Real-time revenue dashboards and automated statements. Win new owners with professional, transparent reporting."}
+  ],
+  "next_steps": [
+    {"action": "Book a 30-minute discovery call to see Boom in action", "owner": "Hopstays", "timeline": "This week"},
+    {"action": "Prepare a custom demo for your Portugal portfolio", "owner": "Boom", "timeline": "After call"}
+  ],
+  "resources": {
+    "calendar_url": "https://meetings.hubspot.com/idan-carmi",
+    "testimonials_url": "https://www.boomnow.com/partner-testimonials"
+  }
+}

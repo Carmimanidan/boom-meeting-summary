@@ -1,0 +1,64 @@
+{
+  "page_type": "prospect_overview",
+  "meeting_title": "Boom × Big Easy Management",
+  "meeting_date": "March 2026",
+  "meeting_duration": "",
+  "meeting_type": "Personalized Overview",
+  "company_name": "Big Easy Management",
+  "company_domain": "bigeasymanagement.com",
+  "participants": [],
+  "key_takeaway": "Big Easy Management runs 175 short-term rentals in New Orleans — one of the most dynamic STR markets in the US. Boom gives you the automation and pricing intelligence to maximize revenue across your portfolio while cutting manual work in half.",
+  "summary_bullets": [
+    "175 properties in a high-demand, event-driven market like New Orleans means your pricing needs to move fast — Boom's dynamic pricing engine adjusts rates in real-time based on local events, demand spikes, and competitor data",
+    "Guest communication across 175 listings is a full-time job — Boom's AI-powered unified inbox handles routine messages automatically while keeping your personal touch",
+    "At your scale, consolidating your tech stack into one platform means fewer handoffs, fewer errors, and a team that can focus on guest experience instead of admin"
+  ],
+  "executive_summary": "",
+  "discussion_points": [
+    {
+      "category": "challenges",
+      "title": "Running 175 Properties in New Orleans",
+      "items": [
+        "New Orleans is event-driven (Mardi Gras, Jazz Fest, Saints games) — pricing needs to be hyper-responsive to demand swings",
+        "Managing guest communication across Airbnb, VRBO, Booking.com, and direct channels at scale",
+        "Coordinating cleaning and turnover for 175 units with tight same-day check-in/check-out windows",
+        "Staying compliant with New Orleans' evolving STR regulations",
+        "Owner satisfaction — providing transparent reporting and maximizing returns"
+      ]
+    },
+    {
+      "category": "solutions",
+      "title": "How Boom Addresses This",
+      "items": [
+        "Event-aware dynamic pricing — rates automatically spike for Mardi Gras, adjust for slow midweek periods, and optimize minimum stays",
+        "Unified inbox with AI auto-responses — BAM handles guest questions 24/7, escalating only what needs human attention",
+        "Automated task management — turnover tasks auto-create and assign based on your check-in/check-out calendar",
+        "Compliance tools and automated guest screening built into the workflow",
+        "Real-time owner portal with revenue dashboards, payout tracking, and automated monthly statements"
+      ]
+    },
+    {
+      "category": "opportunities",
+      "title": "Growth Opportunities",
+      "items": [
+        "Direct booking website — reduce OTA commissions on your 175-property portfolio",
+        "AI-powered upsells — offer early check-in, late checkout, and New Orleans experience packages",
+        "Scale your portfolio without scaling headcount — operators using Boom grow 30-40% faster than their teams"
+      ]
+    }
+  ],
+  "demo_highlights": [
+    {"feature": "Dynamic Pricing Engine", "benefit": "Event-aware pricing across all 175 listings. Mardi Gras rates set themselves. Jazz Fest minimums auto-adjust. No manual spreadsheet work."},
+    {"feature": "Unified Inbox with AI", "benefit": "Every guest message in one place. BAM answers routine questions instantly — check-in instructions, parking info, restaurant recs — while you handle the exceptions."},
+    {"feature": "Task Management", "benefit": "Turnover tasks auto-create from your booking calendar. Your cleaning crew sees exactly what needs to happen and when. No group texts, no missed turnovers."},
+    {"feature": "Owner Portal", "benefit": "Your property owners see real-time performance data. Less time on owner calls, more time growing the business."}
+  ],
+  "next_steps": [
+    {"action": "Book a 30-minute discovery call to explore how Boom fits your workflow", "owner": "Big Easy Management", "timeline": "This week"},
+    {"action": "Prepare a custom demo focused on your New Orleans portfolio", "owner": "Boom", "timeline": "After call"}
+  ],
+  "resources": {
+    "calendar_url": "https://meetings.hubspot.com/idan-carmi",
+    "testimonials_url": "https://www.boomnow.com/partner-testimonials"
+  }
+}

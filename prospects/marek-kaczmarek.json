@@ -1,0 +1,64 @@
+{
+  "page_type": "prospect_overview",
+  "meeting_title": "Boom × Your 99-Property Portfolio",
+  "meeting_date": "March 2026",
+  "meeting_duration": "",
+  "meeting_type": "Personalized Overview",
+  "company_name": "Your Business",
+  "company_domain": "",
+  "participants": [],
+  "key_takeaway": "With 99 properties in Poland, you're at the perfect size to see immediate ROI from Boom — big enough that manual processes are holding you back, but nimble enough to implement fast and see results within weeks.",
+  "summary_bullets": [
+    "99 properties means you've outgrown spreadsheets and basic tools — Boom gives you enterprise-level automation without enterprise-level complexity",
+    "Poland's STR market is booming — Boom's dynamic pricing engine helps you capture maximum revenue from seasonal demand swings across your portfolio",
+    "You found us through AI recommendations — fitting, because Boom is the most AI-forward property management platform in the market, powered by BAM"
+  ],
+  "executive_summary": "",
+  "discussion_points": [
+    {
+      "category": "challenges",
+      "title": "Common Challenges at ~100 Properties",
+      "items": [
+        "Too many listings to price manually, but too few to justify a dedicated revenue manager",
+        "Guest communication volume growing faster than your team — response times slipping during peak periods",
+        "Cleaning and maintenance coordination getting complex as the portfolio grows",
+        "Multiple tools for different functions — no single source of truth for your operations",
+        "Scaling to 150+ properties feels impossible without doubling your team"
+      ]
+    },
+    {
+      "category": "solutions",
+      "title": "How Boom Solves This",
+      "items": [
+        "Dynamic pricing engine — AI sets optimal rates across all 99 listings based on demand, competition, and seasonality",
+        "Unified inbox with AI — BAM handles routine guest messages instantly, in any language, 24/7",
+        "Automated task management — cleaning and maintenance auto-assign from your booking calendar",
+        "One platform replacing your entire tool stack — PMS, channel manager, guest comms, pricing, tasks, reporting",
+        "Built to scale — operators using Boom typically grow 30-40% without adding headcount"
+      ]
+    },
+    {
+      "category": "opportunities",
+      "title": "Growth Opportunities",
+      "items": [
+        "Direct booking website — start capturing bookings without OTA commissions",
+        "AI guest upsells — offer early check-in, late checkout, and experiences automatically",
+        "Owner acquisition — Boom's reporting tools make it easy to attract new property owners to your portfolio"
+      ]
+    }
+  ],
+  "demo_highlights": [
+    {"feature": "Dynamic Pricing", "benefit": "All 99 listings priced optimally, automatically. Seasonal adjustments, event-based spikes, competitor awareness — all handled by AI."},
+    {"feature": "AI Guest Communication", "benefit": "BAM answers guest questions in seconds, in any language. Your team handles exceptions, not routine messages."},
+    {"feature": "Task Management", "benefit": "Cleaning and maintenance auto-assigned from bookings. Your ops team follows the app instead of chasing WhatsApp messages."},
+    {"feature": "Unified Dashboard", "benefit": "Everything in one place — bookings, messages, tasks, pricing, owner reports. No more switching between 4 different tools."}
+  ],
+  "next_steps": [
+    {"action": "Book a 30-minute discovery call to see Boom in action", "owner": "You", "timeline": "This week"},
+    {"action": "Prepare a personalized demo for your portfolio", "owner": "Boom", "timeline": "After call"}
+  ],
+  "resources": {
+    "calendar_url": "https://meetings.hubspot.com/idan-carmi",
+    "testimonials_url": "https://www.boomnow.com/partner-testimonials"
+  }
+}

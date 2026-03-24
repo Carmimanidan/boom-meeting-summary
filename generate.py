@@ -177,7 +177,7 @@ def r_cards(dps):
             f'<ul>{li}</ul></div>')
     return "\n".join(o)
 
-def r_demo(hl):
+def r_demo(hl, is_prospect=False):
     if not hl: return ""
     rows=[]
     for i,h in enumerate(hl):
@@ -187,14 +187,16 @@ def r_demo(hl):
             f'<div class="demo-num">{i+1:02d}</div>'
             f'<div class="demo-body"><div class="demo-feat">{e(h.get("feature",""))}</div>'
             f'<div class="demo-desc">{e(desc)}</div></div></div>')
+    feat_title = "What Boom Can Do for You" if is_prospect else "Features We Explored Together"
+    bam_intro = "Everything on this page is powered by" if is_prospect else "Everything you saw today runs on"
     return (f'<div class="sec"><div class="sec-label">WHAT THIS MEANS FOR YOU</div>'
-            f'<h2 class="sec-title">Features We Explored Together</h2>'
+            f'<h2 class="sec-title">{feat_title}</h2>'
             f'<div class="demo-list">{"".join(rows)}</div>'
             f'<div class="bam-callout">'
             f'<div class="bam-icon">🤖</div>'
             f'<div class="bam-body">'
             f'<div class="bam-title">Powered by BAM — Your AI Operations Manager</div>'
-            f'<div class="bam-desc">Everything you saw today runs on BAM (Business Agentic Manager) — '
+            f'<div class="bam-desc">{bam_intro} BAM (Business Agentic Manager) — '
             f'think of it as ChatGPT for your property management business. BAM doesn\'t just automate tasks, '
             f'it makes decisions, learns your preferences, and runs your day-to-day operations autonomously.</div>'
             f'<a href="https://www.boomnow.com/blog/introducing-bam-the-first-ever-business-agentic-manager-for-the-short-term-rental-industry" class="bam-link">Learn more about BAM →</a>'
@@ -273,15 +275,18 @@ def r_blog(data):
             f'<div class="blog-link">Read on our blog →</div></div></a>')
     return "\n".join(items)
 
-def r_res(res):
+def r_res(res, is_prospect=False):
     items=[]
-    for k,ic,tt,ds in [("recording_url","📹","Meeting Recording","Watch the full conversation"),("calendar_url","📅","Book Your Next Session","Pick a time — or reply with 2-3 slots that work for you")]:
+    cal_title = "Book a Discovery Call" if is_prospect else "Book Your Next Session"
+    cal_desc = "Let's explore what Boom can do for your business — pick a time" if is_prospect else "Pick a time — or reply with 2-3 slots that work for you"
+    for k,ic,tt,ds in [("recording_url","📹","Meeting Recording","Watch the full conversation"),("calendar_url","📅",cal_title,cal_desc)]:
         u=res.get(k)
         if u: items.append(f'<a href="{e(u)}" class="res-card"><div class="res-ico">{ic}</div><div class="res-body"><div class="res-title">{tt}</div><div class="res-desc">{ds}</div></div><div class="res-arrow">→</div></a>')
     return "\n".join(items)
 
 
 def generate_html(data):
+    is_prospect = data.get("page_type") == "prospect_overview"
     mt   = data.get("meeting_title","Meeting Summary")
     md   = data.get("meeting_date",datetime.now().strftime("%B %d, %Y"))
     dur  = data.get("meeting_duration","")
@@ -905,16 +910,16 @@ body{{
 <!-- ▌ CONTENT ▌ -->
 <div class="main">
 
-  <div class="sec">
+  {"" if is_prospect else f"""<div class="sec">
     <div class="sec-label">ATTENDEES</div>
     <h2 class="sec-title">Who Was There</h2>
     <div class="ppl">{r_people(parts)}</div>
   </div>
-  <div class="divider"></div>
+  <div class="divider"></div>"""}
 
   <div class="sec">
-    <div class="sec-label">EXECUTIVE SUMMARY</div>
-    <h2 class="sec-title">Overview</h2>
+    <div class="sec-label">{"PREPARED FOR YOU" if is_prospect else "EXECUTIVE SUMMARY"}</div>
+    <h2 class="sec-title">{"Why Boom for " + e(co) if is_prospect else "Overview"}</h2>
     {"" if not takeaway else f'<div class="takeaway"><div class="takeaway-label">KEY TAKEAWAY</div><div class="takeaway-text">{e(takeaway)}</div></div>'}
     {"" if not bullets else '<div class="sbullets">' + "".join(f'<div class="sbullet"><div class="sbullet-num">{i+1}</div><div>{e(b)}</div></div>' for i,b in enumerate(bullets)) + '</div>'}
     {"" if takeaway or bullets else f'<div class="sbox">{e(summ)}</div>'}
@@ -922,13 +927,13 @@ body{{
   <div class="divider"></div>
 
   {"" if not dps else f'''<div class="sec">
-    <div class="sec-label">KEY INSIGHTS</div>
-    <h2 class="sec-title">Discussion Points</h2>
+    <div class="sec-label">{"YOUR BUSINESS" if is_prospect else "KEY INSIGHTS"}</div>
+    <h2 class="sec-title">{"How Boom Fits Your World" if is_prospect else "Discussion Points"}</h2>
     <div class="grid {gc}">{r_cards(dps)}</div>
   </div>
   <div class="divider"></div>'''}
 
-  {r_demo(demos)}
+  {r_demo(demos, is_prospect)}
   {"<div class='divider'></div>" if demos else ""}
 
   {"" if not steps else f'''<div class="sec">
@@ -942,7 +947,7 @@ body{{
   <div class="cta-banner">
     <div class="cta-body">
       <div class="cta-title">Ready to See the Full Platform?</div>
-      <div class="cta-desc">Book your next session — we\'ll tailor the demo to {e(co)}\'s specific needs.</div>
+      <div class="cta-desc">{"Book a discovery call — we\\'ll tailor the demo to " + e(co) + "\\'s specific needs." if is_prospect else "Book your next session — we\\'ll tailor the demo to " + e(co) + "\\'s specific needs."}</div>
     </div>
     <div class="cta-btn">Book a Session <span>→</span></div>
   </div></a>'''}
@@ -960,8 +965,8 @@ body{{
 <!-- ▌ RESOURCES ▌ -->
 {"" if not res else f"""<div class="res-sec">
   <div class="sec-label">RESOURCES</div>
-  <h2 class="sec-title">Continue the Conversation</h2>
-  <div class="res-grid res-g2">{r_res(res)}</div>
+  <h2 class="sec-title">{"Let's Talk" if is_prospect else "Continue the Conversation"}</h2>
+  <div class="res-grid res-g2">{r_res(res, is_prospect)}</div>
   {f'<div class="blog-sec"><div class="sec-label" style="margin-top:32px">RECOMMENDED READING</div><div class="res-grid res-g2">{r_blog(data)}</div></div>' if r_blog(data) else ''}
 </div>"""}
 

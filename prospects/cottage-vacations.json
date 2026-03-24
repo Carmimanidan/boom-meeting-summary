@@ -1,0 +1,64 @@
+{
+  "page_type": "prospect_overview",
+  "meeting_title": "Boom × Cottage Vacations",
+  "meeting_date": "March 2026",
+  "meeting_duration": "",
+  "meeting_type": "Personalized Overview",
+  "company_name": "Cottage Vacations",
+  "company_domain": "cottagevacations.com",
+  "participants": [],
+  "key_takeaway": "With 400 waterfront cottages across Muskoka, Parry Sound, and Georgian Bay, Cottage Vacations is exactly the kind of operator that sees the biggest ROI from Boom — automated pricing, guest communication, and task management at scale.",
+  "summary_bullets": [
+    "Managing 400 properties across multiple Ontario regions means your team is juggling pricing, guest comms, and ops across a massive footprint — Boom centralizes everything into one platform",
+    "Ontario's cottage market is seasonal and competitive — Boom's dynamic pricing engine adjusts rates in real-time based on demand, events, and competitor data to maximize your peak-season revenue",
+    "At your scale, even small efficiency gains compound fast — operators like you typically save 20+ hours per week on manual tasks after switching to Boom"
+  ],
+  "executive_summary": "",
+  "discussion_points": [
+    {
+      "category": "challenges",
+      "title": "Common Challenges at 400 Properties",
+      "items": [
+        "Coordinating guest communication across hundreds of listings and multiple channels (Airbnb, VRBO, direct)",
+        "Pricing 400 cottages manually — seasonal demand, last-minute bookings, and competitor rates make this a full-time job",
+        "Cleaning and maintenance coordination across a geographically dispersed portfolio",
+        "Onboarding and training team members on multiple disconnected tools",
+        "Owner reporting and trust accounting at scale"
+      ]
+    },
+    {
+      "category": "solutions",
+      "title": "How Boom Solves This",
+      "items": [
+        "Unified inbox — every guest message from every channel in one timeline, with AI-powered auto-responses",
+        "Built-in dynamic pricing that adjusts rates across all 400 listings based on market demand",
+        "Automated task management — cleaning and maintenance tasks auto-assign based on check-in/check-out schedules",
+        "Single platform replacing multiple tools — one login, one dashboard, one source of truth",
+        "Real-time owner portal with revenue dashboards and automated financial reporting"
+      ]
+    },
+    {
+      "category": "opportunities",
+      "title": "Growth Opportunities",
+      "items": [
+        "Direct booking channel — reduce OTA dependency and increase margins on your 400-property portfolio",
+        "AI-powered guest upsells — automatically offer early check-in, late checkout, and add-on experiences",
+        "Scale to 500+ properties without growing headcount — Boom's automation handles the operational load"
+      ]
+    }
+  ],
+  "demo_highlights": [
+    {"feature": "Dynamic Pricing Engine", "benefit": "Your rates adjust automatically across all 400 cottages based on demand, seasonality, events, and competitor data. No more manual spreadsheet work."},
+    {"feature": "Unified Inbox with AI", "benefit": "Every guest message from Airbnb, VRBO, Booking.com, and direct bookings — in one place. BAM handles routine queries automatically."},
+    {"feature": "Task Management", "benefit": "Cleaning and maintenance auto-assign based on check-in/check-out. Your field team just follows the app — no back-and-forth coordination."},
+    {"feature": "Owner Portal & Reporting", "benefit": "Property owners see real-time revenue and occupancy data. Fewer calls, happier owners, easier trust accounting."}
+  ],
+  "next_steps": [
+    {"action": "Book a 30-minute discovery call to explore how Boom fits your workflow", "owner": "Cottage Vacations", "timeline": "This week"},
+    {"action": "Prepare a custom demo based on your Ontario cottage portfolio", "owner": "Boom", "timeline": "After call"}
+  ],
+  "resources": {
+    "calendar_url": "https://meetings.hubspot.com/idan-carmi",
+    "testimonials_url": "https://www.boomnow.com/partner-testimonials"
+  }
+}

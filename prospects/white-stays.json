@@ -1,0 +1,64 @@
+{
+  "page_type": "prospect_overview",
+  "meeting_title": "Boom × White Stays",
+  "meeting_date": "March 2026",
+  "meeting_duration": "",
+  "meeting_type": "Personalized Overview",
+  "company_name": "White Stays",
+  "company_domain": "",
+  "participants": [],
+  "key_takeaway": "With 79 properties in the UK, White Stays is in the sweet spot where Boom delivers the highest impact — automating the operational grind so your team can focus on growth and guest experience.",
+  "summary_bullets": [
+    "79 UK properties means you're competing in one of Europe's most mature STR markets — Boom's dynamic pricing and AI guest comms give you an edge over operators still doing things manually",
+    "UK operators using Boom (Zzzing, Perch, Housepitality, PureServiced) are seeing 20-30% efficiency gains and faster growth — we know this market inside out",
+    "At 79 listings, you're at the inflection point — the right platform now means you can scale to 150+ without proportionally growing your team"
+  ],
+  "executive_summary": "",
+  "discussion_points": [
+    {
+      "category": "challenges",
+      "title": "Running 79 Properties in the UK",
+      "items": [
+        "UK's competitive STR market requires sharp pricing — manual adjustments can't keep up with demand fluctuations",
+        "Guest expectations are high — response times directly impact reviews and Airbnb rankings",
+        "Coordinating cleaning and maintenance across 79 units with tight turnovers",
+        "Multiple disconnected tools creating data silos and manual work",
+        "Growing the portfolio while keeping service quality high"
+      ]
+    },
+    {
+      "category": "solutions",
+      "title": "How Boom Solves This",
+      "items": [
+        "Dynamic pricing engine — AI-powered rates that adjust across all 79 listings in real-time",
+        "BAM-powered guest communication — instant, intelligent responses 24/7 while maintaining your brand voice",
+        "Automated task management — turnovers, maintenance, and inspections triggered by bookings",
+        "One unified platform replacing your entire tech stack — everything in one dashboard",
+        "Real-time owner reporting and trust accounting built in"
+      ]
+    },
+    {
+      "category": "opportunities",
+      "title": "Growth Opportunities",
+      "items": [
+        "Join a strong UK Boom community — Zzzing (360 props), Perch (300), Housepitality (140), PureServiced (71) are all on the platform",
+        "Direct booking channel to reduce OTA dependency",
+        "Scale to 150+ properties without doubling your ops team"
+      ]
+    }
+  ],
+  "demo_highlights": [
+    {"feature": "Dynamic Pricing", "benefit": "79 listings priced optimally, automatically. UK event awareness, seasonal adjustments, and competitor tracking — all handled by AI."},
+    {"feature": "AI Guest Communication", "benefit": "BAM handles routine guest messages instantly. Your team focuses on the exceptions that actually need a human touch."},
+    {"feature": "Task Management", "benefit": "Cleaning and maintenance auto-assigned from bookings. Every turnover tracked and verified. No more WhatsApp chaos."},
+    {"feature": "UK Partner Community", "benefit": "Join the largest UK community of Boom-powered operators. Shared learnings, UK-specific features, and a platform built for your market."}
+  ],
+  "next_steps": [
+    {"action": "Book a 30-minute discovery call to see how UK operators use Boom", "owner": "White Stays", "timeline": "This week"},
+    {"action": "Prepare a custom demo based on your UK portfolio", "owner": "Boom", "timeline": "After call"}
+  ],
+  "resources": {
+    "calendar_url": "https://meetings.hubspot.com/idan-carmi",
+    "testimonials_url": "https://www.boomnow.com/partner-testimonials"
+  }
+}
