@@ -1,0 +1,74 @@
+{
+  "meeting_title": "Product Demo — 5 Star Bali Villa",
+  "meeting_date": "July 7, 2026",
+  "meeting_duration": "70 min",
+  "meeting_type": "Product Demo",
+  "company_name": "5 Star Bali Villa",
+  "company_domain": "5starbalivilla.com.au",
+  "participants": [
+    {"name": "Enny Nurhayati", "role": "COO", "company": "5 Star Bali Villa"},
+    {"name": "Putra Yanda", "role": "Operations", "company": "5 Star Bali Villa"},
+    {"name": "Yovan (Jio) Aprilius", "role": "IT Manager", "company": "5 Star Bali Villa"},
+    {"name": "Idan Carmi", "role": "CGO", "company": "Boom"}
+  ],
+  "key_takeaway": "The multi-currency listings Guesty promised but never delivered are a live, working feature in Boom — alongside a full AI layer, and a 10-minute API migration that makes the switch the easy path, not the hard one.",
+  "summary_bullets": [
+    "Your dealbreaker with Guesty — multi-currency listings (AUD/USD on Airbnb, IDR on Booking.com & Agoda, USD on Vrbo) — is fully supported in Boom today. Two clients switched from Guesty specifically for it; a technical video is on the way.",
+    "You called Guesty's AI 'mind-blowingly failing.' Boom's AI actually runs the work — guest comms across every channel, auto-created service calls with photos, homeowner and cleaner agents, and multi-language translation both ways in real time.",
+    "Because you're on Guesty, migration is the easy case — Boom pulls all your property data with an API key in about 10 minutes, and reads your existing Guesty communication history to pre-build your policies, so onboarding is ~80% less work than a cold migration."
+  ],
+  "executive_summary": "Idan walked Enny, Putra and Jio through a full Boom platform demo after two frustrating months onboarding with Guesty. The team's decision to move is driven by a breach of trust — Guesty's sales team promised multi-currency listings that don't exist — plus an AI that hasn't delivered. Boom confirmed multi-currency is live today, showed its AI running real operational work end-to-end, and framed the Guesty-to-Boom switch as the easy migration path. Next: a reference call with a Mexico-based ex-Guesty client, follow-up videos on multi-currency and push sync, and Janine's sign-off on pricing already honored from two months ago.",
+  "discussion_points": [
+    {
+      "category": "challenges",
+      "title": "Why 5 Star Bali is leaving Guesty",
+      "items": [
+        "Multi-currency listings were promised by Guesty's sales team but the feature doesn't exist — the core breach of trust and the dealbreaker.",
+        "Guesty's AI is not delivering ('mind-blowingly failing') and only covers guest support — nothing for homeowners or contractors.",
+        "Onboarding felt overwhelming and overly complex for a team new to a PMS, with many features (like accounting) they'll never use since they run on Xero."
+      ]
+    },
+    {
+      "category": "solutions",
+      "title": "How Boom solves it",
+      "items": [
+        "Multi-currency is a live, current feature — confirmed, with a technical video to follow.",
+        "AI runs across all segments: guests, homeowners, cleaners and contractors, with adaptive tone, auto service-calls from guest messages, and two-way live translation.",
+        "Easy Guesty migration — API key pulls all data in ~10 minutes and pre-builds guest-comms policies from your existing Guesty history.",
+        "One-stop platform: multi-calendar, ops, CRM, dynamic pricing, guest portal, website builder and owner dashboards — no third-party integrations needed."
+      ]
+    },
+    {
+      "category": "opportunities",
+      "title": "Where Boom takes them next",
+      "items": [
+        "BIM (Boom's AI assistant) gives Janine a daily automated CEO briefing — review-risk guests, best/worst listings, contractor and cleaner performance — without touching the PMS.",
+        "The Optimizer scans the portfolio daily for revenue, distribution and operations fixes with one-click execution to the OTAs.",
+        "Fully customizable owner portal + mobile app with P&L, expenses and photo-documented maintenance — owners can be shown or hidden any detail (e.g. hide the booking channel, show the commission calc)."
+      ]
+    },
+    {
+      "category": "decisions",
+      "title": "Agreements & next steps",
+      "items": [
+        "Boom will honor the pricing offered to Janine two months ago.",
+        "Idan to send multi-currency and push-sync videos to the WhatsApp group.",
+        "Idan to introduce Jamie, a Mexico-based ex-Guesty Boom client, for a reference call.",
+        "Enny to share the summary with Janine (returning from holiday) for the go decision."
+      ]
+    }
+  ],
+  "demo_highlights": [
+    {"feature": "Multi-currency listings", "benefit": "List AUD/USD, IDR and USD per OTA exactly as the market and Indonesian regulation require — the one thing Guesty couldn't deliver."},
+    {"feature": "AI across every channel", "benefit": "Guest, homeowner and contractor communication handled automatically — headcount stays flat as the portfolio grows."},
+    {"feature": "Auto service-calls", "benefit": "A guest saying 'the balcony is dusty' becomes a service call with photos, access approval and internal notes — no one lifts a finger."},
+    {"feature": "BIM AI assistant", "benefit": "A daily CEO briefing for Janine — the answers, not the dashboards — eliminating ~90% of the morning digging."},
+    {"feature": "Optimizer module", "benefit": "Daily revenue, distribution and ops recommendations with one-click push to OTAs — catches pricing and listing gaps before they cost bookings."},
+    {"feature": "Owner portal & app", "benefit": "Investors see P&L, ADR and photo-backed maintenance in their own app, with every field you choose to show or hide."}
+  ],
+  "resources": {
+    "recording_url": "https://fellow.link/R4021G9S8XY1",
+    "testimonials_url": "https://www.boomnow.com/partner-testimonials",
+    "calendar_url": "https://meetings.hubspot.com/idan-carmi"
+  }
+}
