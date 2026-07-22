@@ -1,0 +1,78 @@
+{
+  "meeting_title": "Discovery Call — Seaside Vacations",
+  "meeting_date": "July 21, 2026",
+  "meeting_duration": "60 minutes",
+  "meeting_type": "Discovery Call",
+  "company_name": "Seaside Vacations",
+  "company_domain": "seasidevacations.com",
+  "participants": [
+    {"name": "Cyndee Colborn", "role": "Rental Manager (30 yrs, oversees operations)", "company": "Seaside Vacations"},
+    {"name": "Michelle", "role": "Owner relations, pricing, billing & accounting", "company": "Seaside Vacations"},
+    {"name": "April Garrison", "role": "Housekeeping, linen & back-of-house", "company": "Seaside Vacations"},
+    {"name": "Idan Carmi", "role": "CGO", "company": "Boom"}
+  ],
+  "key_takeaway": "Consolidate Barefoot, Rubaroo, Wheelhouse, and Breezeway into one platform at $29 per property/month — with AI running guest communication, pricing, and operations across your ~190 North Myrtle Beach listings — targeting a November/December 2026 go-live.",
+  "summary_bullets": [
+    "Your 190 listings run on four separate tools today — Barefoot (PMS), Rubaroo (guest comms), Wheelhouse (pricing), and Breezeway (ops). Boom folds all of them into one subscription.",
+    "You lose roughly 10 minutes on every manual add-a-night or early-arrival flow. Zoe, Boom's guest AI, handles the confirmation, charge, receipt, and follow-up end to end.",
+    "You found Wheelhouse too complex to fully roll out. Boom's built-in dynamic pricing plus BAM Optimum sets rates across every property and flags gap nights and overpriced listings automatically."
+  ],
+  "executive_summary": "Seaside Vacations manages ~190 vacation rentals in North Myrtle Beach, SC, currently running Barefoot, Rubaroo, Wheelhouse, and Breezeway as separate tools. The team wants to consolidate onto a single platform. Boom Now would replace the entire stack at $29/property/month, with AI agents Zoe (guest-facing) and BAM (company-wide) handling communication, pricing, and operations. Strong buying intent with a target go-live of November/December 2026.",
+  "discussion_points": [
+    {
+      "category": "challenges",
+      "title": "Current stack & pain points",
+      "items": [
+        "Four separate subscriptions to consolidate — Barefoot, Rubaroo, Wheelhouse, Breezeway — with a goal of one platform.",
+        "Rubaroo's AI features aren't performing, so only canned/automated sequences are in use (~80% of outbound).",
+        "Manual guest transactions (add nights, early arrivals) take ~10 minutes each, handled by hand.",
+        "Wheelhouse is too complex and has not been fully deployed across all properties."
+      ]
+    },
+    {
+      "category": "solutions",
+      "title": "How Boom replaces the stack",
+      "items": [
+        "Multi-calendar with drag-and-drop, mid-stay moves, and split owner payments.",
+        "Built-in task management replaces Breezeway — auto-scheduled cleaning, checklists, housekeeper app.",
+        "CRM unifies email, SMS, WhatsApp, and OTA channels into one inbox.",
+        "Native dynamic pricing replaces Wheelhouse; owner portals with live P&L reduce inbound owner questions.",
+        "Full US trust accounting with a reconciliation agent that reads bank transactions and auto-matches."
+      ]
+    },
+    {
+      "category": "opportunities",
+      "title": "AI-driven growth",
+      "items": [
+        "Zoe designs personalized guest experiences and upsells, not just Q&A.",
+        "BAM answers any company question in natural language and builds custom dashboards on demand.",
+        "BAM Optimum flags gap nights, listings priced above market, and OTA content gaps — pushing fixes with one click or on autopilot.",
+        "Automated re-marketing to high-quality past guests, curated by AI."
+      ]
+    },
+    {
+      "category": "decisions",
+      "title": "Timeline & next steps",
+      "items": [
+        "$29 per property/month, replacing the entire existing stack.",
+        "3–5 week fully remote onboarding with 24/7 support; ~5 years of history migrated on day one.",
+        "Target go-live: November/December 2026 (post-peak low season).",
+        "Follow-up meeting confirmed for Thursday, July 30 at 5:30 PM EDT.",
+        "Regional North Myrtle Beach reference client intro to follow."
+      ]
+    }
+  ],
+  "demo_highlights": [
+    {"feature": "Multi-calendar", "benefit": "Move guests mid-stay and split owner payments without leaving the calendar."},
+    {"feature": "Task management", "benefit": "Replaces Breezeway — auto-scheduled cleaning tasks, checklists, and a housekeeper mobile app."},
+    {"feature": "Zoe (guest AI)", "benefit": "Handles add-a-night and early-arrival flows end to end — no more 10-minute manual transactions."},
+    {"feature": "BAM Optimum", "benefit": "Continuously flags gap nights, overpriced listings, and content gaps, and pushes fixes to the OTAs."},
+    {"feature": "Trust accounting", "benefit": "US trust accounting with a reconciliation agent that reads bank transactions and auto-matches them."},
+    {"feature": "Front-office quote generator", "benefit": "Filter available properties by date, budget, and amenities and email a guest a branded quote link in one step."}
+  ],
+  "resources": {
+    "recording_url": "https://fellow.link/M2FYK3ZG510V",
+    "testimonials_url": "https://www.boomnow.com/partner-testimonials",
+    "calendar_url": "https://meetings.hubspot.com/idan-carmi"
+  }
+}
