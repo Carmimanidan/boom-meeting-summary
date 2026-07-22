@@ -1,0 +1,65 @@
+{
+  "meeting_title": "Intro to Boom AI — Upstay",
+  "meeting_date": "July 21, 2026",
+  "meeting_duration": "36 minutes",
+  "meeting_type": "Discovery Call",
+  "company_name": "Upstay",
+  "company_domain": "upstay.com",
+  "participants": [
+    {"name": "Bonnie Li", "role": "COO", "company": "Upstay"},
+    {"name": "Sabrina Mulligan", "role": "Guest Experience Partner", "company": "Boom"},
+    {"name": "Idan Carmi", "role": "CGO", "company": "Boom"}
+  ],
+  "key_takeaway": "Boom's AI is the only platform in short-term rental that actively designs and crafts guest experiences — not just fast replies — and can act as the institutional knowledge base across Upstay's 500 Guesty listings, with zero AI training required on your side.",
+  "summary_bullets": [
+    "Your team lives and breathes guest experience — Boom's adaptive AI (Zoe) personalizes every conversation from the reservation level, discloses it's AI transparently, and still keeps guests engaged and upselling naturally.",
+    "You flagged high staff turnover and knowledge trapped in Slack — BAM becomes your institutional knowledge base, instantly answering questions like 'how many times was leak mentioned in the last 6 months?' and onboarding new account managers.",
+    "You're running 6–8 tools on top of Guesty — Boom consolidates guest, owner, contractor and team communication into one CRM and layers AI + Breezeway on top, with no need to replace your PMS."
+  ],
+  "executive_summary": "An intro session for Upstay's COO Bonnie Li, focused on guest experience and intentional upselling. Sabrina (Boom operator partner, 650-key Malta portfolio) demoed adaptive AI guest communication and BAM agentic AI; Idan covered onboarding, CRM and review management. Bonnie's priorities: AI as an institutional knowledge base, phone-call handling, and OTA review management. Both sides agreed to a deeper follow-up with Upstay's full guest-experience and owner-experience teams.",
+  "discussion_points": [
+    {
+      "category": "challenges",
+      "title": "What we heard from Upstay",
+      "items": [
+        "High staff turnover — knowledge walks out the door, and new account managers take time to get up to speed.",
+        "Critical operational knowledge is scattered across Slack channels (work orders, local team alerts, issues).",
+        "Roughly 6–8 disconnected tools sitting on top of Guesty (Enzo Connect, PriceLabs, Sparrow, Slack).",
+        "Managing OTA reviews and wanting AI that can eventually handle guest phone calls."
+      ]
+    },
+    {
+      "category": "solutions",
+      "title": "How Boom addresses it",
+      "items": [
+        "Adaptive AI guest communication (Zoe) — personalizes tone and name per guest, discloses it's AI transparently, and drives gentle, intentional upselling.",
+        "BAM agentic AI — your 'Chief Action Officer': natural-language reports, bulk guest actions, custom dashboards on demand, and available directly inside Slack.",
+        "Institutional knowledge base — query historical guest communications and onboard new team members instantly.",
+        "Review management — AI handles 4★+ reviews across OTA channels; sub-4★ routed to humans, with auto service-call creation on maintenance/housekeeping issues.",
+        "Onboarding is a Guesty API key and ~10 minutes — 'the training is on us, the modification is on you.'"
+      ]
+    },
+    {
+      "category": "opportunities",
+      "title": "Where this goes next",
+      "items": [
+        "Intentional upselling that begins pre-arrival (travel quiz → curated itinerary) rather than a cold shop link.",
+        "Owner-facing performance reports (positive and negative review trends by property), fully customizable.",
+        "AI phone-call handling is in advanced testing and can already run in the test environment."
+      ]
+    }
+  ],
+  "demo_highlights": [
+    {"feature": "Adaptive guest AI (Zoe)", "benefit": "A 15-minute WhatsApp exchange that ends in a sunset drink and a handwritten note — upselling that feels like concierge, not a sales pitch."},
+    {"feature": "Transparent AI disclosure", "benefit": "When guests ask 'are you human?', Zoe warmly says she's AI — and engagement doesn't drop."},
+    {"feature": "BAM 'Morning Pulse'", "benefit": "A scheduled 8am report covering maintenance, unresolved guest issues and check-in readiness — replacing manual human handovers."},
+    {"feature": "Build-a-dashboard by prompt", "benefit": "One sentence spins up a live arrivals / departures / cleaning / unread-messages screen, saved for the whole company."},
+    {"feature": "BAM inside Slack", "benefit": "Tag BAM in your channels like a senior teammate to query history and run service calls — meeting your team where they already work."},
+    {"feature": "Institutional knowledge base", "benefit": "Ask 'how many times was leak mentioned in the last 6 months?' across all guest communications in seconds."}
+  ],
+  "resources": {
+    "recording_url": "https://fellow.link/H74BGHBAERF1",
+    "testimonials_url": "https://www.boomnow.com/partner-testimonials",
+    "calendar_url": "https://meetings.hubspot.com/idan-carmi"
+  }
+}
