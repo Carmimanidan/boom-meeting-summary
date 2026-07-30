@@ -202,18 +202,6 @@ def r_demo(hl, is_prospect=False):
             f'<a href="https://www.boomnow.com/blog/introducing-bam-the-first-ever-business-agentic-manager-for-the-short-term-rental-industry" class="bam-link">Learn more about BAM →</a>'
             f'</div></div></div>')
 
-def r_steps(steps):
-    rows=[]
-    for i,s in enumerate(steps):
-        ow=s.get("owner",""); ib="boom" in ow.lower() or "idan" in ow.lower()
-        oc = "opill-boom" if ib else "opill-ext"
-        rows.append(
-            f'<div class="step-row">'
-            f'<div class="step-check"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="{B}" stroke-width="1.5" opacity=".3"/></svg></div>'
-            f'<div class="step-body"><div class="step-act">{e(s.get("action",""))}</div>'
-            f'<div class="step-meta"><span class="pill" style="{pstyle(s.get("timeline",""))}">{e(s.get("timeline","TBD"))}</span>'
-            f'<span class="opill {oc}">{e(ow)}</span></div></div></div>')
-    return "\n".join(rows)
 
 def r_logos():
     """Render partner name strip — animated scroll."""
@@ -298,7 +286,6 @@ def generate_html(data):
     parts= data.get("participants",[])
     dps  = data.get("discussion_points",[])
     demos= data.get("demo_highlights",[])
-    steps= data.get("next_steps",[])
     res  = data.get("resources",{})
     nc   = len(dps)
     gc   = "g2" if nc<=2 else "g3" if nc==3 else "g2"
@@ -536,26 +523,6 @@ body{{
   display:inline-flex;align-items:center;gap:4px;transition:gap .2s;
 }}
 .bam-link:hover{{gap:8px}}
-
-/* ── Next Steps ── */
-.step-list{{display:flex;flex-direction:column;gap:0}}
-.step-row{{
-  display:flex;align-items:flex-start;gap:16px;
-  padding:20px 28px;background:{W};
-  border:1px solid {N2};border-bottom:none;transition:background .15s;
-}}
-.step-row:first-child{{border-radius:20px 20px 0 0}}
-.step-row:last-child{{border-radius:0 0 20px 20px;border-bottom:1px solid {N2}}}
-.step-row:only-child{{border-radius:20px;border-bottom:1px solid {N2}}}
-.step-row:hover{{background:{N0}}}
-.step-check{{flex-shrink:0;padding-top:2px}}
-.step-body{{flex:1;min-width:0}}
-.step-act{{font-size:15px;font-weight:600;color:{N9};margin-bottom:8px;line-height:1.5}}
-.step-meta{{display:flex;gap:8px;flex-wrap:wrap;align-items:center}}
-.pill{{display:inline-block;padding:4px 14px;border-radius:8px;font-size:11px;font-weight:700;white-space:nowrap;letter-spacing:.3px}}
-.opill{{display:inline-block;padding:4px 14px;border-radius:8px;font-size:11px;font-weight:600;white-space:nowrap}}
-.opill-boom{{background:{B10};color:{B}}}
-.opill-ext{{background:{N1};color:{N5}}}
 
 /* ── CTA Banner ── */
 .cta-banner{{
@@ -936,12 +903,6 @@ body{{
   {r_demo(demos, is_prospect)}
   {"<div class='divider'></div>" if demos else ""}
 
-  {"" if not steps else f'''<div class="sec">
-    <div class="sec-label">ACTION ITEMS</div>
-    <h2 class="sec-title">Next Steps</h2>
-    <div class="step-list">{r_steps(steps)}</div>
-  </div>
-  <div class="divider"></div>'''}
 
   {"" if not res.get("calendar_url") else f'''<a href="{e(res["calendar_url"])}" style="text-decoration:none;display:block">
   <div class="cta-banner">
