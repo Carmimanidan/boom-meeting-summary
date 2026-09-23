@@ -1,0 +1,79 @@
+{
+  "meeting_title": "Discovery Call — Bespoke Letting",
+  "meeting_date": "September 22, 2026",
+  "meeting_duration": "60 minutes",
+  "meeting_type": "Discovery Call",
+  "company_name": "Bespoke Letting",
+  "company_domain": "bespokeletting.co.za",
+  "participants": [
+    {"name": "Neil Viljoen", "role": "Founder, business planning", "company": "Bespoke Letting"},
+    {"name": "Idan Carmi", "role": "Co-founder and CGO", "company": "Boom"}
+  ],
+  "key_takeaway": "Replace Hostaway and PriceLabs with one platform that finally gives you real WhatsApp guest communication, automated cleaning and maintenance tasks, and AI handling the bulk of guest messages across your 85 Cape Town properties, with a November go-live.",
+  "summary_bullets": [
+    "You joined a PMS for two things, WhatsApp integration and task management, and Hostaway still hasn't delivered the first one. Boom runs WhatsApp natively through the CRM, so guests, owners and contractors all land in one inbox.",
+    "A checkout in Boom creates the cleaning task on its own, with a per-bedroom checklist, mandatory photos and linen tracking. Early check-in offers go out only once the clean is confirmed done, the exact automation gap you described.",
+    "Because Hostaway has an open API, your full history (reservations, guests, listings, photos, past conversations) imports with the API key, so the team isn't starting from a blank system."
+  ],
+  "executive_summary": "Bespoke Letting manages 85 properties in Cape Town (about 80 apartments and 5 standalone homes), listed exclusively on Airbnb, with a team of roughly 20 across operations, property management, cleaning and finance. The stack today is Hostaway, Airbnb and PriceLabs, with guest communication moving to WhatsApp after check-in and around 10 staff covering it 24/7. Neil is evaluating alternatives with a decision expected within two weeks and implementation planned for November, once two senior team members are back. Boom would consolidate PMS, task management, WhatsApp guest communication, dynamic pricing, owner portal and AI into a single subscription. Next step: a second session on Thursday with Christo, Bespoke Letting's managing director and the financial lead.",
+  "discussion_points": [
+    {
+      "category": "challenges",
+      "title": "What isn't working today",
+      "items": [
+        "WhatsApp integration with Hostaway is still unresolved, so guest chat after arrival lives outside the PMS.",
+        "Hostaway's Airbnb sync is unreliable: incomplete checkout notes, listing fields that need refreshing inside Airbnb, and no guest rating visibility on inquiries.",
+        "Early check-in can't be automated because the PMS doesn't know when the clean is actually done.",
+        "No AI, upsell or guest experience tools in use today; around 10 people carry guest communication around the clock."
+      ]
+    },
+    {
+      "category": "solutions",
+      "title": "How Boom replaces the stack",
+      "items": [
+        "One CRM inbox for guests, owners and contractors across Airbnb, WhatsApp and email. Sales inquiries and in-stay support are handled in separate panels.",
+        "Automated task management: checkout triggers cleaning with checklists and photo proof, maintenance tasks are created from guest messages, and each property manager gets an area report for their own listings.",
+        "Multi-calendar with reservation splitting, overbooking handling and automated block removal.",
+        "Built-in dynamic pricing as a PriceLabs replacement, or keep PriceLabs through the integration.",
+        "Guest experience link with check-in details, house guides and an upsell store, no app download. Homeowner portal with live P&L and automated owner statements.",
+        "Airbnb integration maps OTA-specific amenity naming. The only workflow still needing a direct Airbnb login is reservation alterations, which is in development."
+      ]
+    },
+    {
+      "category": "opportunities",
+      "title": "AI doing the heavy lifting",
+      "items": [
+        "Zoe, the guest AI, adapts to the guest (name, tone, language), runs a short travel quiz to personalise recommendations, and sells add-ons on its own. The AI detects the guest's language and replies in it, while your team reads everything in English.",
+        "Mid-stay complaints become service tasks automatically, including the guest's permission to enter the unit.",
+        "BAM answers any question about your company data in plain language, builds dashboards on request and can deliver a daily operations briefing to WhatsApp or email.",
+        "BAM Optimum scans the portfolio daily for pricing anomalies, gap nights and listing content gaps, and pushes fixes to Airbnb with one approval.",
+        "Imported Hostaway conversations let BAM surface how your team actually handles things like early check-in, so policies come from real behaviour, not assumptions."
+      ]
+    },
+    {
+      "category": "decisions",
+      "title": "Commercials, onboarding and next steps",
+      "items": [
+        "Flat $30 per property per month for the full platform: PMS, task management, guest communication, dynamic pricing, direct booking site, owner portal, BAM and BAM Optimum. No revenue share.",
+        "Online payments in South Africa run through BridgerPay (Stripe isn't available locally): $150 flat plus $0.32 per transaction, no percentage.",
+        "Smart locks are supported natively. QuickBooks: formatted export that imports directly, or a self-configured Zapier flow. Most of Boom's South African clients run their books from Boom's output.",
+        "Boom is a US company running on AWS, with customer service distributed globally.",
+        "Onboarding from Hostaway is API-based: the full history imports with the API key. Target go-live: November 2026.",
+        "Follow-up session with Christo: Thursday, September 24, 14:00 SAST."
+      ]
+    }
+  ],
+  "demo_highlights": [
+    {"feature": "CRM with native WhatsApp", "benefit": "Guests, owners and contractors in one inbox. No more parallel WhatsApp groups."},
+    {"feature": "Automated task management", "benefit": "Checkout creates the clean, with checklists, photo proof and linen tracking. Early check-in unlocks only when the clean is confirmed."},
+    {"feature": "Zoe (guest AI)", "benefit": "Handles guest messages in the guest's language, opens service tasks from complaints, and sells add-ons without a human in the loop."},
+    {"feature": "BAM and BAM Optimum", "benefit": "Plain-language answers about your business, daily briefings, and revenue and listing fixes pushed to Airbnb with one click."},
+    {"feature": "Homeowner portal", "benefit": "Live P&L per owner and automated statements from a business model you set once per property."},
+    {"feature": "Hostaway import", "benefit": "Reservations, guests, listings, photos and past conversations come across with the API key."}
+  ],
+  "resources": {
+    "recording_url": "https://fellow.link/JP49B6TS6A49",
+    "testimonials_url": "https://www.boomnow.com/partner-testimonials",
+    "calendar_url": "https://meetings.hubspot.com/idan-carmi"
+  }
+}
